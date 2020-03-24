@@ -10,9 +10,54 @@
   ],
   "author": "Fran Mendez <fmvilas@gmail.com> (fmvilas.com)",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asyncapi/html-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asyncapi/html-template/issues"
+  },
+  "homepage": "https://github.com/asyncapi/html-template#readme",
+  "scripts": {
+    "test": "echo \"No test specified yet\"",
+    "release": "semantic-release",
+    "get-version": "echo $npm_package_version"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "lodash": "^4.17.15",
     "markdown-it": "^10.0.0",
     "openapi-sampler": "^1.0.0-beta.15"
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/github": "^7.0.4",
+    "@semantic-release/npm": "^7.0.3",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "conventional-changelog-conventionalcommits": "^4.2.3",
+    "semantic-release": "^17.0.4"
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
   }
 }
