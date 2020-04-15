@@ -21,7 +21,8 @@
   "scripts": {
     "test": "echo \"No test specified yet\"",
     "release": "semantic-release",
-    "get-version": "echo $npm_package_version"
+    "get-version": "echo $npm_package_version",
+    "develop": "ag test/spec/asyncapi.yml ./ -o test/output --force-write --watch-template"
   },
   "publishConfig": {
     "access": "public"
