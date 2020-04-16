@@ -3,7 +3,7 @@
 <div class="mt-4">
   {% for tag in tagList %}
       {% if tag.externalDocs() %}
-        <span class="bg-grey-dark font-normal text-sm no-underline text-white rounded lowercase mr-2 px-2 py-1" title="{{tag.description()}}"><a href="{{tag.externalDocs().url()}}" target="_blank">{{tag.name()}}</a></span>
+        <a href="{{tag.externalDocs().url()}}" target="_blank" class="bg-grey-dark font-normal text-sm text-white rounded lowercase mr-2 px-2 py-1" title="{{tag.description()}}">{{tag.name()}}</a>
       {% else %}
         <span class="bg-grey-dark font-normal text-sm no-underline text-white rounded lowercase mr-2 px-2 py-1" title="{{tag.description()}}">{{tag.name()}}</span>
       {% endif %}
