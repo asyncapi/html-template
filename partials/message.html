@@ -1,4 +1,5 @@
 {% from "./schema.html" import schema %}
+{% from "./tags.html" import tags %}
 
 {% macro message(msg, showIndex=false, index=0, open=false) %}
 
@@ -19,6 +20,9 @@
     {% endif %}
   </div>
   <p class="text-grey-dark text-sm">{{msg.summary()}}</p>
+  
+  {{ tags(msg.tags()) }}
+
   <div class="mt-4 mb-4 markdown">{{ msg.description() | markdown2html | safe }}</div>
   {{ schema(msg.payload(), 'Payload', open=open) }}
   {% if msg.headers() %}
