@@ -145,6 +145,7 @@ components:
           x-pi: false
         sentAt:
           $ref: "#/components/schemas/sentAt"
+      additionalProperties: false
     turnOnOffPayload:
       type: object
       properties:
