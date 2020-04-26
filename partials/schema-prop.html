@@ -5,6 +5,7 @@
 <div class="{% if odd %}bg-grey-lighter{% else %}bg-grey-lightest{% endif %} {% if not root %}pl-8 pr-8{% endif %} rounded">
   <div class="{% if open %}is-open{% endif %}">
     <div class="{% if prop | isExpandable %}js-prop cursor-pointer py-2{% endif %} flex property">
+      {% if (not prop.allOf()) %}
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
         <span class="text-sm {% if specialName %}italic text-grey{% endif %}" style="word-break: break-word;">{{propName}}</span>
         {% if prop | isExpandable %}
@@ -23,7 +24,7 @@
           {{ type(prop) }}
           {% if prop.anyOf() %}anyOf{% endif %}
           {% if prop.oneOf() %}oneOf{% endif %}
-          {% if prop.allOf() %}allOf{% endif %}
+          
           <div class="inline-block">
             {% if prop.format() %}
               <span class="bg-yellow-dark font-bold no-underline text-black rounded lowercase ml-2"
@@ -98,6 +99,7 @@
           </div>
         {% endif %}
       </div>
+      {% endif %}
     </div>
 
     {% if prop | isExpandable %}
@@ -188,7 +190,9 @@
 
         {% if prop.allOf() %}
           {% for p in prop.allOf() %}
-            {{ schemaProp(p, loop.index0, odd=(not odd)) }}
+            {% for pName, pChild in p.properties() %}
+              {{ schemaProp(pChild, pName, odd=(not odd), required=(p.required() | contains(pName))) }}
+            {% endfor %}
           {% endfor %}
         {% endif %}
       </div>
