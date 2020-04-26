@@ -194,6 +194,26 @@
               {{ schemaProp(pChild, pName, odd=(not odd), required=(p.required() | contains(pName))) }}
             {% endfor %}
           {% endfor %}
+          {# allOf requires *all* provided schemas to successfully validate a message
+             and so 'additionalProperties' can be problematic.
+             See https://json-schema.org/understanding-json-schema/reference/combining.html#allof
+             Therefore, I suspect most scenarios other than the one where additionalProperties 
+             are allowed in every schema are likely to be edge cases
+          #}
+          {% if prop.allOf() | additionalPropertiesAllowedForAll %}
+            <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional properties are allowed.</p>
+          {% elif prop.allOf() | additionalPropertiesDisabledForAll %}
+            <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional properties are <strong>NOT</strong> allowed.</p>
+          {% else %}
+            <p class="pl-6 mb-2 mt-4 text-xs font-bold text-grey-darker">Additional properties must adhere to the following schema:</p>
+            {% for p in prop.allOf() %}
+              {% if p.additionalProperties() | isObject %}
+                <div class="{% if odd %}bg-grey-lightest{% else %}bg-grey-lighter{% endif %} pl-6">
+                  {{ schemaProp(p.additionalProperties(), '(property name)', odd=(not odd), open=false, specialName=true) }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         {% endif %}
       </div>
     {% endif %}

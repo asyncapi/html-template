@@ -107,7 +107,10 @@ module.exports = ({ Nunjucks }) => {
   Nunjucks.addFilter('isArray', (arr) => {
     return Array.isArray(arr);
   });
-
+  
+  Nunjucks.addFilter('additionalPropertiesAllowedForAll', (items) => items.every(p => p.additionalProperties() === true || p.additionalProperties() === undefined || p.additionalProperties() === null));
+  Nunjucks.addFilter('additionalPropertiesDisabledForAll', (items) => items.every(p => p.additionalProperties() === false) );
+  
   Nunjucks.addFilter('isObject', (obj) => {
     return typeof obj === 'object' && obj !== null;
   });
