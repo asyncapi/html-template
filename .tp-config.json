@@ -9,5 +9,5 @@
       "required": false
     }
   },
-  "generator": "<2.0.0"
+  "generator": ">=0.40.1 <2.0.0"
 }
