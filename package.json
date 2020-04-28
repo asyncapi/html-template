@@ -28,9 +28,6 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
-    "markdown-it": "^10.0.0",
-    "openapi-sampler": "^1.0.0-beta.15",
     "@asyncapi/generator-filters": "https://github.com/derberg/generator-filters#use-filters-lib"
   },
   "devDependencies": {
