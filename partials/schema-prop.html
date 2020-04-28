@@ -149,7 +149,7 @@
             {% endif %}
           {% endif %}
 
-          {% if prop.additionalItems() | isArray or prop.additionalItems() === true or prop.additionalItems() === undefined %}
+          {% if prop.additionalItems() === true or prop.additionalItems() === undefined %}
             <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional items are allowed.</p>
           {% elif prop.additionalItems() === false %}
             <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional items are NOT allowed.</p>
@@ -162,7 +162,7 @@
         {% endif %}
 
         {% if prop.type() === 'object' %}
-          {% if prop.additionalProperties() | isArray or prop.additionalProperties() === true or prop.additionalProperties() === undefined or prop.additionalProperties() === null %}
+          {% if prop.additionalProperties() === true or prop.additionalProperties() === undefined or prop.additionalProperties() === null %}
             <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional properties are allowed.</p>
           {% elif prop.additionalProperties() === false %}
             <p class="pl-6 mb-2 mt-4 text-xs text-grey-darker">Additional properties are <strong>NOT</strong> allowed.</p>
