@@ -6,7 +6,7 @@
   <div class="{% if open %}is-open{% endif %}">
     <div class="{% if prop | isExpandable %}js-prop cursor-pointer py-2{% endif %} flex property">
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
-        <span class="text-sm {% if specialName %}italic text-grey{% endif %}" style="word-break: break-word;">{{propName}}</span>
+        <span class="text-sm{% if specialName %} italic text-grey{% endif %}{% if prop.deprecated() %} line-through{% endif %}" style="word-break: break-word;">{{propName}}</span>
         {% if prop | isExpandable %}
         <svg class="expand" version="1.1" viewBox="0 0 24 24" x="0"
           xmlns="http://www.w3.org/2000/svg" y="0">
@@ -15,6 +15,9 @@
         {% endif %}
         {% if required %}
           <div class="text-red-dark text-xs">required</div>
+        {% endif %}
+        {% if prop.deprecated() %}
+          <div class="text-red-dark text-xs">deprecated</div>
         {% endif %}
       </div>
 
