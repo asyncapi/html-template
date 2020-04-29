@@ -8,5 +8,6 @@
       "description": "Sets the base URL for links and forms.",
       "required": false
     }
-  }
+  },
+  "generator": ">=0.40.1 <2.0.0"
 }
