@@ -52,7 +52,7 @@
         <ul class="list-reset">
           {% for sec in server.security() %}
             <li>
-              {% set def = asyncapi.components().securityScheme(sec.json() | firstKey) %}
+              {% set def = asyncapi.components().securityScheme(sec.json() | keys | head) %}
 
               <span class="font-bold no-underline text-grey-dark text-xs uppercase mr-1">
                 {% if def.type() === 'apiKey' %}

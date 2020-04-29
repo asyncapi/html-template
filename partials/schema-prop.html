@@ -107,7 +107,7 @@
       <div class="children {% if odd %}bg-grey-lightest{% else %}bg-grey-lighter{% endif %} py-4 rounded">
         {% if prop.properties() %}
           {% for pName, p in prop.properties() %}
-            {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | contains(pName))) }}
+            {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | includes(pName))) }}
           {% endfor %}
         {% endif %}
 
@@ -145,7 +145,7 @@
             <p class="pl-6 mb-2 text-xs font-bold uppercase text-grey-darker">Items:</p>
             {% if prop.items() | isArray %}
               {% for it in prop.items() %}
-              {{ schemaProp(it, loop.index0, odd=(not odd), required=(prop.required() | contains(pName))) }}
+              {{ schemaProp(it, loop.index0, odd=(not odd), required=(prop.required() | includes(pName))) }}
               {% endfor %}
             {% else %}
               {{ schemaProp(prop.items(), '0', odd=(not odd)) }}
