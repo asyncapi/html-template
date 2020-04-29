@@ -28,7 +28,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/generator-filters": "https://github.com/derberg/generator-filters#use-filters-lib"
+    "@asyncapi/generator-filters": "^1.0.0"
   },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^8.0.1",
