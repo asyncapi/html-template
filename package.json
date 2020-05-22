@@ -58,5 +58,22 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
+  },
+  "generator": {
+    "parameters": {
+      "sidebarOrganization": {
+        "description": "Defines how the sidebar should be organized. Set its value to 'byTags' to categorize operations by tags.",
+        "required": false
+      },
+      "baseHref": {
+        "description": "Sets the base URL for links and forms.",
+        "required": false
+      }
+    },
+    "generator": ">=0.50.0 <2.0.0",
+    "filters": [
+      "@asyncapi/generator-filters"
+    ]
   }
+  
 }
