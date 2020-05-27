@@ -100,6 +100,14 @@ a:hover {
   display: block;
 }
 
+.payload-examples, .headers-examples polygon {
+  fill: #fff;
+}
+
+.examples-uid {
+  color: #fff;
+}
+
 /* PANELS */
 
 .sidebar-panel {
