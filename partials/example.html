@@ -1,8 +1,8 @@
 {% macro example(msg, channelName, open=false) %}
 
 <form>
-  <h5 class="examples-uid">{{msg.uid()}}</h5>
-  <div class="payload-examples mt-4 {% if open %}is-open{% endif %}">
+  <h5 class="examples-uid text-orange mt-4">{{msg.uid()}}</h5>
+  <div class="payload-examples mb-4 {% if open %}is-open{% endif %}">
     <div class="{% if  msg.payload() | isExpandable %}js-prop cursor-pointer {% endif %} flex property">
       <span class="px-2 mr-2 text-grey-lightest text-sm border rounded focus:outline-none cursor-pointer {% if not msg.payload() %}text-grey-dark border-grey-dark opacity-25{% else %}text-grey-lightest{% endif %}" {% if not msg.payload() %}title="This message does not have a payload"{% endif %}>Payload</span>
       {% if msg.payload() | isExpandable %}
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="headers-examples mt-4 {% if open %}is-open{% endif %}">
+  <div class="headers-examples mb-4 {% if open %}is-open{% endif %}">
     <div class="{% if  msg.payload() | isExpandable %}js-prop cursor-pointer {% endif %} flex property">
       <span class="px-2 mr-2 text-sm border rounded focus:outline-none cursor-pointer {% if not msg.headers() %}text-grey-dark border-grey-dark opacity-25{% else %}text-grey-lightest{% endif %}" {% if not msg.headers() %}title="This message does not have headers"{% endif %}>Headers</span>
       {% if msg.payload() | isExpandable %}
