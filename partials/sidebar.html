@@ -178,11 +178,11 @@
     {% endif %}
     <h2 class="text-xs uppercase text-grey mt-10 mb-4 font-thin">Messages</h2>
     <ul class="text-sm list-reset mt-2">
-      {% for message in asyncapi.allMessages().keys() %}
+      {% for key, value in asyncapi.allMessages() %}
         <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3"
-          href="#message-{{ message }}">
+          href="#message-{{ key }}">
           <div style="display:inline-block;">
-            {{ slicedString(message, 'padding-top: 2px;') }}
+            {{ slicedString(key, 'padding-top: 2px;') }}
           </div>
         </a>
       {% endfor %}
