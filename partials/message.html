@@ -10,13 +10,9 @@
     {% endif %}
     {% if msg.title() %}
       {{msg.title()}}
-      {% if msg.name() %}
-        <span class="border text-orange rounded text-xs ml-3 py-0 px-2">{{msg.name()}}</span>
-      {% endif %}
+      <span class="border text-orange rounded text-xs ml-3 py-0 px-2">{{msg.uid()}}</span>
     {% else %}
-      {% if msg.name() %}
-        <span class="border text-orange rounded text-s py-0 px-2">{{msg.name()}}</span>
-      {% endif %}
+      <span class="border text-orange rounded text-s py-0 px-2">{{msg.uid()}}</span>
     {% endif %}
   </div>
   <p class="text-grey-dark text-sm">{{msg.summary()}}</p>
