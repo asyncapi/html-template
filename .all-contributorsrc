@@ -24,6 +24,15 @@
         "code",
         "bug"
       ]
+    },
+    {
+      "login": "schw4rzlicht",
+      "name": "Julian Rabe",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19175262?v=4",
+      "profile": "https://deltaeight.de",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
