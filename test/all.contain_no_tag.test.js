@@ -58,3 +58,7 @@ test("returns true if none of the tags in channel.publish/subscribe match with t
   t.context.foobaz._json = t.context.foobaz;
   t.true(containNoTag([t.context.publish, t.context.subscribe], [t.context.foobar, t.context.foobaz]));
 });
+
+test("returns true when tagsToCheck is an array of strings and none of them matches", t => {
+  t.true(containNoTag([t.context.publish, t.context.subscribe], ["foobaz", "foobar"]));
+});

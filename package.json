@@ -32,6 +32,7 @@
     "@asyncapi/generator-filters": "^1.0.0"
   },
   "devDependencies": {
+    "@asyncapi/parser": "^0.27.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",
@@ -64,7 +65,7 @@
   "generator": {
     "parameters": {
       "sidebarOrganization": {
-        "description": "Defines how the sidebar should be organized. Set its value to 'byTags' to categorize operations by tags.",
+        "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
         "required": false
       },
       "baseHref": {
