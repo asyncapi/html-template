@@ -2,17 +2,18 @@ const filter = module.exports;
 
 function isExpandable(obj) {
   if (
-    obj.type() === 'object' ||
-    obj.type() === 'array' ||
-    (obj.oneOf() && obj.oneOf().length) ||
-    (obj.anyOf() && obj.anyOf().length) ||
-    (obj.allOf() && obj.allOf().length) ||
-    obj.items() ||
-    obj.additionalItems() ||
-    (obj.properties() && Object.keys(obj.properties()).length) ||
-    obj.additionalProperties() ||
-    (obj.extensions() && Object.keys(obj.extensions()).filter(e => !e.startsWith('x-parser-')).length) ||
-    obj.patternProperties()
+    (typeof obj.type === "function" && obj.type() === "object") ||
+    (typeof obj.type === "function" && obj.type() === "array") ||
+    (typeof obj.oneOf === "function" && obj.oneOf() && obj.oneOf().length) ||
+    (typeof obj.anyOf === "function" && obj.anyOf() && obj.anyOf().length) ||
+    (typeof obj.allOf === "function" && obj.allOf() && obj.allOf().length) ||
+    (typeof obj.items === "function" && obj.items()) ||
+    (typeof obj.additionalItems === "function" && obj.additionalItems()) ||
+    (typeof obj.properties === "function" && obj.properties() && Object.keys(obj.properties()).length) ||
+    (typeof obj.additionalProperties === "function" && obj.additionalProperties()) ||
+    (typeof obj.extensions === "function" && obj.extensions() &&
+      Object.keys(obj.extensions()).filter(e => !e.startsWith("x-parser-")).length) ||
+    (typeof obj.patternProperties === "function" && obj.patternProperties())
   ) return true;
 
   return false;
@@ -20,9 +21,9 @@ function isExpandable(obj) {
 filter.isExpandable = isExpandable;
 
 function nonParserExtensions(schema) {
-  if (!schema || !schema.extensions || typeof schema.extensions !== 'function') return new Map();
+  if (!schema || !schema.extensions || typeof schema.extensions !== "function") return new Map();
   const extensions = Object.entries(schema.extensions());
-  return new Map(extensions.filter(e => !e[0].startsWith('x-parser-')).filter(Boolean));
+  return new Map(extensions.filter(e => !e[0].startsWith("x-parser-")).filter(Boolean));
 }
 filter.nonParserExtensions = nonParserExtensions;
 
@@ -42,7 +43,6 @@ function containTags(object, tagsToCheck) {
   if (tagsToCheck && !Array.isArray(tagsToCheck)) {
     tagsToCheck = [tagsToCheck];
   }
-
   //Check if pubsub contain one of the tags to check.
   let check = (tag) => {
     let found = false;
@@ -99,4 +99,3 @@ function containNoTag(channels, tagsToCheck) {
   return false;
 };
 filter.containNoTag = containNoTag;
-

@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/asyncapi/html-template#readme",
   "scripts": {
-    "test": "echo \"No test specified yet\"",
+    "lint": "echo \"No linter specified yet\"",
+    "test": "ava",
     "release": "semantic-release",
     "get-version": "echo $npm_package_version",
     "develop": "ag test/spec/asyncapi.yml ./ -o test/output --force-write --watch-template"
@@ -35,6 +36,7 @@
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.1",
+    "ava": "^3.9.0",
     "conventional-changelog-conventionalcommits": "^4.2.3",
     "semantic-release": "^17.0.4"
   },
@@ -73,6 +75,12 @@
     "generator": ">=0.50.0 <2.0.0",
     "filters": [
       "@asyncapi/generator-filters"
+    ]
+  },
+  "ava": {
+    "files": [
+      "!test/output",
+      "!test/spec"
     ]
   }
 }
