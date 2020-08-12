@@ -1,4 +1,4 @@
-{% macro example(msg, channelName, asyncapi, open=false) %}
+{% macro example(msg, channelName, open=false) %}
 
 <form>
   <h5 class="examples-uid text-orange mt-4">{{msg.uid()}}</h5>
@@ -20,7 +20,7 @@
             <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{{ex | dump(2) | safe }}</code></pre>
           {% endfor %}
         {% elif msg.payload() %}
-        <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{{ msg.payload().json() | generateExample(asyncapi.json()) | safe }}</code></pre>
+        <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{{ msg.payload().json() | generateExample | safe }}</code></pre>
         <h6 class="text-xs font-bold text-grey-darker italic">This example has been generated automatically.</h6>
         {% endif %}
       </div>
@@ -45,7 +45,7 @@
             <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{{ ex | dump(2) | safe  }}</code></pre>
           {% endfor %}
         {% elif msg.headers() %}
-        <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{{ msg.headers().json() | generateExample(asyncapi.json())  | safe }}</code></pre>
+        <pre class="hljs mb-4 border border-grey-darkest rounded"><code>{{ msg.headers().json() | generateExample | safe }}</code></pre>
         <h6 class="text-xs font-bold text-grey-darker italic">This example has been generated automatically.</h6>
         {% endif %}
       </div>
