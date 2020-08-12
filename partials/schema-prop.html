@@ -109,6 +109,19 @@
           {% for pName, p in prop.properties() %}
             {% if p.isCircular() === false %}
               {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | includes(pName))) }}
+            {% else %}
+            <div class="{% if odd %}bg-grey-lightest{% else %}bg-grey-lighter{% endif %} pl-8 pr-8 rounded">
+              <div class="js-prop cursor-pointer py-2 flex property">
+                <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
+                  <span class="text-sm" style="word-break: break-word;">{{ pName }}</span>
+                </div>
+                <div>
+                  <div class="capitalize text-sm text-teal font-bold">
+                    [CIRCULAR]
+                  </div>        
+                </div>
+              </div>
+            </div>
             {% endif %}
           {% endfor %}
         {% endif %}
@@ -147,14 +160,10 @@
             <p class="pl-6 mb-2 text-xs font-bold uppercase text-grey-darker">Items:</p>
             {% if prop.items() | isArray %}
               {% for it in prop.items() %}
-                {% if prop.isCircular() === false %}
-                  {{ schemaProp(it, loop.index0, odd=(not odd), required=(prop.required() | includes(pName))) }}
-                {% endif %}
+                {{ schemaProp(it, loop.index0, odd=(not odd), required=(prop.required() | includes(pName))) }}
               {% endfor %}
             {% else %}
-              {% if prop.isCircular() === false %}
-                {{ schemaProp(prop.items(), '0', odd=(not odd)) }}
-              {% endif %}
+              {{ schemaProp(prop.items(), '0', odd=(not odd)) }}
             {% endif %}
           {% endif %}
 
@@ -185,25 +194,19 @@
 
         {% if prop.oneOf() %}
           {% for p in prop.oneOf() %}
-            {% if p.isCircular() === false %}
-              {{ schemaProp(p, loop.index0, odd=(not odd)) }}
-            {% endif %}
+            {{ schemaProp(p, loop.index0, odd=(not odd)) }}
           {% endfor %}
         {% endif %}
 
         {% if prop.anyOf() %}
           {% for p in prop.anyOf() %}
-            {% if p.isCircular() === false %}
-              {{ schemaProp(p, loop.index0, odd=(not odd)) }}
-            {% endif %}
+            {{ schemaProp(p, loop.index0, odd=(not odd)) }}
           {% endfor %}
         {% endif %}
 
         {% if prop.allOf() %}
           {% for p in prop.allOf() %}
-            {% if p.isCircular() === false %}
-              {{ schemaProp(p, loop.index0, odd=(not odd)) }}
-            {% endif %}
+            {{ schemaProp(p, loop.index0, odd=(not odd)) }}
           {% endfor %}
         {% endif %}
       </div>
