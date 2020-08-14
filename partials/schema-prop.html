@@ -1,6 +1,7 @@
 {% from "./type.html" import type %}
+{% from "./schema-item.html" import schemaItem %}
 
-{% macro schemaProp(prop, propName, open=false, root=false, odd=false, specialName=false, required=false) %}
+{% macro schemaProp(prop, propName, open=false, root=false, odd=false, specialName=false, required=false, circularPropsParent) %}
 
 <div class="{% if odd %}bg-grey-lighter{% else %}bg-grey-lightest{% endif %} {% if not root %}pl-8 pr-8{% endif %} rounded">
   <div class="{% if open %}is-open{% endif %}">
@@ -107,21 +108,12 @@
       <div class="children {% if odd %}bg-grey-lightest{% else %}bg-grey-lighter{% endif %} py-4 rounded">
         {% if prop.properties() %}
           {% for pName, p in prop.properties() %}
-            {% if p.isCircular() === false %}
-              {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | includes(pName))) }}
+            {% set circProps = p.circularProps() %}
+            {% set isPropCircular = circularPropsParent | includes(pName) %}
+            {% if isPropCircular === true %}
+              {{ schemaItem(pName, odd) }}
             {% else %}
-            <div class="{% if odd %}bg-grey-lightest{% else %}bg-grey-lighter{% endif %} pl-8 pr-8 rounded">
-              <div class="js-prop cursor-pointer py-2 flex property">
-                <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
-                  <span class="text-sm" style="word-break: break-word;">{{ pName }}</span>
-                </div>
-                <div>
-                  <div class="capitalize text-sm text-teal font-bold">
-                    [CIRCULAR]
-                  </div>        
-                </div>
-              </div>
-            </div>
+              {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | includes(pName)), circProps) }}
             {% endif %}
           {% endfor %}
         {% endif %}
@@ -156,7 +148,8 @@
         {% endif %}
 
         {% if prop.type() === 'array' %}
-          {% if prop.items() %}
+          {% set arrayItemsProps = prop.items().properties() %}
+          {% if prop.items() and not arrayItemsProps %}
             <p class="pl-6 mb-2 text-xs font-bold uppercase text-grey-darker">Items:</p>
             {% if prop.items() | isArray %}
               {% for it in prop.items() %}
@@ -165,6 +158,17 @@
             {% else %}
               {{ schemaProp(prop.items(), '0', odd=(not odd)) }}
             {% endif %}
+          {% endif %}
+
+          {% if prop.items() and arrayItemsProps %}        
+            {% for pName, p in arrayItemsProps %}
+              {% set isCirc = p.isCircular() %}
+              {% if isCirc === true %}
+                {{ schemaItem(pName, odd) }}
+              {% else %}
+                {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | includes(pName))) }} 
+              {% endif %}
+            {% endfor %}
           {% endif %}
 
           {% if prop.additionalItems() === true or prop.additionalItems() === undefined %}
