@@ -1,19 +1,20 @@
 const filter = module.exports;
 
 function isExpandable(obj) {
+  const fun = (obj) => typeof obj === "function";
   if (
-    (typeof obj.type === "function" && obj.type() === "object") ||
-    (typeof obj.type === "function" && obj.type() === "array") ||
-    (typeof obj.oneOf === "function" && obj.oneOf() && obj.oneOf().length) ||
-    (typeof obj.anyOf === "function" && obj.anyOf() && obj.anyOf().length) ||
-    (typeof obj.allOf === "function" && obj.allOf() && obj.allOf().length) ||
-    (typeof obj.items === "function" && obj.items()) ||
-    (typeof obj.additionalItems === "function" && obj.additionalItems()) ||
-    (typeof obj.properties === "function" && obj.properties() && Object.keys(obj.properties()).length) ||
-    (typeof obj.additionalProperties === "function" && obj.additionalProperties()) ||
-    (typeof obj.extensions === "function" && obj.extensions() &&
+    (fun(obj.type) && obj.type() === "object") ||
+    (fun(obj.type) && obj.type() === "array") ||
+    (fun(obj.oneOf) && obj.oneOf() && obj.oneOf().length) ||
+    (fun(obj.anyOf) && obj.anyOf() && obj.anyOf().length) ||
+    (fun(obj.allOf) && obj.allOf() && obj.allOf().length) ||
+    (fun(obj.items) && obj.items()) ||
+    (fun(obj.additionalItems) && obj.additionalItems()) ||
+    (fun(obj.properties) && obj.properties() && Object.keys(obj.properties()).length) ||
+    (fun(obj.additionalProperties) && obj.additionalProperties()) ||
+    (fun(obj.extensions) && obj.extensions() &&
       Object.keys(obj.extensions()).filter(e => !e.startsWith("x-parser-")).length) ||
-    (typeof obj.patternProperties === "function" && obj.patternProperties())
+    (fun(obj.patternProperties) && obj.patternProperties())
   ) return true;
 
   return false;
@@ -48,7 +49,9 @@ function containTags(object, tagsToCheck) {
     let found = false;
     for (let tagToCheckIndex in tagsToCheck) {
       let tagToCheck = tagsToCheck[tagToCheckIndex]._json;
-      if (tagToCheck.name === tag.name) {
+      let tagName = tag.name;
+      if ((tagToCheck && tagToCheck.name === tagName) ||
+        tagsToCheck[tagToCheckIndex] === tagName) {
         found = true;
       }
     }
@@ -83,7 +86,9 @@ function containNoTag(channels, tagsToCheck) {
       let found = false;
       for (let tagToCheckIndex in tagsToCheck) {
         let tagToCheck = tagsToCheck[tagToCheckIndex]._json;
-        if (tagToCheck.name === tag.name) {
+        let tagName = tag.name;
+        if ((typeof tagToCheck !== 'undefined' && tagToCheck.name === tagName) ||
+          tagsToCheck[tagToCheckIndex] === tagName) {
           found = true;
         }
       }
@@ -99,3 +104,15 @@ function containNoTag(channels, tagsToCheck) {
   return false;
 };
 filter.containNoTag = containNoTag;
+
+function operationsTags(object) {
+  let tags = new Set();
+  const extractName = (tags, acc) => tags.forEach((tag) => acc.add(tag.name()));
+  object.channelNames().forEach(channelName => {
+    let channel = object.channel(channelName);
+    if (channel.hasPublish() && channel.publish().hasTags()) extractName(channel.publish().tags(), tags);
+    if (channel.hasSubscribe() && channel.subscribe().hasTags()) extractName(channel.subscribe().tags(), tags);
+  });
+  return Array.from(tags);
+}
+filter.operationsTags = operationsTags;

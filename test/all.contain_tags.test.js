@@ -48,3 +48,7 @@ test("returns true if at least one tag in the object matches with the given tags
 test("returns true when comparing tags even if tagsToCheck is a string", t => {
   t.true(containTags(t.context.doc, t.context.foo));
 });
+
+test("returns true when tagsToCheck is an array of strings and at least one of them matches", t => {
+  t.true(containTags(t.context.doc, [t.context.foo.name, "foobar"]));
+});
