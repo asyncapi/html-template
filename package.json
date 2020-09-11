@@ -71,6 +71,11 @@
       "baseHref": {
         "description": "Sets the base URL for links and forms.",
         "required": false
+      },
+      "singleFile": {
+        "description": "If set this parameter to true generate single html file with scripts and styles inside",
+        "required": false,
+        "default": false
       }
     },
     "generator": ">=0.50.0 <2.0.0",
