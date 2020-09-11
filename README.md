@@ -21,6 +21,7 @@ npm install -g @asyncapi/generator
 |---|---|---|---|---|
 |sidebarOrganization|Defines how the sidebar should be organized. Set its value to `byTagsNoRoot` to categorize operations by operations tags. Set its value to `byTags` when you have tags on a root level. These tags are used to model tags navigation and need to have the same tags in operations.|No|`byTags`, `byTagsNoRoot`|`byTagsNoRoot`|
 |baseHref|Sets the base URL for links and forms.|No|*Any*|`/docs`|
+|singleFile|Set output into one html-file with styles and scripts inside|No|`true`,`false`|`true`|
 
 ## Development
 
