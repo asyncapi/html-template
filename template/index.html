@@ -7,9 +7,21 @@
   {% endif %}
   <title>{{asyncapi.info().title()}} {{asyncapi.info().version()}} documentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if params.singleFile %}
+    <style type="text/css">
+    {% include "template/css/tailwind.min.css" %}
+    </style>
+    <style type="text/css">
+    {% include "template/css/atom-one-dark.min.css" %}
+    </style>
+    <style type="text/css">
+    {% include "template/css/main.css" %}
+    </style>
+  {% else %}
   <link href="css/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/atom-one-dark.min.css" />
   <link rel="stylesheet" href="css/main.css" />
+  {% endif %}
 </head>
 <body>
   <div class="relative md:flex lg:flex xl:flex">
@@ -19,7 +31,14 @@
     </div>
     <div class="examples-panel absolute pin-t pin-r pin-b"></div>
   </div>
+  {% if params.singleFile %}
+    <script defer type="text/javascript">
+      {% include "template/js/highlight.min.js" %}
+      {% include "template/js/main.js" %}
+    </script>
+  {% else %}
   <script src="js/highlight.min.js" type="application/javascript"></script>
   <script src="js/main.js" type="application/javascript"></script>
+  {% endif %}
 </body>
 </html>
