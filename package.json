@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/html-template",
-  "version": "0.9.0",
+  "version": "0.11.0",
   "description": "HTML template for the AsyncAPI generator.",
   "keywords": [
     "asyncapi",
@@ -32,6 +32,7 @@
     "@asyncapi/generator-filters": "^1.1.0"
   },
   "devDependencies": {
+    "@asyncapi/parser": "^0.27.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",
@@ -64,12 +65,17 @@
   "generator": {
     "parameters": {
       "sidebarOrganization": {
-        "description": "Defines how the sidebar should be organized. Set its value to 'byTags' to categorize operations by tags.",
+        "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
         "required": false
       },
       "baseHref": {
         "description": "Sets the base URL for links and forms.",
         "required": false
+      },
+      "singleFile": {
+        "description": "If set this parameter to true generate single html file with scripts and styles inside",
+        "required": false,
+        "default": false
       }
     },
     "generator": ">=0.50.0 <2.0.0",

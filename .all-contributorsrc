@@ -40,7 +40,17 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/11888191?v=4",
       "profile": "https://github.com/sebastian-palma",
       "contributions": [
-        "test"
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "GordeevArt",
+      "name": "Gordeev Artem",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2003488?v=4",
+      "profile": "https://github.com/GordeevArt",
+      "contributions": [
+        "code"
       ]
     }
   ],
