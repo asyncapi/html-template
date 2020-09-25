@@ -148,7 +148,7 @@
         {% endif %}
 
         {% if prop.type() === 'array' %}
-          {% set arrayItemsProps = prop.items().properties() %}
+          {% set arrayItemsProps = (prop.items().properties() if prop.items() else null) %}
           {% if prop.items() and not arrayItemsProps %}
             <p class="pl-6 mb-2 text-xs font-bold uppercase text-grey-darker">Items:</p>
             {% if prop.items() | isArray %}
