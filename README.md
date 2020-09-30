@@ -1,4 +1,4 @@
-# HTML template for the AsyncAPI Generator
+# HTML template for the AsyncAPI Generator-An Amazing Project
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -15,7 +15,7 @@ If you don't have the AsyncAPI Generator installed, you can install it like this
 npm install -g @asyncapi/generator
 ```
 
-## Supported parameters
+## Supported Parameters
 
 |Name|Description|Required|Allowed values|Example|
 |---|---|---|---|---|
