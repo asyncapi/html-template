@@ -23,6 +23,7 @@ npm install -g @asyncapi/generator
 |baseHref|Sets the base URL for links and forms.|No|*Any*|`/docs`|
 |singleFile|Set output into one html-file with styles and scripts inside|No|`true`,`false`|`true`|
 |outFilename|The filename of the output file.|No|*Any*|`asyncapi.html`|
+|pdf|Generates output HTML as PDF|No|`true,false`|`false`|
 
 ## Development
 
