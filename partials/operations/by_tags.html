@@ -1,4 +1,4 @@
-{% from "../deprecated.html" import deprecated %}
+{% from "./tag_nav_item.html" import tagNavItem %}
 
 {% if asyncapi.hasTags() %}
   {% for categorytags in asyncapi.tags() %}
@@ -33,7 +33,7 @@
           {% endif %}
 
           {% if channel.subscribe() and channel.subscribe().hasTags() and channel.subscribe() | containTags(categorytags) %}
-            {{deprecated(channel, channelName) }}
+            {{tagNavItem(channel, channelName) }}
           {% endif %}
         {% endfor %}
       </div>
