@@ -1,4 +1,4 @@
-{% from "../deprecated.html" import deprecated %}
+{% from "./tag_nav_item.html" import tagNavItem %}
 
 {% for tag in asyncapi | operationsTags %}
   <div class="mt-4 {% if open %}is-open{% endif %}">
@@ -33,7 +33,7 @@
         {% endif %}
 
         {% if channel.subscribe() and channel.subscribe().hasTags() and channel.subscribe() | containTags(tag) %}
-          {{ deprecated(channel, channelName) }}
+          {{ tagNavItem(channel, channelName) }}
         {% endif %}
       {% endfor %}
     </div>
