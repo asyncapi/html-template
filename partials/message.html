@@ -20,7 +20,9 @@
   {{ tags(msg.tags()) }}
 
   <div class="mt-4 mb-4 markdown">{{ msg.description() | markdown2html | safe }}</div>
-  {{ schema(msg.payload(), 'Payload', open=open) }}
+  {% if msg.payload() %}
+    {{ schema(msg.payload(), 'Payload', open=open) }}
+  {% endif %}
   {% if msg.headers() %}
     <div class="mt-4">
       {{ schema(msg.headers(), 'Headers', open=open) }}
