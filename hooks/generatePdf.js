@@ -14,10 +14,15 @@ async function generatePdf(generator) {
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    
-    await page.goto(`file://${path.join(targetDir, 'index.html')}`);
 
-    await page.pdf({ format: 'A4', path: `${targetDir}/index.pdf` });
+    await page.goto(`file://${path.join(targetDir, 'index.html')}`, { waitUntil: 'networkidle0' });
+
+    await page.$$eval('div.payload-examples > div.js-prop', links => links.forEach(link => link.click()));
+    await page.$$eval('div.headers-examples > div.js-prop', links => links.forEach(link => link.click()));
+    await page.$$eval('div.message-examples > div.js-prop', links => links.forEach(link => link.click()));
+    
+
+    await page.pdf({ format: 'A4', path: `${targetDir}/index.pdf`, printBackground: true });
 
     browser.close();
 }
