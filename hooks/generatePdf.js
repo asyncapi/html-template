@@ -10,7 +10,7 @@ async function generatePdf(generator) {
     const parameters = generator.templateParams;
     
     //all actions of this hook depend on parameters passed by the user, if non are provided we should just stop the hook
-    if (!parameters || parameters.pdf!== true) return;
+    if (!parameters || parameters.pdf !== 'true') return;
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
