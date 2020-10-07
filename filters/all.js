@@ -61,7 +61,7 @@ function containTags(object, tagsToCheck) {
   //Ensure tags are checked for the group tags
   let containTags = object._json.tags ? object._json.tags.find(check) != null : false;
   return containTags;
-};
+}
 filter.containTags = containTags;
 
 /**
@@ -102,7 +102,7 @@ function containNoTag(channels, tagsToCheck) {
     if (subscribeContainsNoTag === true) return true;
   }
   return false;
-};
+}
 filter.containNoTag = containNoTag;
 
 function operationsTags(object) {
