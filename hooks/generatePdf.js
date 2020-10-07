@@ -19,7 +19,7 @@ async function generatePdf(generator) {
 
     await page.$$eval('div.payload-examples > div.js-prop', links => links.forEach(link => link.click()));
     await page.$$eval('div.headers-examples > div.js-prop', links => links.forEach(link => link.click()));
-    await page.$$eval('div.message-examples > div.js-prop', links => links.forEach(link => link.click()));
+    await page.$$eval('div.all-messages div.js-prop', links => links.forEach(link => link.click()));
     
 
     await page.pdf({ format: 'A4', path: `${targetDir}/index.pdf`, printBackground: true });
