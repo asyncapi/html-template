@@ -76,6 +76,11 @@
         "description": "If set this parameter to true generate single html file with scripts and styles inside",
         "required": false,
         "default": false
+      },
+      "outFilename": {
+        "description": "The name of the output HTML file",
+        "default": "index.html",
+        "required": false
       }
     },
     "generator": ">=0.50.0 <2.0.0",
