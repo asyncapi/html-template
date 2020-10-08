@@ -23,16 +23,16 @@ jobs:
       - name: Get version from package.json before release step
         id: initversion
         run: echo "::set-output name=version::$(npm run get-version --silent)"
-      - name: Release to NPM and GitHub
-        id: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GIT_AUTHOR_NAME: asyncapi-bot
-          GIT_AUTHOR_EMAIL: info@asyncapi.io
-          GIT_COMMITTER_NAME: asyncapi-bot
-          GIT_COMMITTER_EMAIL: info@asyncapi.io
-        run: npm run release
+      #- name: Release to NPM and GitHub
+      #  id: release
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      #    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #    GIT_AUTHOR_NAME: asyncapi-bot
+      #    GIT_AUTHOR_EMAIL: info@asyncapi.io
+      #    GIT_COMMITTER_NAME: asyncapi-bot
+      #    GIT_COMMITTER_EMAIL: info@asyncapi.io
+      #  run: npm run release
       - name: Get version from package.json after release step
         id: extractver
         run: echo "::set-output name=version::$(npm run get-version --silent)"
