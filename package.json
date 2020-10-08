@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "@asyncapi/generator-filters": "^1.1.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "puppeteer": "^5.3.1"
   },
   "devDependencies": {
     "@asyncapi/parser": "^0.27.0",
@@ -82,6 +83,10 @@
         "description": "The name of the output HTML file",
         "default": "index.html",
         "required": false
+      },
+      "pdf": {
+        "description": "Set to `true` to get index.pdf generated next to your index.html",
+        "default": false
       }
     },
     "generator": ">=0.50.0 <2.0.0",
