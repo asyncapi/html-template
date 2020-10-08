@@ -1,4 +1,5 @@
-{% from "./tag_nav_item.html" import tagNavItem %}
+{% from "./tag_nav_item_sub.html" import tagNavItemSub %}
+{% from "./tag_nav_item_pub.html" import tagNavItemPub %}
 
 {% if asyncapi.hasTags() %}
   {% for categorytags in asyncapi.tags() %}
@@ -16,24 +17,11 @@
       <div class="children">
         {% for channelName, channel in asyncapi.channels() %}
            {% if channel.publish() and channel.publish().hasTags() and channel.publish() | containTags(categorytags) %}
-            <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3" href="#operation-publish-{{ channelName }}">
-              <span class="bg-blue-dark font-bold h-6 no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Publish">
-                Pub
-              </span>
-              {% if channel.publish().summary() %}
-                <span style="padding-top: 2px;">
-                  {{ channel.publish().summary() }}
-                </span>
-              {% else %}
-                <div style="display:inline-block;">
-                  {{ slicedString(channelName, 'padding-top: 2px;') }}
-                </div>
-              {% endif %}
-            </a>
-          {% endif %}
+              {{ tagNavItemPub(channel, channelName) }}
+           {% endif %}
 
           {% if channel.subscribe() and channel.subscribe().hasTags() and channel.subscribe() | containTags(categorytags) %}
-            {{ tagNavItem(channel, channelName) }}
+            {{ tagNavItemSub(channel, channelName) }}
           {% endif %}
         {% endfor %}
       </div>
@@ -58,37 +46,11 @@
     <div class="children">
       {% for channelName, channel in asyncapi.channels() %}
         {% if channel.hasPublish() and (not channel.publish().hasTags() or not channel.publish() | containTags(asyncapi.tags())) %}
-          <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3" href="#operation-publish-{{ channelName }}">
-            <span class="bg-blue-dark font-bold h-6 no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Publish">
-              Pub
-            </span>
-            {% if channel.publish().summary() %}
-              <span style="padding-top: 2px;">
-                {{ channel.publish().summary() }}
-              </span>
-            {% else %}
-              <div style="display:inline-block;">
-                {{ slicedString(channelName, 'padding-top: 2px;') }}
-              </div>
-            {% endif %}
-          </a>
+          {{ tagNavItemPub(channel, channelName) }}
         {% endif %}
 
         {% if channel.hasSubscribe() and (not channel.subscribe().hasTags() or not channel.subscribe() | containTags(asyncapi.tags())) %}
-          <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3" href="#operation-subscribe-{{ channelName }}">
-            <span class="bg-green-dark font-bold no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Subscribe">
-              Sub
-            </span>
-            {% if channel.subscribe().summary() %}
-              <span style="padding-top: 2px;">
-                {{ channel.subscribe().summary() }}
-              </span>
-            {% else %}
-              <div style="display:inline-block;">
-                {{ slicedString(channelName, 'padding-top: 2px;') }}
-              </div>
-            {% endif %}
-          </a>
+          {{ tagNavItemSub(channel, channelName) }}
         {% endif %}
       {% endfor %}
     </div>
