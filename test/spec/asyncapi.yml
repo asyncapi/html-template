@@ -26,6 +26,8 @@ servers:
         enum:
           - '1883'
           - '8883'
+    security:
+      - bearerAuth: []
 
 defaultContentType: application/json
 
@@ -171,6 +173,11 @@ components:
       description: Date and time when the message was sent.
 
   securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: The JWT for authorizing against the backend. Needs to be obtained through the authentication route.
     apiKey:
       type: apiKey
       in: user
