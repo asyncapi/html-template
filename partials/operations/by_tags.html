@@ -16,9 +16,9 @@
 
       <div class="children">
         {% for channelName, channel in asyncapi.channels() %}
-           {% if channel.publish() and channel.publish().hasTags() and channel.publish() | containTags(categorytags) %}
-              {{ tagNavItemPub(channel, channelName) }}
-           {% endif %}
+          {% if channel.publish() and channel.publish().hasTags() and channel.publish() | containTags(categorytags) %}
+            {{ tagNavItemPub(channel, channelName) }}
+          {% endif %}
 
           {% if channel.subscribe() and channel.subscribe().hasTags() and channel.subscribe() | containTags(categorytags) %}
             {{ tagNavItemSub(channel, channelName) }}
