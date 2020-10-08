@@ -1,0 +1,35 @@
+name: Publish information about the release to Twitter
+
+on:
+    push:
+        tags:
+          - 'v*'
+    release:
+        types: [created]
+
+jobs:
+    tweet:
+        name: 'Tweet new Release'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                ref: master
+            - name: Check if version changed
+              uses: EndBug/version-check@v1.5.0
+            - name: Log when changed
+              if: steps.check.outputs.changed == 'true'
+              run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+            - name: Log when unchanged
+              if: steps.check.outputs.changed != 'true'
+              run: 'echo "No version change :/"'
+            - name: Publish information about the release to Twitter
+              if: steps.check.outputs.changed == 'true' && steps.check.outputs.type != 'patch'
+              uses: m1ner79/Github-Twittction@v1.0.1
+              with:
+                twitter_status: "Release ${{ steps.check.outputs.version }} for ${{github.repository}} is out in the wild 😱💪🍾🎂\n\nThank you for the contribution ${{ github.event.commits[0].author.name }} https://github.com/${{github.repository}}/releases/tag/v${{ steps.check.outputs.version }}"
+                twitter_consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }} 
+                twitter_consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }} 
+                twitter_access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }} 
+                twitter_access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
