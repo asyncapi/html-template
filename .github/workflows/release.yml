@@ -48,9 +48,9 @@ jobs:
           body: 'Version bump in package.json and package-lock.json for release [${{ steps.extractver.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.extractver.outputs.version }})'
           branch: version-bump/${{ steps.extractver.outputs.version }}
       - name: Check if version changed
-          uses: EndBug/version-check@v1.5.0
-          with:
-            diff-search: true
+        uses: EndBug/version-check@v1.5.0
+        with:
+          diff-search: true
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
         run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
