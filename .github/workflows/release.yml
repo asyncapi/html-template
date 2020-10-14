@@ -50,8 +50,7 @@ jobs:
       - name: Check if version changed  # Version check based on package.json version number
         uses: EndBug/version-check@v1.6.0
         id: check
-        # tweet only if detected version change is not a patch
-      - name: Publish information about the release to Twitter
+      - name: Publish information about the release to Twitter # tweet only if detected version change is not a patch
         if: steps.check.outputs.changed == 'true' && steps.check.outputs.type != 'patch'
         uses: m1ner79/Github-Twittction@v1.0.1
         with:
