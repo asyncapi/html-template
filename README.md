@@ -1,6 +1,6 @@
 # HTML template for the AsyncAPI Generator
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Usage
@@ -48,6 +48,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/GordeevArt"><img src="https://avatars2.githubusercontent.com/u/2003488?v=4" width="100px;" alt=""/><br /><sub><b>Gordeev Artem</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=GordeevArt" title="Code">💻</a></td>
     <td align="center"><a href="https://sa.watz.ky"><img src="https://avatars2.githubusercontent.com/u/7246741?v=4" width="100px;" alt=""/><br /><sub><b>Mitchell Sawatzky</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=bufutda" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/HashTalmiz"><img src="https://avatars0.githubusercontent.com/u/55018280?v=4" width="100px;" alt=""/><br /><sub><b>Talmiz Ahmed</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=HashTalmiz" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/jbreitenbaumer/"><img src="https://avatars3.githubusercontent.com/u/683438?v=4" width="100px;" alt=""/><br /><sub><b>Jürgen B.</b></sub></a><br /><a href="#infra-juergenbr" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
 </table>
 
