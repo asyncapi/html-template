@@ -14,7 +14,7 @@ function isExpandable(obj) {
     (fun(obj.additionalProperties) && obj.additionalProperties()) ||
     (fun(obj.extensions) && obj.extensions() &&
       Object.keys(obj.extensions()).filter(e => !e.startsWith("x-parser-")).length) ||
-    (fun(obj.patternProperties) && obj.patternProperties())
+    (fun(obj.patternProperties) && Object.keys(obj.patternProperties()).length)
   ) return true;
 
   return false;
