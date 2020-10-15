@@ -8,6 +8,10 @@
     <div class="{% if prop | isExpandable %}js-prop cursor-pointer py-2{% endif %} flex property">
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
         <span class="text-sm{% if specialName %} italic text-grey{% endif %}{% if prop.deprecated() %} line-through{% endif %}" style="word-break: break-word;">{{propName}}</span>
+        {# Making sure that only human readable uid is rendered, instead of the anonymous ones that start with < #}
+        {% if not prop.uid() | startsWith('<') %}
+          <span class="border text-orange rounded text-xs ml-3 py-0 px-2">{{prop.uid()}}</span>
+        {% endif %}
         {% if prop | isExpandable %}
         <svg class="expand" version="1.1" viewBox="0 0 24 24" x="0"
           xmlns="http://www.w3.org/2000/svg" y="0">
