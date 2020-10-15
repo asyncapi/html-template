@@ -9,7 +9,7 @@
       <div class="pr-4" style="margin-top:-2px; min-width: 25%;">
         <span class="text-sm{% if specialName %} italic text-grey{% endif %}{% if prop.deprecated() %} line-through{% endif %}" style="word-break: break-word;">{{propName}}</span>
         {# Making sure that only human readable uid is rendered, instead of the anonymous ones that start with < #}
-        {% if not prop.uid() | startsWith('<') %}
+        {% if not prop.uid() | startsWith('<anonymous-') %}
           <span class="border text-orange rounded text-xs ml-3 py-0 px-2">{{prop.uid()}}</span>
         {% endif %}
         {% if prop | isExpandable %}
