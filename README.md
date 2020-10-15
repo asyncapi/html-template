@@ -1,6 +1,6 @@
 # HTML template for the AsyncAPI Generator
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Usage
@@ -51,6 +51,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/jbreitenbaumer/"><img src="https://avatars3.githubusercontent.com/u/683438?v=4" width="100px;" alt=""/><br /><sub><b>Jürgen B.</b></sub></a><br /><a href="#infra-juergenbr" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://codepen.io/gabrielclaudino/"><img src="https://avatars2.githubusercontent.com/u/26636890?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Claudino</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=gabrielclaudino" title="Code">💻</a></td>
   </tr>
 </table>
 
