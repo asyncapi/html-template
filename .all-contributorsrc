@@ -70,6 +70,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "juergenbr",
+      "name": "Jürgen B.",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/683438?v=4",
+      "profile": "https://www.linkedin.com/in/jbreitenbaumer/",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
