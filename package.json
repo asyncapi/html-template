@@ -23,7 +23,7 @@
     "test": "ava",
     "release": "semantic-release",
     "get-version": "echo $npm_package_version",
-    "develop": "ag test/spec/asyncapi.yml ./ -o test/output --force-write --watch-template"
+    "develop": "ag https://raw.githubusercontent.com/asyncapi/generator/v1.0.0-rc.12/test/docs/dummy.yml ./ -o test/output --force-write --watch-template"
   },
   "publishConfig": {
     "access": "public"
