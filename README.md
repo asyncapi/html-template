@@ -28,7 +28,7 @@ npm install -g @asyncapi/generator
 ## Development
 
 1. Make sure you have the latest generator installed: `npm install -g @asyncapi/generator`.
-1. Modify the template or its helper functions. Adjust [`dummy.yml`](https://raw.githubusercontent.com/asyncapi/generator/master/test/docs/dummy.yml) to add more features if needed.
+1. Modify the template or its helper functions. Open a PR in the `asyncapi/generator` repository to add more content to the [`dummy.yml`](https://raw.githubusercontent.com/asyncapi/generator/v1.0.0-rc.12/test/docs/dummy.yml) file.
 1. Generate output with watcher enabled: `npm run develop`.
 1. Open HTML in your browser: `open ./test/output/index.html`.
 
