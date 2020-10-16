@@ -88,6 +88,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bszwarc",
+      "name": "Barbara Szwarc",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17266942?v=4",
+      "profile": "https://github.com/bszwarc",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
