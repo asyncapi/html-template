@@ -52,6 +52,51 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bufutda",
+      "name": "Mitchell Sawatzky",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7246741?v=4",
+      "profile": "https://sa.watz.ky",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "HashTalmiz",
+      "name": "Talmiz Ahmed",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/55018280?v=4",
+      "profile": "https://github.com/HashTalmiz",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "juergenbr",
+      "name": "Jürgen B.",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/683438?v=4",
+      "profile": "https://www.linkedin.com/in/jbreitenbaumer/",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
+      "login": "gabrielclaudino",
+      "name": "Gabriel Claudino",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/26636890?v=4",
+      "profile": "https://codepen.io/gabrielclaudino/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bszwarc",
+      "name": "Barbara Szwarc",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17266942?v=4",
+      "profile": "https://github.com/bszwarc",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

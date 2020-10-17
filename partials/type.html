@@ -8,6 +8,9 @@
     {%- for p in prop.items() -%}
       {{- type(p) -}}{% if not loop.last %}, {% endif %}
     {%- endfor -%}
+  {% elif prop.items().oneOf() %}oneOf
+  {% elif prop.items().allOf() %}allOf
+  {% elif prop.items().anyOf() %}anyOf
   {%- else -%}
     Unknown
   {%- endif -%}

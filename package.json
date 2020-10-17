@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/html-template",
-  "version": "0.12.2",
+  "version": "0.15.0",
   "description": "HTML template for the AsyncAPI generator.",
   "keywords": [
     "asyncapi",
@@ -23,13 +23,15 @@
     "test": "ava",
     "release": "semantic-release",
     "get-version": "echo $npm_package_version",
-    "develop": "ag test/spec/asyncapi.yml ./ -o test/output --force-write --watch-template"
+    "develop": "ag https://raw.githubusercontent.com/asyncapi/generator/v1.0.0-rc.12/test/docs/dummy.yml ./ -o test/output --force-write --watch-template"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/generator-filters": "^1.1.0"
+    "@asyncapi/generator-filters": "^1.1.0",
+    "rimraf": "^3.0.2",
+    "puppeteer": "^5.3.1"
   },
   "devDependencies": {
     "@asyncapi/parser": "^0.27.0",
@@ -75,6 +77,15 @@
       "singleFile": {
         "description": "If set this parameter to true generate single html file with scripts and styles inside",
         "required": false,
+        "default": false
+      },
+      "outFilename": {
+        "description": "The name of the output HTML file",
+        "default": "index.html",
+        "required": false
+      },
+      "pdf": {
+        "description": "Set to `true` to get index.pdf generated next to your index.html",
         "default": false
       }
     },

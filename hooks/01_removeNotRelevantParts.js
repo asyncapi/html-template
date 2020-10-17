@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 
 module.exports = {
     'generate:after': generator => {
@@ -18,8 +19,13 @@ module.exports = {
                 }
             };
 
-            fs.rmdir(jsDir, {recursive: true}, callback);
-            fs.rmdir(cssDir, {recursive: true}, callback);
+            const opts = {
+                disableGlob: true,
+                maxBusyTries: 3
+            };
+
+            rimraf(jsDir, opts, callback);
+            rimraf(cssDir, opts, callback);
         }
     }
 };
