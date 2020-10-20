@@ -4,6 +4,7 @@ const {isExpandable} = require("../filters/all");
 test.beforeEach(t => {
   t.context.doc = {};
   t.context.types = [{ type: "string" }, { type: "number" }];
+  t.context.doc.patternProperties = () => ({});
 });
 
 test("isExpandable when the object type is object", t => {
