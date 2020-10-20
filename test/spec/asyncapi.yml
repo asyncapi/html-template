@@ -26,8 +26,6 @@ servers:
         enum:
           - '1883'
           - '8883'
-    security:
-      - bearerAuth: []
 
 defaultContentType: application/json
 
@@ -210,11 +208,6 @@ components:
     openIdConnectWellKnown:
       type: openIdConnect
       openIdConnectUrl: 'https://authserver.example/.well-known'
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: The JWT for authorizing against the backend. Needs to be obtained through the authentication route.
 
   parameters:
     streetlightId:
