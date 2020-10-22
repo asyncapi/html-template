@@ -80,11 +80,9 @@
             {% endif %}
           </div>
         </div>
-        {% if altDescription %}
-          {{ getDescription(altDescription) }}
-        {% elif prop.description() %}
-          {{ getDescription(prop.description()) }}
-        {% endif %}
+
+        {{ getDescription(altDescription or prop.description()) }}
+
         {% if prop.default() !== undefined %}
           <div class="text-xs">Default: {{prop.default() | dump}}</div>
         {% endif %}
