@@ -1,7 +1,8 @@
 {% from "./type.html" import type %}
 {% from "./schema-item.html" import schemaItem %}
+{% from "./description.html" import getDescription %}
 
-{% macro schemaProp(prop, propName, open=false, root=false, odd=false, specialName=false, required=false, circularPropsParent) %}
+{% macro schemaProp(prop, propName, open=false, root=false, odd=false, specialName=false, required=false, altDescription=null, circularPropsParent) %}
 
 <div class="{% if odd %}bg-grey-lighter{% else %}bg-grey-lightest{% endif %} {% if not root %}pl-8 pr-8{% endif %} rounded">
   <div class="{% if open %}is-open{% endif %}">
@@ -80,9 +81,8 @@
           </div>
         </div>
 
-        {% if prop.description() %}
-          <div class="text-sm markdown">{{ prop.description() | markdown2html | safe }}</div>
-        {% endif %}
+        {{ getDescription(altDescription or prop.description()) }}
+
         {% if prop.default() !== undefined %}
           <div class="text-xs">Default: {{prop.default() | dump}}</div>
         {% endif %}
