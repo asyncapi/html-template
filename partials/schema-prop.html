@@ -171,7 +171,7 @@
               {% if isCirc === true %}
                 {{ schemaItem(pName, odd) }}
               {% else %}
-                {{ schemaProp(p, pName, odd=(not odd), required=(prop.required() | includes(pName))) }} 
+                {{ schemaProp(p, pName, odd=(not odd), required=(prop.items().required() | includes(pName))) }} 
               {% endif %}
             {% endfor %}
           {% endif %}
