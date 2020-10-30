@@ -12,7 +12,7 @@ async function generatePdf(generator) {
     //all actions of this hook depend on parameters passed by the user, if non are provided we should just stop the hook
     if (!parameters || parameters.pdf !== 'true') return;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
 
     await page.goto(`file://${path.join(targetDir, 'index.html')}`, { waitUntil: 'networkidle0' });
