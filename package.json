@@ -34,7 +34,7 @@
     "puppeteer": "^5.3.1"
   },
   "devDependencies": {
-    "@asyncapi/parser": "^0.27.0",
+    "@asyncapi/parser": "^1.2.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",
