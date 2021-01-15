@@ -12,10 +12,10 @@
   <div class="operation pt-8 pb-8">
     <h3 class="font-mono text-base">
       {% if operationType === 'publish' %}
-      <span class="font-mono border border-blue text-blue uppercase p-1 rounded" title="Publish">Pub</span>
+      <span class="font-mono border border-blue-500 text-blue-500 uppercase p-1 rounded" title="Publish">Pub</span>
       {% endif %}
       {% if operationType === 'subscribe' %}
-      <span class="font-mono border border-green-dark text-green-dark uppercase p-1 rounded"
+      <span class="font-mono border border-green-600 text-green-600 uppercase p-1 rounded"
         title="Subscribe">Sub</span>
       {% endif %}
       {{ slicedString(channelName) }}
@@ -23,7 +23,7 @@
 
     <div class="mt-4 mb-4 markdown">{{ channel.description() | markdown2html | safe }}</div>
 
-    <p class="text-grey text-sm">{{operation.summary()}}</p>
+    <p class="text-gray-500 text-sm">{{operation.summary()}}</p>
     <div class="mt-4 mb-4 markdown">{{ operation.description() | markdown2html | safe }}</div>
 
 
@@ -39,8 +39,8 @@
               </svg>
             </div>
           </div>
-          <div class="children bg-grey-lighter p-4 rounded">
-            <div class="bg-grey-lightest pl-8 pr-8 rounded">
+          <div class="children bg-gray-200 p-4 rounded">
+            <div class="bg-gray-200 pl-8 pr-8 rounded">
               {% for parameterName, parameter in channel.parameters() %}
                 {{ schemaProp(parameter.schema(), parameterName, odd=false, specialName=false, required=true, altDescription=parameter.description()) }}
               {% endfor %}

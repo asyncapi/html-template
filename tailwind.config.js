@@ -3,13 +3,10 @@ module.exports = {
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
   },
-  purge: [
-    './template/**/*.html',
-    './partials/**/*.html',
-  ],
+  purge: ["./template/**/*.html", "./partials/**/*.html"],
   theme: {
     extend: {},
   },
   variants: {},
   plugins: [],
-}
+};

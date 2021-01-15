@@ -112,8 +112,8 @@ a:hover {
   fill: #fff;
 }
 
-.payload-examples .text-grey-lightest,
-.headers-examples .text-grey-lightest {
+.payload-examples .text-gray-200,
+.headers-examples .text-gray-200 {
   align-self: center;
 }
 
