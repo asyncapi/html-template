@@ -22,7 +22,6 @@
     "lint": "echo \"No linter specified yet\"",
     "test": "ava",
     "release": "semantic-release",
-    "get:version": "echo $npm_package_version",
     "develop": "ag https://raw.githubusercontent.com/asyncapi/generator/v1.0.0-rc.12/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
     "generate:assets": "echo 'No additional assets need to be generated at the moment'",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
