@@ -602,23 +602,12 @@ h4 {
   font-size: 1.125rem;
 }
 
-h4 {
-  font-size: 1rem;
-}
-
 h5 {
   font-size: 0.875rem;
 }
 
 h6 {
   font-size: 0.75rem;
-}
-
-a {
-  --text-opacity: 1;
-  color: #3182ce;
-  color: rgba(49, 130, 206, var(--text-opacity));
-  text-decoration: underline;
 }
 
 .container {
