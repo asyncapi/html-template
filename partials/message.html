@@ -19,6 +19,18 @@
   
   {{ tags(msg.tags()) }}
 
+  {% set correlationId = msg.correlationId() %}
+  {% if correlationId %}
+    <div class="border border-gray-400 bg-gray-200 rounded p-4 mt-2">
+      <div class="text-sm text-gray-700 mb-2">Correlation ID<span class="border text-orange-600 rounded text-xs ml-3 py-0 px-2">{{correlationId.location()}}</span>
+
+      </div>
+      {% if correlationId.hasDescription() %}
+        <div class="text-gray-600 text-sm">{{correlationId.description() | markdown2html | safe }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
   <div class="mt-4 mb-4 markdown">{{ msg.description() | markdown2html | safe }}</div>
   {% if msg.payload() %}
     {{ schema(msg.payload(), 'Payload', open=open) }}
