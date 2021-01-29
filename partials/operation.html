@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="children bg-gray-200 p-4 rounded">
-            <div class="bg-gray-200 pl-8 pr-8 rounded">
+            <div class="bg-gray-200 pr-8 rounded">
               {% for parameterName, parameter in channel.parameters() %}
                 {{ schemaProp(parameter.schema(), parameterName, odd=false, specialName=false, required=true, altDescription=parameter.description()) }}
               {% endfor %}
