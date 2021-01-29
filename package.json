@@ -23,7 +23,7 @@
     "test": "ava",
     "release": "semantic-release",
     "develop": "ag https://raw.githubusercontent.com/asyncapi/generator/v1.0.0/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
-    "generate:assets": "NODE_ENV=production postcss template/css/main.css -o template/css/tailwind.min.css",
+    "generate:assets": "cross-env NODE_ENV=production postcss template/css/main.css -o template/css/tailwind.min.css",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },
   "publishConfig": {
@@ -45,6 +45,7 @@
     "@semantic-release/release-notes-generator": "^9.0.1",
     "ava": "^3.9.0",
     "conventional-changelog-conventionalcommits": "^4.2.3",
+    "cross-env": "^7.0.3",
     "semantic-release": "^17.0.4"
   },
   "peerDependencies": {
