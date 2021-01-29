@@ -655,6 +655,10 @@ h6 {
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -1020,6 +1024,10 @@ h6 {
 
 .no-underline {
   text-decoration: none;
+}
+
+.align-baseline {
+  vertical-align: baseline;
 }
 
 .break-words {
