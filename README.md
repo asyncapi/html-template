@@ -32,6 +32,7 @@ npm install -g @asyncapi/generator
 
     >**NOTE:** If you have to modify the [`dummy.yml`](https://github.com/asyncapi/generator/blob/master/test/docs/dummy.yml) file to develop your features, open a PR with the changes in the [asyncapi/generator](https://github.com/asyncapi/generator) repository.
 
+1. Adjust styling and generate `tailwind.min.css` with `npm run generate:assets`
 1. Generate output with watcher enabled: `npm run develop`.
 1. Open HTML in your browser: `open ./test/output/index.html`.
 

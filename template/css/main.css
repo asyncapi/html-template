@@ -1,14 +1,48 @@
-html, body {
-  font-weight: lighter;
-  background-color: white;
+@tailwind base;
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  @apply text-2xl;
+}
+h3 {
+  @apply text-xl;
+}
+h4 {
+  @apply text-lg;
+}
+h5 {
+  @apply text-sm;
+}
+h6 {
+  @apply text-xs;
 }
 
-h1, h2, h3, h4, h5, h6 {
+@tailwind components;
+
+@tailwind utilities;
+
+html,
+body {
+  font-weight: lighter;
+  background-color: white;
+  font-family: sans-serif;
+  line-height: 1.15;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: lighter;
 }
 
 a {
   color: #333;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -16,7 +50,7 @@ a:hover {
 }
 
 .string-chunk {
-  display:inline-block;
+  display: inline-block;
   word-break: break-all;
 }
 
@@ -26,8 +60,8 @@ a:hover {
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  margin-top: .5em;
-  margin-bottom: .5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .markdown h1 {
@@ -53,7 +87,7 @@ a:hover {
 
 .markdown h6 {
   font-weight: bold;
-  font-size: .7em;
+  font-size: 0.7em;
   text-transform: uppercase;
 }
 
@@ -95,11 +129,13 @@ a:hover {
   display: block;
 }
 
-.payload-examples polygon, .headers-examples polygon {
+.payload-examples polygon,
+.headers-examples polygon {
   fill: #fff;
 }
 
-.payload-examples .text-grey-lightest, .headers-examples .text-grey-lightest {
+.payload-examples .text-gray-200,
+.headers-examples .text-gray-200 {
   align-self: center;
 }
 
@@ -193,7 +229,7 @@ a:hover {
     height: 2px;
     margin-top: 6px;
     background: white;
-    transition: .5s;
+    transition: 0.5s;
   }
   #burger-menu + label:hover {
     cursor: pointer;
@@ -220,7 +256,7 @@ a:hover {
     height: 0;
     top: -500px;
     overflow: hidden;
-    transition: .2s;
+    transition: 0.2s;
     z-index: 90;
     opacity: 0;
   }

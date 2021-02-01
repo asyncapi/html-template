@@ -9,7 +9,7 @@
   </div>
 </label>
 
-<div class="sidebar-panel fixed pin-t pin-l pin-b w-64 bg-grey-lighter font-sans pt-8 pr-4 pb-4 pl-4">
+<div class="sidebar-panel fixed top-0 left-0 bottom-0 w-64 bg-gray-200 font-sans pt-8 pr-4 pb-4 pl-4">
   <div class="sidebar-panel__content">
     {% if asyncapi.info().ext('x-logo') %}
       <img src="{{ asyncapi.info().ext('x-logo') }}" alt="{{ asyncapi.info().title() }} logo">
@@ -20,17 +20,17 @@
     {% endif %}
     <ul class="text-sm mt-10 list-reset mt-2">
       <li class="mb-3">
-        <a class="js-menu-item text-grey-darkest no-underline" href="#introduction">Introduction</a>
+        <a class="js-menu-item text-gray-700 no-underline" href="#introduction">Introduction</a>
       </li>
       {% if asyncapi.servers %}
         <li class="mb-3">
-          <a class="js-menu-item text-grey-darkest no-underline" href="#servers">Servers</a>
+          <a class="js-menu-item text-gray-700 no-underline" href="#servers">Servers</a>
         </li>
       {% endif %}
     </ul>
 
     {% if asyncapi.hasChannels() %}
-      <h2 class="text-xs uppercase text-grey mt-10 mb-4 font-thin">Operations</h2>
+      <h2 class="text-xs uppercase text-gray-500 mt-10 mb-4 font-thin">Operations</h2>
       <ul class="text-sm list-reset mt-2">
         <!-- With tags in sidebar -->
         {% if params.sidebarOrganization === 'byTags' %}
@@ -42,8 +42,8 @@
           {% for channelName, channel in asyncapi.channels() %}
             <li>
               {% if channel.publish() %}
-                <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3" href="#operation-publish-{{ channelName }}">
-                  <span class="bg-blue-dark font-bold h-6 no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Publish">
+                <a class="js-menu-item flex break-words no-underline text-gray-700 mt-8 sm:mt-8 md:mt-3" href="#operation-publish-{{ channelName }}">
+                  <span class="bg-blue-600 font-bold h-6 no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Publish">
                     Pub
                   </span>
                   {% if channel.publish().summary() %}
@@ -59,8 +59,8 @@
               {% endif %}
 
               {% if channel.subscribe() %}
-                <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3" href="#operation-subscribe-{{ channelName }}">
-                  <span class="bg-green-dark font-bold no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Subscribe">
+                <a class="js-menu-item flex break-words no-underline text-gray-700 mt-8 sm:mt-8 md:mt-3" href="#operation-subscribe-{{ channelName }}">
+                  <span class="bg-green-600 font-bold no-underline text-white uppercase p-1 mr-2 rounded" style="height: 21px;font-size: 11px;" title="Subscribe">
                     Sub
                   </span>
                   {% if channel.subscribe().summary() %}
@@ -80,10 +80,10 @@
         {% endif %}
       </ul>
 
-      <h2 class="text-xs uppercase text-grey mt-10 mb-4 font-thin">Messages</h2>
+      <h2 class="text-xs uppercase text-gray-500 mt-10 mb-4 font-thin">Messages</h2>
       <ul class="text-sm list-reset mt-2">
         {% for key, value in asyncapi.allMessages() %}
-          <a class="js-menu-item flex break-words no-underline text-grey-darkest mt-8 sm:mt-8 md:mt-3" href="#message-{{ key }}">
+          <a class="js-menu-item flex break-words no-underline text-gray-700 mt-8 sm:mt-8 md:mt-3" href="#message-{{ key }}">
             <div style="display:inline-block;">
               {{ slicedString(key, 'padding-top: 2px;') }}
             </div>
