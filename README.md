@@ -34,6 +34,11 @@ npm install -g @asyncapi/generator
 
 1. Adjust styling and generate `tailwind.min.css` with `npm run generate:assets`
 1. Generate output with watcher enabled: `npm run develop`.
+   
+   >**NOTE:** If your changes are not visible, this is maybe because the `ag` use the already installed `html-template` so you should use the `--install` option
+   > * run `npm run develop:install`
+   > * if command failed, delete the cached `html-template` module in your system and re-rerun the command
+   
 1. Open HTML in your browser: `open ./test/output/index.html`.
 
 ## Contributors ✨
