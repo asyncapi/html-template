@@ -97,6 +97,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Theiaz",
+      "name": "Julian S.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9378662?v=4",
+      "profile": "https://github.com/Theiaz",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
