@@ -18,7 +18,7 @@
         {{ asyncapi.info().title() }} {{ asyncapi.info().version() }}
       </h1>
     {% endif %}
-    <ul class="text-sm mt-10 list-reset mt-2">
+    <ul class="text-sm mt-10 mt-2">
       <li class="mb-3">
         <a class="js-menu-item text-gray-700 no-underline" href="#introduction">Introduction</a>
       </li>
@@ -31,7 +31,7 @@
 
     {% if asyncapi.hasChannels() %}
       <h2 class="text-xs uppercase text-gray-500 mt-10 mb-4 font-thin">Operations</h2>
-      <ul class="text-sm list-reset mt-2">
+      <ul class="text-sm mt-2">
         <!-- With tags in sidebar -->
         {% if params.sidebarOrganization === 'byTags' %}
           {% include "./operations/by_tags.html" %}
@@ -81,7 +81,7 @@
       </ul>
 
       <h2 class="text-xs uppercase text-gray-500 mt-10 mb-4 font-thin">Messages</h2>
-      <ul class="text-sm list-reset mt-2">
+      <ul class="text-sm mt-2">
         {% for key, value in asyncapi.allMessages() %}
           <a class="js-menu-item flex break-words no-underline text-gray-700 mt-8 sm:mt-8 md:mt-3" href="#message-{{ key }}">
             <div style="display:inline-block;">
