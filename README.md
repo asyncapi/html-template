@@ -25,6 +25,8 @@ npm install -g @asyncapi/generator
 |outFilename|The filename of the output file.|No|*Any*|`asyncapi.html`|
 |pdf|Generates output HTML as PDF|No|`true,false`|`false`|
 
+If you only generate an html website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
+
 ## Development
 
 1. Make sure you have the latest generator installed: `npm install -g @asyncapi/generator`.
