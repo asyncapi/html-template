@@ -49,7 +49,7 @@
 
       {% if server.security() %}
         <h5 class="text-sm text-gray-500 mt-1">Security:</h5>
-        <ul class="list-reset">
+        <ul>
           {% for sec in server.security() %}
             <li>
               {% set def = asyncapi.components().securityScheme(sec.json() | keys | head) %}
