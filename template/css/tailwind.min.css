@@ -1176,6 +1176,12 @@ a:hover {
   text-transform: uppercase;
 }
 
+.markdown :is(ol, ul) {
+  -webkit-padding-start: 40px;
+          padding-inline-start: 40px;
+  list-style-type: disc;
+}
+
 .expand {
   width: 20px;
   margin-bottom: -4px;
