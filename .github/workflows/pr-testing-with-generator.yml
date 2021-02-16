@@ -19,5 +19,7 @@ jobs:
           node-version: 14
       - name: Install dependencies
         run: NODE_ENV=production npm install
+      - name: Install generator
+        run: npm i @asyncapi/generator
       - name: Run generation
-        run: ./node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write
+        run: node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write
