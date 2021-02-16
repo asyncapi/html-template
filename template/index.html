@@ -11,17 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if params.singleFile %}
     <style type="text/css">
-    {% include "template/css/tailwind.min.css" %}
-    </style>
-    <style type="text/css">
-    {% include "template/css/atom-one-dark.min.css" %}
-    </style>
-    <style type="text/css">
-    {% include "template/css/main.css" %}
+    {% include "template/css/main.min.css" %}
     </style>
   {% else %}
-  <link href="css/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/atom-one-dark.min.css" />
+  <link href="css/main.min.css" rel="stylesheet">
   {% endif %}
 </head>
 <body>
