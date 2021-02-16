@@ -22,4 +22,4 @@ jobs:
       - name: Install generator
         run: npm i -g @asyncapi/generator
       - name: Run generation
-        run: ../../node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write
+        run: node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write
