@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+{% from "macros/commons.html" import getApiVersion with context %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   {% if params.baseHref %}
    <base href="{{params.baseHref}}">
   {% endif %}
-  <title>{{asyncapi.info().title()}} {{asyncapi.info().version()}} documentation</title>
+
+  <title>{{asyncapi.info().title()}} {{getApiVersion()}} documentation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if params.singleFile %}
     <style type="text/css">

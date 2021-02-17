@@ -17,13 +17,14 @@ npm install -g @asyncapi/generator
 
 ## Supported parameters
 
-|Name|Description|Required|Allowed values|Example|
-|---|---|---|---|---|
-|sidebarOrganization|Defines how the sidebar should be organized. Set its value to `byTagsNoRoot` to categorize operations by operations tags. Set its value to `byTags` when you have tags on a root level. These tags are used to model tags navigation and need to have the same tags in operations.|No|`byTags`, `byTagsNoRoot`|`byTagsNoRoot`|
-|baseHref|Sets the base URL for links and forms.|No|*Any*|`/docs`|
-|singleFile|Set output into one html-file with styles and scripts inside|No|`true`,`false`|`true`|
-|outFilename|The filename of the output file.|No|*Any*|`asyncapi.html`|
-|pdf|Generates output HTML as PDF|No|`true,false`|`false`|
+|Name|Description|Required|Default|Allowed values|Example|
+|---|---|---|---|---|---|
+|sidebarOrganization|Defines how the sidebar should be organized. Set its value to `byTagsNoRoot` to categorize operations by operations tags. Set its value to `byTags` when you have tags on a root level. These tags are used to model tags navigation and need to have the same tags in operations.|No|undefined|`byTags`, `byTagsNoRoot`|`byTagsNoRoot`|
+|baseHref|Sets the base URL for links and forms.|No|`/`|*Any*|`/docs`|
+|version|Override the version of your application provided under `info.version` location in the specification file.|No|Version is taken from the spec file.|*Any* ([See Semver versionning](https://semver.org/))|`1.0.0`|
+|singleFile|Set output into one html-file with styles and scripts inside|No|`false`|`true`,`false`|`true`|
+|outFilename|The filename of the output file.|No|`index.html`|*Any*|`asyncapi.html`|
+|pdf|Generates output HTML as PDF|No|`false`|`true,false`|`false`|
 
 If you only generate an html website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
 
