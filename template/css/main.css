@@ -1,4 +1,18 @@
+@import "./atom-one-dark.min.css";
+
 @tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+html,
+body {
+  font-weight: lighter;
+  background-color: white;
+  font-family: sans-serif;
+  line-height: 1.15;
+}
 
 h1 {
   font-size: 2em;
@@ -17,18 +31,6 @@ h5 {
 }
 h6 {
   @apply text-xs;
-}
-
-@tailwind components;
-
-@tailwind utilities;
-
-html,
-body {
-  font-weight: lighter;
-  background-color: white;
-  font-family: sans-serif;
-  line-height: 1.15;
 }
 
 h1,

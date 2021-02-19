@@ -25,10 +25,8 @@
     "develop": "npm run generate:assets && ag https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
     "//develop:install": "Force ag to install your local html-template source code",
     "develop:install": " npm run develop -- --install",
-    "generate:atomcss": "cross-env NODE_ENV=production postcss template/css/atom-one-dark.min.css -o template/css/main.min.css",
-    "generate:maincss": "cross-env NODE_ENV=production postcss template/css/custom.css -o template/css/main.min.css",
-    "generate:tailwind.css": "cross-env NODE_ENV=production postcss template/css/tailwind.min.css -o template/css/main.min.css",
-    "generate:assets": "rimraf \"template/css/main.min.css\" && npm run generate:atomcss && npm run generate:maincss && npm run generate:tailwind.css",
+    "generate:maincss": "cross-env NODE_ENV=production postcss template/css/main.css -o template/css/main.min.css",
+    "generate:assets": "rimraf \"template/css/main.min.css\" && npm run generate:maincss",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "prepublishOnly": "npm run generate:assets"
   },
@@ -38,6 +36,7 @@
   "dependencies": {
     "@asyncapi/generator-filters": "^1.1.0",
     "autoprefixer": "^10.2.1",
+    "postcss-import": "^14.0.0",
     "puppeteer": "^5.3.1",
     "rimraf": "^3.0.2",
     "tailwindcss": "^2.0.2"
