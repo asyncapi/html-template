@@ -1,4 +1,6 @@
 {% from "./sliced-string.html" import slicedString %}
+{% from "./protocols.html" import displayProtocol %}
+
 <a name="servers"></a>
 <div class="center-block p-8">
 
@@ -11,14 +13,7 @@
           <div class="pr-4 font-mono">
             {{ slicedString(server.url()) }}
 
-            {% if server.protocolVersion() %}
-            <span class="bg-teal-500 font-bold no-underline text-white uppercase rounded ml-2"
-              style="height: 20px;font-size: 11px;padding: 3px;">{{server.protocol()}}
-              {{server.protocolVersion()}}</span>
-            {% else %}
-            <span class="bg-teal-500 font-sans font-bold no-underline text-white uppercase rounded ml-2"
-              style="height: 20px;font-size: 11px;padding: 3px;">{{server.protocol()}}</span>
-            {% endif %}
+            {{ displayProtocol(server.protocol(), server.protocolVersion()) }}
           </div>
           <div class="text-xs text-gray-600">
             {{ server.description() | markdown2html | safe }}

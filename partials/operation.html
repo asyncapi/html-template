@@ -3,6 +3,7 @@
 {% from "./message.html" import message %}
 {% from "./example.html" import example %}
 {% from "./schema-prop.html" import schemaProp %}
+{% from "./protocols.html" import bindings %}
 
 
 {% macro operation(operation, operationType, channelName, channel) %}
@@ -26,6 +27,7 @@
     <p class="text-gray-500 text-sm">{{operation.summary()}}</p>
     <div class="mt-4 mb-4 markdown">{{ operation.description() | markdown2html | safe }}</div>
 
+    {{ bindings("Channel", channel) }}
 
 
     {% if channel.parameters() | length %}
@@ -50,6 +52,7 @@
       </div>
     {% endif %}
 
+    {{ bindings("Operation", channel) }}
 
     {% if operation.hasMultipleMessages() %}
     <p>Accepts <strong>one of</strong> the following messages:</p>
