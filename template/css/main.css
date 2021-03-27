@@ -93,9 +93,18 @@ a:hover {
   text-transform: uppercase;
 }
 
-.markdown :is(ol, ul) {
+.markdown :is(ol) {
+  padding-inline-start: 40px;
+  list-style-type: decimal;
+}
+
+.markdown :is(ul) {
   padding-inline-start: 40px;
   list-style-type: disc;
+}
+
+.markdown :is(strong) {
+  font-weight: bold;
 }
 
 .expand {
