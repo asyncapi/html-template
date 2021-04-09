@@ -10,15 +10,15 @@
 {% endmacro %}
 
 
-{% macro bindings(eltName, elt, odd=false) %}
+{% macro bindings(propName, prop, odd=false) %}
 
-    {% if elt.hasBindings() %}
-        {% for protocol in elt.bindingProtocols() %}
-        <div class="{% if open %}is-open{% endif %}">
+    {% if prop.hasBindings() %}
+        {% for protocol in prop.bindingProtocols() %}
+        <div class="{% if open %}is-open{% endif %} mb-4">
             <div class="js-prop cursor-pointer py-2 property">
                 <div class="pr-4" style="margin-top: -2px; min-width: 25%">
                        <div class=" mt-4 text-sm">
-                            <span class="string-chunk">{{eltName}} specific information</span>
+                            <span class="string-chunk">{{propName}} specific information</span>
                             <svg
                                     class="expand inline align-baseline"
                                     version="1.1"
@@ -37,7 +37,7 @@
             </div>
 
             <div class="children">
-            {% for bindingName, bindingValue in elt.binding(protocol) %}
+            {% for bindingName, bindingValue in prop.binding(protocol) %}
                 <div class="{% if odd %}bg-gray-100{% else %}bg-gray-200{% endif %} pl-6">
                     {% if bindingValue | isObject %}
                     <div class="{% if open %}is-open{% endif %}">
