@@ -14,10 +14,10 @@
 
     {% if prop.hasBindings() %}
         {% for protocol in prop.bindingProtocols() %}
-        <div class="{% if open %}is-open{% endif %} mb-4">
+        <div class="{% if open %}is-open{% endif %} mt-4">
             <div class="js-prop cursor-pointer py-2 property">
                 <div class="pr-4" style="margin-top: -2px; min-width: 25%">
-                       <div class=" mt-4 text-sm">
+                       <div class="text-sm">
                             <span class="string-chunk">{{propName}} specific information</span>
                             <svg
                                     class="expand inline align-baseline"
@@ -36,9 +36,9 @@
                 </div>
             </div>
 
-            <div class="children">
+            <div class="children bg-gray-100 py-4 rounded">
             {% for bindingName, bindingValue in prop.binding(protocol) %}
-                <div class="{% if odd %}bg-gray-100{% else %}bg-gray-200{% endif %} pl-6">
+                <div class="{% if odd %}bg-gray-100{% else %}bg-gray-200{% endif %} pl-8 pr-8">
                     {% if bindingValue | isObject %}
                     <div class="{% if open %}is-open{% endif %}">
                         <div class="js-prop cursor-pointer py-2 property">
