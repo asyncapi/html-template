@@ -10,7 +10,7 @@
 {% endmacro %}
 
 
-{% macro bindings(propName, prop, odd=false) %}
+{% macro bindings(propName, prop, odd=false, showProtocol=true) %}
 
     {% if prop.hasBindings() %}
         {% for protocol in prop.bindingProtocols() %}
@@ -31,7 +31,9 @@
                                         points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "
                                 ></polygon>
                             </svg>
+                           {% if showProtocol %}
                                {{ displayProtocol(protocol) }}
+                           {% endif %}
                         </div>
                 </div>
             </div>

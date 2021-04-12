@@ -1,5 +1,6 @@
 {% from "./sliced-string.html" import slicedString %}
 {% from "./protocols.html" import displayProtocol %}
+{% from "./protocols.html" import bindings %}
 
 <a name="servers"></a>
 <div class="center-block p-8">
@@ -18,6 +19,9 @@
           <div class="text-xs text-gray-600">
             {{ server.description() | markdown2html | safe }}
           </div>
+
+          {{ bindings("Server", server, odd=true, showProtocol=false) }}
+
         </div>
       </div>
 
