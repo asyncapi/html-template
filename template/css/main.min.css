@@ -1083,6 +1083,10 @@ video {
   vertical-align: baseline;
 }
 
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+
 .break-words {
   overflow-wrap: break-word;
 }
@@ -1285,6 +1289,9 @@ a:hover {
 
 .is-open > .property .expand {
   transform: rotate(0deg);
+}
+
+pre > * { white-space: pre-wrap;
 }
 
 /* EXAMPLES */
