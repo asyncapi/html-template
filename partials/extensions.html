@@ -1,0 +1,44 @@
+{% macro extension(obj, odd = false, indent = false) %}
+
+{% set extensions = obj | nonParserExtensions%} 
+{% if extensions.size > 0 %}
+      <p class="{% if indent %}pl-6{% endif %} mb-2 mt-4 text-sm font-bold text-gray-700">
+        Specification Extensions:
+      </p>
+      {% for extensionName, extensionValue in extensions %}
+      <div class="{% if odd %}bg-gray-100{% else %}bg-gray-200{% endif %} {% if indent %}pl-6{% endif %}">
+        {% if extensionValue | isObject %}
+        <div class="{% if open %}is-open{% endif %}">
+          <div class="js-prop cursor-pointer py-2 property">
+            <div class="pr-4" style="margin-top: -2px; min-width: 25%">
+              <span class="text-sm" style="word-break: break-word"
+                >{{ extensionName }}</span
+              >
+              <svg
+                class="expand inline align-baseline"
+                version="1.1"
+                viewBox="0 0 24 24"
+                x="0"
+                xmlns="http://www.w3.org/2000/svg"
+                y="0"
+              >
+                <polygon
+                  points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "
+                ></polygon>
+              </svg>
+            </div>
+          </div>
+          <div class="children">
+            <div
+              class="{% if odd %}bg-gray-200{% else %}bg-gray-100{% endif %} {% if not root %}pl-8 pr-8{% endif %} rounded"
+            >
+              <pre class="text-sm whitespace-pre-wrap">{{ extensionValue | dump(2) }}</pre>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="text-sm">{{ extensionName }}: {{ extensionValue }}</div>
+        {% endif %}
+      </div>
+{% endfor %} {% endif %}
+{% endmacro %}

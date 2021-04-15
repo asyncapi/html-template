@@ -1,6 +1,7 @@
 {% from "./schema.html" import schema %}
 {% from "./tags.html" import tags %}
 {% from "./protocols.html" import bindings %}
+{% from "./extensions.html" import extension %}
 
 {% macro message(msg, showIndex=false, index=0, open=false) %}
 
@@ -42,6 +43,7 @@
   {% endif %}
 
   {{ bindings("Message", msg, odd=true) }}
+  {{ extension(msg) }}
 
 </div>
 
