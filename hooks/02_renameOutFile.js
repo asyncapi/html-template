@@ -1,10 +1,16 @@
 const fs = require('fs');
 
+/**
+ * Renames out file's name to passed as `outFilename` parameter.
+ */
 module.exports = {
-    'generate:after': generator => {
-        if(generator.templateParams.outFilename !== 'index.html') {
-            fs.renameSync(`${generator.targetDir}/index.html`,
-                `${generator.targetDir}/${generator.templateParams.outFilename}`);
-        }
+  'generate:after': ({ templateParams = {}, targetDir }) => {
+    const outFilename = templateParams.outFilename;
+    if (outFilename && outFilename !== 'index.html') {
+      fs.renameSync(
+        `${targetDir}/index.html`,
+        `${targetDir}/${outFilename}`
+      );
     }
+  }
 }
