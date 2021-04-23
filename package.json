@@ -42,7 +42,7 @@
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
-    "@asyncapi/parser": "^1.4.5",
+    "@asyncapi/parser": "^1.5.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",
