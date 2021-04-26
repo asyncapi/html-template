@@ -34,7 +34,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/react-component": "https://raw.githubusercontent.com/asyncapi/asyncapi-react/e3b3c218c8e62a5394f706ba559eee24056ca64c/library/asyncapi-react-component-0.20.1.tgz",
+    "@asyncapi/react-component": "https://raw.githubusercontent.com/asyncapi/asyncapi-react/2d65a8e50df03def94cc938d1bba1ceea4c23e8d/library/asyncapi-react-component-0.23.0.tgz",
     "puppeteer": "^5.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
