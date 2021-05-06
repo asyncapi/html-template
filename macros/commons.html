@@ -1,8 +1,0 @@
-{% macro getApiVersion() %}
-    {% if params.version %}
-    {% set version = params.version %}
-    {% else %}
-    {% set version = asyncapi.info().version() %}
-    {% endif %}
-    <span>{{version}}</span>
-{% endmacro %}

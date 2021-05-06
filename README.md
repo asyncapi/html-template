@@ -1,41 +1,55 @@
-# HTML template for the AsyncAPI Generator
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<h5 align="center">
+  <br>
+  <a href="https://www.asyncapi.org"><img src="https://github.com/asyncapi/parser-nodejs/raw/master/assets/logo.png" alt="AsyncAPI logo" width="200"></a>
+  <br>
+  HTML template for the AsyncAPI Generator
+</h5>
+
+HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator) using an [AsyncAPI React Component](https://github.com/asyncapi/asyncapi-react) under the hood.
+
+---
+
+[![All Contributors][contributors]](#contributors-)
+![npm](https://img.shields.io/npm/dm/@asyncapi/html-template?style=flat-square)
+
+---
 
 ## Usage
 
-```
+```bash
 ag asyncapi.yaml @asyncapi/html-template -o output
 ```
 
 If you don't have the AsyncAPI Generator installed, you can install it like this:
 
-```
+```bash
 npm install -g @asyncapi/generator
 ```
 
 ## Supported parameters
 
-|Name|Description|Required|Default|Allowed values|Example|
+| Name | Description | Required | Default | Allowed values |  Example |
 |---|---|---|---|---|---|
-|sidebarOrganization|Defines how the sidebar should be organized. Set its value to `byTagsNoRoot` to categorize operations by operations tags. Set its value to `byTags` when you have tags on a root level. These tags are used to model tags navigation and need to have the same tags in operations.|No|undefined|`byTags`, `byTagsNoRoot`|`byTagsNoRoot`|
-|baseHref|Sets the base URL for links and forms.|No|`/`|*Any*|`/docs`|
-|version|Override the version of your application provided under `info.version` location in the specification file.|No|Version is taken from the spec file.|*Any* ([See Semver versionning](https://semver.org/))|`1.0.0`|
-|singleFile|Set output into one html-file with styles and scripts inside|No|`false`|`true`,`false`|`true`|
-|outFilename|The filename of the output file.|No|`index.html`|*Any*|`asyncapi.html`|
-|pdf|Generates output HTML as PDF|No|`false`|`true,false`|`false`|
+| sidebarOrganization | Defines how the sidebar should be organized. Set its value to `byTagsNoRoot` to categorize operations by operations tags. Set its value to `byTags` when you have tags on a root level. These tags are used to model tags navigation and need to have the same tags in operations. | No | undefined | `byTags`, `byTagsNoRoot` | `byTagsNoRoot` |
+| baseHref | Sets the base URL for links and forms. | No | `/` | *Any* | `/docs` |
+| version | Override the version of your application provided under `info.version` location in the specification file. | No | Version is taken from the spec file. | *Any* ([See Semver versionning](https://semver.org/)) | `1.0.0` |
+| singleFile | Set output into one html-file with styles and scripts inside | No | `false` | `true`,`false` | `true` |
+| outFilename | The filename of the output file. | No | `index.html` | *Any* | `asyncapi.html` |
+| pdf | Generates output HTML as PDF | No | `false` | `true,false` | `false` |
 
-If you only generate an html website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
+> **NOTE**: If you only generate an HTML website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
 
 ## Development
+
+The HTML-Template is built with an [AsyncAPI React Component](https://github.com/asyncapi/asyncapi-react). For any changes regarding the styling of the page, rendering of the missing/existing elements, please contribute to the [AsyncAPI React Component](https://github.com/asyncapi/asyncapi-react) repository.
+
+If you want make changes in template itself, please follow:
 
 1. Make sure you have the latest generator installed: `npm install -g @asyncapi/generator`.
 1. Modify the template or its helper functions. 
 
     >**NOTE:** If you have to modify the [`dummy.yml`](https://github.com/asyncapi/generator/blob/master/test/docs/dummy.yml) file to develop your features, open a PR with the changes in the [asyncapi/generator](https://github.com/asyncapi/generator) repository.
 
-1. Adjust styling and generate `tailwind.min.css` with `npm run generate:assets`
 1. Generate output with watcher enabled: `npm run develop`.
    
    >**NOTE:** If your changes are not visible, this is maybe because the `ag` use the already installed `html-template` so you should use the `--install` option
@@ -75,5 +89,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[contributors]: https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square 'All Contributors'
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

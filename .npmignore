@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+.github
+.all-contributorsrc
+.editorconfig
+coverage
+.nyc_output
+scripts
+sample
+vscode
+test

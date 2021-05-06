@@ -1,118 +1,94 @@
+const fs = require('fs');
+const path = require('path');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const AsyncApiUI = require('@asyncapi/react-component').default;
+
 const filter = module.exports;
 
-function isExpandable(obj) {
-  const fun = (obj) => typeof obj === "function";
-  if (
-    (fun(obj.type) && obj.type() === "object") ||
-    (fun(obj.type) && obj.type() === "array") ||
-    (fun(obj.oneOf) && obj.oneOf() && obj.oneOf().length) ||
-    (fun(obj.anyOf) && obj.anyOf() && obj.anyOf().length) ||
-    (fun(obj.allOf) && obj.allOf() && obj.allOf().length) ||
-    (fun(obj.items) && obj.items()) ||
-    (fun(obj.additionalItems) && obj.additionalItems()) ||
-    (fun(obj.properties) && obj.properties() && Object.keys(obj.properties()).length) ||
-    (fun(obj.additionalProperties) && obj.additionalProperties()) ||
-    (fun(obj.extensions) && obj.extensions() &&
-      Object.keys(obj.extensions()).filter(e => !e.startsWith("x-parser-")).length) ||
-    (fun(obj.patternProperties) && Object.keys(obj.patternProperties()).length)
-  ) return true;
-
-  return false;
+/**
+ * Prepares configuration for component.
+ */
+function prepareConfiguration(params = {}) {
+  const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
+  if (params.sidebarOrganization === 'byTags') {
+    config.sidebar.showOperations = 'bySpecTags';
+  }
+  if (params.sidebarOrganization === 'byTagsNoRoot') {
+    config.sidebar.showOperations = 'byOperationsTags';
+  }
+  return config;
 }
-filter.isExpandable = isExpandable;
 
-function nonParserExtensions(schema) {
-  if (!schema || !schema.extensions || typeof schema.extensions !== "function") return new Map();
-  const extensions = Object.entries(schema.extensions());
-  return new Map(extensions.filter(e => !e[0].startsWith("x-parser-")).filter(Boolean));
+function replaceObject(val) {
+  return Object.entries(val).reduce((o, [propertyName, property]) => {
+    if (propertyName.startsWith('x-parser-')) {
+      o[propertyName] = property;
+    }
+    return o;
+  }, {});
 }
-filter.nonParserExtensions = nonParserExtensions;
 
 /**
- * Check if there is a channel which does not have one of the tags specified.
+ * Remove this function when it will be implemented https://github.com/asyncapi/parser-js/issues/266
  */
-function containTags(object, tagsToCheck) {
-  if (!object) {
-    throw new Error("object for containsTag was not provided?");
-  }
+function replaceCircular(val, cache) {
+  cache = cache || new WeakSet();
 
-  if (!tagsToCheck) {
-    throw new Error("tagsToCheck for containsTag was not provided?");
-  }
-
-  //Ensure if only 1 tag are provided it is converted to array.
-  if (tagsToCheck && !Array.isArray(tagsToCheck)) {
-    tagsToCheck = [tagsToCheck];
-  }
-  //Check if pubsub contain one of the tags to check.
-  let check = (tag) => {
-    let found = false;
-    for (let tagToCheckIndex in tagsToCheck) {
-      let tagToCheck = tagsToCheck[tagToCheckIndex]._json;
-      let tagName = tag.name;
-      if ((tagToCheck && tagToCheck.name === tagName) ||
-        tagsToCheck[tagToCheckIndex] === tagName) {
-        found = true;
+  if (val && typeof(val) == 'object') {
+    if (cache.has(val)) {
+      if (!Array.isArray(val)) {
+        return replaceObject(val);
       }
+      return {};
     }
-    return found;
-  };
 
-  //Ensure tags are checked for the group tags
-  let containTags = object._json.tags ? object._json.tags.find(check) != null : false;
-  return containTags;
+    cache.add(val);
+
+    const obj = (Array.isArray(val) ? [] : {});
+    for(var idx in val) {
+      obj[idx] = replaceCircular(val[idx], cache);
+    }
+
+    cache.delete(val);
+    return obj;
+  }
+  return val;
 }
-filter.containTags = containTags;
 
 /**
- * Check if there is a channel which does not have one of the tags specified.
+ * Stringifies the specification with escaping circular refs 
+ * and annotates that specification is parsed.
  */
-function containNoTag(channels, tagsToCheck) {
-  if (!channels) {
-    throw new Error("Channels for containNoTag was not provided?");
-  }
-  for (let channelIndex in channels) {
-    let channel = channels[channelIndex]._json;
-    //Check if the channel contains publish or subscribe which does not contain tags
-    if (channel.publish && (!channel.publish.tags || channel.publish.tags.length == 0) ||
-      channel.subscribe && (!channel.subscribe.tags || channel.subscribe.tags.length == 0)
-    ) {
-      //one does not contain tags
-      return true;
-    }
-
-    //Check if channel publish or subscribe does not contain one of the tags to check.
-    let check = (tag) => {
-      let found = false;
-      for (let tagToCheckIndex in tagsToCheck) {
-        let tagToCheck = tagsToCheck[tagToCheckIndex]._json;
-        let tagName = tag.name;
-        if ((typeof tagToCheck !== 'undefined' && tagToCheck.name === tagName) ||
-          tagsToCheck[tagToCheckIndex] === tagName) {
-          found = true;
-        }
-      }
-      return found;
-    };
-
-    //Ensure pubsub tags are checked for the group tags
-    let publishContainsNoTag = channel.publish && channel.publish.tags ? channel.publish.tags.find(check) == null : false;
-    if (publishContainsNoTag === true) return true;
-    let subscribeContainsNoTag = channel.subscribe && channel.subscribe.tags ? channel.subscribe.tags.find(check) == null : false;
-    if (subscribeContainsNoTag === true) return true;
-  }
-  return false;
+function stringifySpec(asyncapi) {
+  asyncapi._json['x-parser-spec-parsed'] = true;
+  return JSON.stringify(replaceCircular(asyncapi.json()));
 }
-filter.containNoTag = containNoTag;
+filter.stringifySpec = stringifySpec;
 
-function operationsTags(object) {
-  let tags = new Set();
-  const extractName = (tags, acc) => tags.forEach((tag) => acc.add(tag.name()));
-  object.channelNames().forEach(channelName => {
-    let channel = object.channel(channelName);
-    if (channel.hasPublish() && channel.publish().hasTags()) extractName(channel.publish().tags(), tags);
-    if (channel.hasSubscribe() && channel.subscribe().hasTags()) extractName(channel.subscribe().tags(), tags);
-  });
-  return Array.from(tags);
+/**
+ * More safe function to include content of given file than default Nunjuck's `include`.
+ * Attaches raw file's content instead of executing it - problem with some attached files in template.
+ */
+function includeFile(pathFile) {
+  const pathToFile = path.resolve(__dirname, '../', pathFile);
+  return fs.readFileSync(pathToFile);
 }
-filter.operationsTags = operationsTags;
+filter.includeFile = includeFile;
+
+/**
+ * Stringifies prepared configuration for component.
+ */
+function stringifyConfiguration(params) {
+  return JSON.stringify(prepareConfiguration(params));
+}
+filter.stringifyConfiguration = stringifyConfiguration;
+
+/**
+ * Renders AsyncApiUI component by given AsyncAPI spec and with corresponding template configuration.
+ */
+function renderSpec(asyncapi, params) {
+  const component = React.createElement(AsyncApiUI, { schema: asyncapi, config: prepareConfiguration(params) });
+  return ReactDOMServer.renderToString(component);
+}
+filter.renderSpec = renderSpec;
