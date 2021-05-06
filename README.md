@@ -82,6 +82,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Theiaz"><img src="https://avatars.githubusercontent.com/u/9378662?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Julian S.</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=Theiaz" title="Code">💻</a></td>
     <td align="center"><a href="http://blog.ineat-conseil.fr/"><img src="https://avatars.githubusercontent.com/u/5501911?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ludovic Dussart</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=M3lkior" title="Code">💻</a></td>
     <td align="center"><a href="https://w3tec.ch"><img src="https://avatars.githubusercontent.com/u/1021324?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Weber</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=dweber019" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/magicmatatjahu"><img src="https://avatars.githubusercontent.com/u/20404945?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maciej Urbańczyk</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=magicmatatjahu" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/commits?author=magicmatatjahu" title="Tests">⚠️</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Amagicmatatjahu" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
@@ -91,7 +92,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[contributors]: https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square 'All Contributors'
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
