@@ -104,8 +104,6 @@
     },
     "generator": ">=1.4.0 <2.0.0",
     "nonRenderableFiles": [
-      "js/react.production.min.js",
-      "js/react-dom.production.min.js",
       "js/asyncapi-ui.wp.js"
     ]
   },
