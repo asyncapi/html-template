@@ -1,11 +1,96 @@
+import { hljs } from '@asyncapi/react-component';
 import { AsyncAPIDocument } from "@asyncapi/parser";
+
 import { 
+  includeFile,
+  retrieveLanguages,
+  includeLanguage,
+  loadLanguagesConfig,
   stringifySpec,
   stringifyConfiguration,
   renderSpec,
 } from "../../filters/all";
 
 describe('Filters', () => {
+  describe('.includeFile', () => {
+    it('should read content of file', async () => {
+      const content = includeFile('node_modules/@asyncapi/react-component/browser/standalone/without-parser.js');
+
+      expect(content instanceof Buffer).toEqual(true);
+      expect(content.toString().length > 0).toEqual(true);
+    });
+  });
+
+  describe('.retrieveLanguages', () => {
+    it('should retrieve list of languages', async () => {
+      const languages = retrieveLanguages('text\n```js\nfoo\n```\ntext abc\n```bash\nbar\n```\nxyz');
+
+      expect(languages.length).toEqual(2);
+      expect(languages).toEqual(['js', 'bash']);
+    });
+
+    it('should retrieve unique languages', async () => {
+      const languages = retrieveLanguages('text\n```js\nfoo\n```\ntext text\n```js\nfoo\n```\ntext');
+
+      expect(languages.length).toEqual(1);
+      expect(languages).toEqual(['js']);
+    });
+  });
+
+  describe('.includeLanguage', () => {
+    it('should include existing language', async () => {
+      const content = includeLanguage('javascript');
+
+      expect(content instanceof Buffer).toEqual(true);
+      expect(content.toString().length > 0).toEqual(true);
+    });
+
+    it('should include existing language using alias', async () => {
+      const content = includeLanguage('js');
+
+      expect(content instanceof Buffer).toEqual(true);
+      expect(content.toString().length > 0).toEqual(true);
+    });
+
+    it('should return empty string if langauge does not exist', async () => {
+      const content = includeLanguage('foo_bar');
+
+      expect(content).toEqual('');
+    });
+  });
+
+  describe('.loadLanguagesConfig', () => {
+    it('should load languages', async () => {
+      expect(hljs.getLanguage('csharp')).toEqual(undefined);
+      expect(hljs.getLanguage('ruby')).toEqual(undefined);
+
+      loadLanguagesConfig('text\n```csharp\nfoo\n```\ntext abc\n```ruby\nbar\n```\nxyz');
+
+      expect(hljs.getLanguage('csharp') === undefined).toEqual(false);
+      expect(hljs.getLanguage('ruby') === undefined).toEqual(false);
+    });
+
+    it('should load language using alias', async () => {
+      // use alias
+      expect(hljs.getLanguage('ts')).toEqual(undefined);
+
+      loadLanguagesConfig('abc\n```ts\nbar\n```\nxyz');
+
+      expect(hljs.getLanguage('ts') === undefined).toEqual(false);
+      expect(hljs.getLanguage('typescript') === hljs.getLanguage('ts')).toEqual(true);
+    });
+
+    it('should warn if at least one language does not exist', async () => {
+      const originalWarn = console.warn;
+      let warning;
+      console.warn = (...args) => { warning = args[0] };
+      loadLanguagesConfig('text\n```bash\nfoo\n```\ntext abc\n```foo_bar\nbar\n```\nxyz');
+      console.warn = originalWarn;
+
+      expect(warning).toEqual('Cannot find highlight.js configuration for "foo_bar" language. Check if this is the correct language.');
+    });
+  });
+
   describe('.stringifySpec', () => {
     it('should work', async () => {
       const schema = {
@@ -79,11 +164,11 @@ describe('Filters', () => {
 
   describe('.renderSpec', () => {
     it('should work', async () => {
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '1.5.73' } });
+      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '2.1.37' } });
 
       const result = renderSpec(doc);
-      // check if '1.5.73' version is rendered
-      expect(result.includes('1.5.73')).toEqual(true);
+      // check if '2.1.37' version is rendered
+      expect(result.includes('2.1.37')).toEqual(true);
       // check if 'dummy spec for testing' title is rendered
       expect(result.includes('dummy spec')).toEqual(true);
     });

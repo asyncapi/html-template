@@ -17,31 +17,29 @@
   </head>
 
   <body>
-    <div id="root">{{ asyncapi | renderSpec(params) | safe }}</div>
+    <div id="root">{{ asyncapi | renderSpec(originalAsyncAPI, params) | safe }}</div>
 
   {% if params.singleFile %}
-    <script type="text/javascript">
-      {{ "template/js/react.production.min.js" | includeFile | safe }}
-    </script>
-    <script type="text/javascript">
-      {{ "template/js/react-dom.production.min.js" | includeFile | safe }}
-    </script>
     <script type="text/javascript">
       {{ "template/js/asyncapi-ui.min.js" | includeFile | safe }}
     </script>
   {% else %}
-    <script src="js/react.production.min.js" type="application/javascript"></script>
-    <script src="js/react-dom.production.min.js" type="application/javascript"></script>
     <script src="js/asyncapi-ui.min.js" type="application/javascript"></script>
   {% endif %}
 
     <script>
+      window.hljs = AsyncApiStandalone.hljs;
+    </script>
+  {% for language in (originalAsyncAPI | retrieveLanguages) %}
+    <script>
+      {{ language | includeLanguage | safe }}
+    </script>
+  {% endfor %}
+
+    <script>
       var schema = {{ asyncapi | stringifySpec | safe }};
       var config = {{ params | stringifyConfiguration | safe }};
-      ReactDOM.hydrate(
-        React.createElement(AsyncApiComponent, { schema, config }),
-        document.getElementById("root")
-      );
+      AsyncApiStandalone.hydrate({ schema, config }, document.getElementById("root"));
     </script>
   </body>
 </html>
