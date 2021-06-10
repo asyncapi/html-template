@@ -107,19 +107,6 @@ function retrieveLanguages(originalAsyncAPI) {
 filter.retrieveLanguages = retrieveLanguages;
 
 /**
- * Include content of given language to template in `<script>` tag.
- */
-function includeLanguage(language) {
-  try {
-    const lang = getLangAlias(language);
-    return includeFile(`node_modules/@highlightjs/cdn-assets/languages/${lang}.min.js`);
-  } catch (e) {
-    return '';
-  }
-}
-filter.includeLanguage = includeLanguage;
-
-/**
  * Load config for all languages included in code blocks in the specification.
  */
 function loadLanguagesConfig(originalAsyncAPI) {

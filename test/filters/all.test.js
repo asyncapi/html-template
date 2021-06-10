@@ -4,7 +4,6 @@ import { AsyncAPIDocument } from "@asyncapi/parser";
 import { 
   includeFile,
   retrieveLanguages,
-  includeLanguage,
   loadLanguagesConfig,
   stringifySpec,
   stringifyConfiguration,
@@ -34,28 +33,6 @@ describe('Filters', () => {
 
       expect(languages.length).toEqual(1);
       expect(languages).toEqual(['js']);
-    });
-  });
-
-  describe('.includeLanguage', () => {
-    it('should include existing language', async () => {
-      const content = includeLanguage('javascript');
-
-      expect(content instanceof Buffer).toEqual(true);
-      expect(content.toString().length > 0).toEqual(true);
-    });
-
-    it('should include existing language using alias', async () => {
-      const content = includeLanguage('js');
-
-      expect(content instanceof Buffer).toEqual(true);
-      expect(content.toString().length > 0).toEqual(true);
-    });
-
-    it('should return empty string if langauge does not exist', async () => {
-      const content = includeLanguage('foo_bar');
-
-      expect(content).toEqual('');
     });
   });
 

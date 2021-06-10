@@ -28,15 +28,6 @@
   {% endif %}
 
     <script>
-      window.hljs = AsyncApiStandalone.hljs;
-    </script>
-  {% for language in (originalAsyncAPI | retrieveLanguages) %}
-    <script>
-      {{ language | includeLanguage | safe }}
-    </script>
-  {% endfor %}
-
-    <script>
       var schema = {{ asyncapi | stringifySpec | safe }};
       var config = {{ params | stringifyConfiguration | safe }};
       AsyncApiStandalone.hydrate({ schema, config }, document.getElementById("root"));
