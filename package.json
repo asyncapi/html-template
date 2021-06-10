@@ -104,7 +104,7 @@
     },
     "generator": ">=1.4.0 <2.0.0",
     "nonRenderableFiles": [
-      "js/asyncapi-ui.wp.js"
+      "js/asyncapi-ui.min.js"
     ]
   },
   "jest": {
