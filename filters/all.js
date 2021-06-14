@@ -95,6 +95,14 @@ filter.includeFile = includeFile;
  * Retrieves all languages included in code blocks in the specification.
  */
 function retrieveLanguages(originalAsyncAPI) {
+  /**
+   * Regex for matches the code blocks in markdown
+   * out[1] - whole code block
+   * out[2] - backticks ```
+   * out[3] - language
+   * out[4] - content of the code block
+   * out[5] - backticks ```
+   */
   const regex = /^(([ \t]*`{3,4})([^\n]*)([\s\S]+?)(^[ \t]*\2))/gm,
     langauges = [];
 
@@ -114,7 +122,7 @@ function loadLanguagesConfig(originalAsyncAPI) {
   for (let language of languages) {
     try {
       const lang = getLangAlias(language);
-      // highlight.js is included in `@asyncapi/react-component` as dependency
+      // highlight.js is included in `@asyncapi/react-component` as a transitive dependency
       const config = require(`highlight.js/lib/languages/${lang}.js`);
       hljs.registerLanguage(lang, config);
     } catch (e) {

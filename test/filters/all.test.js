@@ -11,6 +11,13 @@ import {
 } from "../../filters/all";
 
 describe('Filters', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
   describe('.includeFile', () => {
     it('should read content of file', async () => {
       const content = includeFile('node_modules/@asyncapi/react-component/browser/standalone/without-parser.js');
@@ -58,13 +65,11 @@ describe('Filters', () => {
     });
 
     it('should warn if at least one language does not exist', async () => {
-      const originalWarn = console.warn;
-      let warning;
-      console.warn = (...args) => { warning = args[0] };
-      loadLanguagesConfig('text\n```bash\nfoo\n```\ntext abc\n```foo_bar\nbar\n```\nxyz');
-      console.warn = originalWarn;
+      const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
 
-      expect(warning).toEqual('Cannot find highlight.js configuration for "foo_bar" language. Check if this is the correct language.');
+      loadLanguagesConfig('text\n```bash\nfoo\n```\ntext abc\n```foo_bar\nbar\n```\nxyz');
+
+      expect(warn).toBeCalledWith('Cannot find highlight.js configuration for "foo_bar" language. Check if this is the correct language.');
     });
   });
 
@@ -141,11 +146,11 @@ describe('Filters', () => {
 
   describe('.renderSpec', () => {
     it('should work', async () => {
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '2.1.37' } });
+      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '1.5.34' } });
 
       const result = renderSpec(doc);
-      // check if '2.1.37' version is rendered
-      expect(result.includes('2.1.37')).toEqual(true);
+      // check if '1.5.34' version is rendered
+      expect(result.includes('1.5.34')).toEqual(true);
       // check if 'dummy spec for testing' title is rendered
       expect(result.includes('dummy spec')).toEqual(true);
     });
