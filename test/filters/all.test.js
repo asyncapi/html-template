@@ -65,7 +65,9 @@ describe('Filters', () => {
     });
 
     it('should warn if at least one language does not exist', async () => {
-      const warn = jest.spyOn(console, "warn").mockImplementation(() => {});
+      const warn = jest.spyOn(console, "warn").mockImplementation(() => {
+        // This is intentional
+      });
 
       loadLanguagesConfig('text\n```bash\nfoo\n```\ntext abc\n```foo_bar\nbar\n```\nxyz');
 
