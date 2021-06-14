@@ -3,7 +3,6 @@ import { AsyncAPIDocument } from "@asyncapi/parser";
 
 import { 
   includeFile,
-  retrieveLanguages,
   loadLanguagesConfig,
   stringifySpec,
   stringifyConfiguration,
@@ -27,51 +26,20 @@ describe('Filters', () => {
     });
   });
 
-  describe('.retrieveLanguages', () => {
-    it('should retrieve list of languages', async () => {
-      const languages = retrieveLanguages('text\n```js\nfoo\n```\ntext abc\n```bash\nbar\n```\nxyz');
-
-      expect(languages.length).toEqual(2);
-      expect(languages).toEqual(['js', 'bash']);
-    });
-
-    it('should retrieve unique languages', async () => {
-      const languages = retrieveLanguages('text\n```js\nfoo\n```\ntext text\n```js\nfoo\n```\ntext');
-
-      expect(languages.length).toEqual(1);
-      expect(languages).toEqual(['js']);
-    });
-  });
-
   describe('.loadLanguagesConfig', () => {
-    it('should load languages', async () => {
+    it('should load config for all languages', async () => {
       expect(hljs.getLanguage('csharp')).toEqual(undefined);
       expect(hljs.getLanguage('ruby')).toEqual(undefined);
-
-      loadLanguagesConfig('text\n```csharp\nfoo\n```\ntext abc\n```ruby\nbar\n```\nxyz');
-
-      expect(hljs.getLanguage('csharp') === undefined).toEqual(false);
-      expect(hljs.getLanguage('ruby') === undefined).toEqual(false);
-    });
-
-    it('should load language using alias', async () => {
+      expect(hljs.getLanguage('typescript')).toEqual(undefined);
       // use alias
       expect(hljs.getLanguage('ts')).toEqual(undefined);
 
-      loadLanguagesConfig('abc\n```ts\nbar\n```\nxyz');
+      loadLanguagesConfig();
 
+      expect(hljs.getLanguage('csharp') === undefined).toEqual(false);
+      expect(hljs.getLanguage('ruby') === undefined).toEqual(false);
       expect(hljs.getLanguage('ts') === undefined).toEqual(false);
       expect(hljs.getLanguage('typescript') === hljs.getLanguage('ts')).toEqual(true);
-    });
-
-    it('should warn if at least one language does not exist', async () => {
-      const warn = jest.spyOn(console, "warn").mockImplementation(() => {
-        // This is intentional
-      });
-
-      loadLanguagesConfig('text\n```bash\nfoo\n```\ntext abc\n```foo_bar\nbar\n```\nxyz');
-
-      expect(warn).toBeCalledWith('Cannot find highlight.js configuration for "foo_bar" language. Check if this is the correct language.');
     });
   });
 

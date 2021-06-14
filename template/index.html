@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <div id="root">{{ asyncapi | renderSpec(originalAsyncAPI, params) | safe }}</div>
+    <div id="root">{{ asyncapi | renderSpec(params) | safe }}</div>
 
   {% if params.singleFile %}
     <script type="text/javascript">
