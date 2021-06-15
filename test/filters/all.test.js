@@ -1,11 +1,48 @@
+import { hljs } from '@asyncapi/react-component';
 import { AsyncAPIDocument } from "@asyncapi/parser";
+
 import { 
+  includeFile,
+  loadLanguagesConfig,
   stringifySpec,
   stringifyConfiguration,
   renderSpec,
 } from "../../filters/all";
 
 describe('Filters', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
+  describe('.includeFile', () => {
+    it('should read content of file', async () => {
+      const content = includeFile('node_modules/@asyncapi/react-component/browser/standalone/without-parser.js');
+
+      expect(content instanceof Buffer).toEqual(true);
+      expect(content.toString().length > 0).toEqual(true);
+    });
+  });
+
+  describe('.loadLanguagesConfig', () => {
+    it('should load config for all languages', async () => {
+      expect(hljs.getLanguage('csharp')).toEqual(undefined);
+      expect(hljs.getLanguage('ruby')).toEqual(undefined);
+      expect(hljs.getLanguage('typescript')).toEqual(undefined);
+      // use alias
+      expect(hljs.getLanguage('ts')).toEqual(undefined);
+
+      loadLanguagesConfig();
+
+      expect(hljs.getLanguage('csharp') === undefined).toEqual(false);
+      expect(hljs.getLanguage('ruby') === undefined).toEqual(false);
+      expect(hljs.getLanguage('ts') === undefined).toEqual(false);
+      expect(hljs.getLanguage('typescript') === hljs.getLanguage('ts')).toEqual(true);
+    });
+  });
+
   describe('.stringifySpec', () => {
     it('should work', async () => {
       const schema = {
@@ -79,11 +116,11 @@ describe('Filters', () => {
 
   describe('.renderSpec', () => {
     it('should work', async () => {
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '1.5.73' } });
+      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '1.5.34' } });
 
       const result = renderSpec(doc);
-      // check if '1.5.73' version is rendered
-      expect(result.includes('1.5.73')).toEqual(true);
+      // check if '1.5.34' version is rendered
+      expect(result.includes('1.5.34')).toEqual(true);
       // check if 'dummy spec for testing' title is rendered
       expect(result.includes('dummy spec')).toEqual(true);
     });

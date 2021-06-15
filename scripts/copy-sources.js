@@ -11,9 +11,7 @@ const copyFile = util.promisify(fs.copyFile);
 
 // source (node_modules): destination (template)
 const filesToCopy = {
-  "react/umd/react.production.min.js": "js/react.production.min.js",
-  "react-dom/umd/react-dom.production.min.js": "js/react-dom.production.min.js",
-  "@asyncapi/react-component/browser/without-parser.js": "js/asyncapi-ui.min.js",
+  "@asyncapi/react-component/browser/standalone/without-parser.js": "js/asyncapi-ui.min.js",
   "@asyncapi/react-component/styles/default.min.css": "css/styles.min.css",
 };
 

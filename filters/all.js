@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const AsyncApiUI = require('@asyncapi/react-component').default;
+const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
 
 const filter = module.exports;
 
@@ -56,15 +56,32 @@ function replaceCircular(val, cache) {
   return val;
 }
 
+let initLanguages = false;
 /**
- * Stringifies the specification with escaping circular refs 
- * and annotates that specification is parsed.
+ * Load all language configurations from highlight.js
  */
-function stringifySpec(asyncapi) {
-  asyncapi._json['x-parser-spec-parsed'] = true;
-  return JSON.stringify(replaceCircular(asyncapi.json()));
+function loadLanguagesConfig() {
+  if (initLanguages === true) {
+    return;
+  }
+
+  /**
+   * Retrieve the location of highlight.js.
+   * It's needed because someone can have installed `highlight.js` as global dependency
+   * or depper than local `node_modules` of this template.
+   */
+  const hljsPackageDir = path.dirname(require.resolve("highlight.js/package.json"))
+  const hljsLanguagesPath = path.resolve(hljsPackageDir, 'lib/languages');
+  const languages = fs.readdirSync(hljsLanguagesPath);
+
+  for (let langPath of languages) {
+    const lang = require(path.resolve(hljsLanguagesPath, langPath));
+    hljs.registerLanguage(lang.name, lang);
+  }
+
+  initLanguages = true;
 }
-filter.stringifySpec = stringifySpec;
+filter.loadLanguagesConfig = loadLanguagesConfig;
 
 /**
  * More safe function to include content of given file than default Nunjuck's `include`.
@@ -77,6 +94,15 @@ function includeFile(pathFile) {
 filter.includeFile = includeFile;
 
 /**
+ * Stringifies the specification with escaping circular refs 
+ * and annotates that specification is parsed.
+ */
+function stringifySpec(asyncapi) {
+  return JSON.stringify(replaceCircular(asyncapi.json()));
+}
+filter.stringifySpec = stringifySpec;
+
+/**
  * Stringifies prepared configuration for component.
  */
 function stringifyConfiguration(params) {
@@ -85,10 +111,12 @@ function stringifyConfiguration(params) {
 filter.stringifyConfiguration = stringifyConfiguration;
 
 /**
- * Renders AsyncApiUI component by given AsyncAPI spec and with corresponding template configuration.
+ * Renders AsyncApi component by given AsyncAPI spec and with corresponding template configuration.
  */
 function renderSpec(asyncapi, params) {
-  const component = React.createElement(AsyncApiUI, { schema: asyncapi, config: prepareConfiguration(params) });
+  loadLanguagesConfig();
+
+  const component = React.createElement(AsyncApiComponent, { schema: asyncapi, config: prepareConfiguration(params) });
   return ReactDOMServer.renderToString(component);
 }
 filter.renderSpec = renderSpec;
