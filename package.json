@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/html-template",
-  "version": "0.22.1",
+  "version": "0.22.2",
   "description": "HTML template for the AsyncAPI generator.",
   "keywords": [
     "asyncapi",
