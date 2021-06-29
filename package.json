@@ -34,7 +34,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/react-component": "^1.0.0-next.9",
+    "@asyncapi/react-component": "^1.0.0-next.10",
     "puppeteer": "^5.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
