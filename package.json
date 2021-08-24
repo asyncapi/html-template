@@ -100,6 +100,11 @@
       "pdf": {
         "description": "Set to `true` to get index.pdf generated next to your index.html",
         "default": false
+      },
+      "config": {
+        "description": "Stringified JS object containing options for react, ex: { \"sidebar\": false }.",
+        "default": null,
+        "required": false
       }
     },
     "generator": ">=1.7.3 <2.0.0",

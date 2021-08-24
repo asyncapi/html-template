@@ -10,7 +10,10 @@ const filter = module.exports;
  * Prepares configuration for component.
  */
 function prepareConfiguration(params = {}) {
-  const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
+  let config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
+  if (params.config) {
+    config = {...config, ...JSON.parse(params.config) };
+  }
   if (params.sidebarOrganization === 'byTags') {
     config.sidebar.showOperations = 'bySpecTags';
   }
