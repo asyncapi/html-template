@@ -38,7 +38,7 @@ npm install -g @asyncapi/generator
 | singleFile | Set output into one html-file with styles and scripts inside | No | `false` | `true`,`false` | `true` |
 | outFilename | The filename of the output file. | No | `index.html` | *Any* | `asyncapi.html` |
 | pdf | Generates output HTML as PDF | No | `false` | `true,false` | `false` |
-| config | Stringified JS object containing options for react | No | | null | *Any* | {"show":{ "sidebar":false}} |
+| config | Stringified JS object containing options for react | No | null | *Any* | {"show":{ "sidebar":false}} |
 
 > **NOTE**: If you only generate an HTML website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
 
