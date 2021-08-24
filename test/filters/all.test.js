@@ -112,6 +112,14 @@ describe('Filters', () => {
       const result = stringifyConfiguration(params);
       expect(result).toEqual(expected);
     });
+
+    it('should allow override of config', async () => {
+      const params = { config: '{"show": {"sidebar":false}}' };
+      const expected = '{"show":{"sidebar":false},"sidebar":{"showOperations":"byDefault"}}';
+
+      const result = stringifyConfiguration(params);
+      expect(result).toEqual(expected);
+    });
   });
 
   describe('.renderSpec', () => {

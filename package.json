@@ -102,7 +102,7 @@
         "default": false
       },
       "config": {
-        "description": "Stringified JS object containing options for react, ex: { \"sidebar\": false }.",
+        "description": "Stringified JS object containing options for react, ex: {\"show\":{\"sidebar\":false}}.",
         "default": null,
         "required": false
       }
