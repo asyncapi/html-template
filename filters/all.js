@@ -75,7 +75,7 @@ function loadLanguagesConfig() {
   const languages = fs.readdirSync(hljsLanguagesPath);
 
   for (let langPath of languages) {
-    const lang = require(path.resolve(hljsLanguagesPath, langPath));
+    const lang = require(path.resolve(hljsLanguagesPath, langPath.replace('.js', '')));
     hljs.registerLanguage(lang.name, lang);
   }
 
