@@ -20,42 +20,6 @@ function prepareConfiguration(params = {}) {
   return config;
 }
 
-function replaceObject(val) {
-  return Object.entries(val).reduce((o, [propertyName, property]) => {
-    if (propertyName.startsWith('x-parser-')) {
-      o[propertyName] = property;
-    }
-    return o;
-  }, {});
-}
-
-/**
- * Remove this function when it will be implemented https://github.com/asyncapi/parser-js/issues/266
- */
-function replaceCircular(val, cache) {
-  cache = cache || new WeakSet();
-
-  if (val && typeof(val) == 'object') {
-    if (cache.has(val)) {
-      if (!Array.isArray(val)) {
-        return replaceObject(val);
-      }
-      return {};
-    }
-
-    cache.add(val);
-
-    const obj = (Array.isArray(val) ? [] : {});
-    for(var idx in val) {
-      obj[idx] = replaceCircular(val[idx], cache);
-    }
-
-    cache.delete(val);
-    return obj;
-  }
-  return val;
-}
-
 let initLanguages = false;
 /**
  * Load all language configurations from highlight.js
@@ -98,7 +62,7 @@ filter.includeFile = includeFile;
  * and annotates that specification is parsed.
  */
 function stringifySpec(asyncapi) {
-  return JSON.stringify(replaceCircular(asyncapi.json()));
+  return asyncapi.constructor.stringify(asyncapi);
 }
 filter.stringifySpec = stringifySpec;
 
