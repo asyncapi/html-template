@@ -57,7 +57,7 @@ describe('Filters', () => {
       schema.properties.bar = schema;
       const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
       
-      const expected = `{"asyncapi":"2.0.0","components":{"schemas":{"dummySchema":{"type":"object","properties":{"foo":{"type":"string","x-parser-schema-id":"<anonymous-schema-1>"},"bar":{"x-parser-schema-id":"dummySchema","x-parser-circular-props":["bar"]}},"x-parser-schema-id":"dummySchema","x-parser-circular-props":["bar"]}}},"x-parser-spec-parsed":true}`;
+      const expected = `{"asyncapi":"2.0.0","components":{"schemas":{"dummySchema":{"type":"object","properties":{"foo":{"type":"string","x-parser-schema-id":"<anonymous-schema-1>"},"bar":"$ref:$.components.schemas.dummySchema"},"x-parser-schema-id":"dummySchema","x-parser-circular-props":["bar"]}}},"x-parser-spec-parsed":true,"x-parser-spec-stringified":true}`;
       const expectedParsed = {
         asyncapi: '2.0.0',
         components: { 
@@ -66,19 +66,15 @@ describe('Filters', () => {
               type: 'object',
               properties: {
                 foo: { type: 'string', 'x-parser-schema-id': '<anonymous-schema-1>' },
-                bar: {
-                  // x-parser-schema-id and x-parser-circular-props are inferred from dummySchema
-                  // stringifySpec infers all `x-parser` extensions
-                  'x-parser-schema-id': 'dummySchema',
-                  'x-parser-circular-props': ['bar']
-                }
+                bar: '$ref:$.components.schemas.dummySchema',
               },
               'x-parser-schema-id': 'dummySchema',
               'x-parser-circular-props': ['bar'],
             },
           },
         },
-        'x-parser-spec-parsed': true
+        'x-parser-spec-parsed': true,
+        'x-parser-spec-stringified': true,
       };
 
       const result = stringifySpec(doc);
