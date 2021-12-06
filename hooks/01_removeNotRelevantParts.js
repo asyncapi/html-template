@@ -21,8 +21,8 @@ module.exports = {
         maxBusyTries: 3
       };
 
-      rimraf.sync(jsDir, opts, callback);
-      rimraf.sync(cssDir, opts, callback);
+      rimraf(jsDir, opts, callback);
+      rimraf(cssDir, opts, callback);
     }
   }
 };
