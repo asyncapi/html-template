@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@asyncapi/react-component": "^1.0.0-next.25",
+    "@asyncapi/parser": "^1.13.0",
     "highlight.js": "10.7.3",
     "puppeteer": "^5.3.1",
     "react": "^17.0.2",
@@ -42,7 +43,6 @@
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
-    "@asyncapi/parser": "^1.13.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",

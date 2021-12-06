@@ -3,6 +3,7 @@ const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
+const { AsyncAPIDocument } = require('@asyncapi/parser');
 
 const filter = module.exports;
 
@@ -62,7 +63,7 @@ filter.includeFile = includeFile;
  * and annotates that specification is parsed.
  */
 function stringifySpec(asyncapi) {
-  return asyncapi.constructor.stringify(asyncapi);
+  return AsyncAPIDocument.stringify(asyncapi);
 }
 filter.stringifySpec = stringifySpec;
 
