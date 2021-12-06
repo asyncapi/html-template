@@ -9,10 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if params.singleFile %}
     <style type="text/css">
-      {{ "template/css/styles.min.css" | includeFile | safe }}
+      {{ "template/css/global.min.css" | includeFile | safe }}
+      {{ "template/css/asyncapi.min.css" | includeFile | safe }}
     </style>
   {% else %}
-    <link href="css/styles.min.css" rel="stylesheet">
+    <link href="css/global.min.css" rel="stylesheet">
+    <link href="css/asyncapi.min.css" rel="stylesheet">
   {% endif %}
   </head>
 
