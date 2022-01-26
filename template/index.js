@@ -1,34 +1,18 @@
 import { File } from "@asyncapi/generator-react-sdk";
-
-// Import custom components from file
+import filter from  '../filters/all.js';
 import { HTML, Head, Body } from "../components/common";
 
 export default function Index({ asyncapi, params }) {
-  const getCssLinks = () => {
-    const cssLinks = [];
-    if (params.singleFile) {
-      cssLinks.push("template/css/asyncapi-ui.css");
-      cssLinks.push("template/css/asyncapi-ui.css");
-    } else {
-      cssLinks.push("css/asyncapi-ui.css");
-      cssLinks.push("css/asyncapi-ui.css");
-    }
-    return cssLinks;
-  };
   return (
     <File name="index.html">
       <HTML>
         <Head
-          title={
-            asyncapi.info().title() +
-            asyncapi.info().version() +
-            "documentation"
-          }
-          cssLinks={getCssLinks()}
-          base={params.baseHref ? params.baseHref : ""}
+          title={`${asyncapi.info().title()} ${asyncapi.info().version()} documentation`}
+          cssLinks={params.singleFile ? [filter.includeFile("template/css/global.min.css"),filter.includeFile("template/css/asyncapi.min.css")] : ["css/global.min.css","css/asyncapi.min.css"]}
+          base={params.baseHref || ""}
         />
         <Body>
-          <div id="root">{asyncapi}</div>
+          <div id="root">{filter.renderSpec(asyncapi,params)}</div>
           <Scripts params={params} />
         </Body>
       </HTML>
@@ -38,10 +22,10 @@ export default function Index({ asyncapi, params }) {
 function Scripts({ params }) {
   if (params.singleFile) {
     return `
-        <script src="template/js/asyncapi-ui.min.js" type="text/javascript" ></script>
+        <script src=${filter.includeFile("template/js/asyncapi-ui.min.js")} type="text/javascript" ></script>
         <script>
-            var schema = ${asyncapi};
-            var config = ${params};
+            var schema = ${filter.stringifySpec(asyncapi)};
+            var config = ${filter.stringifyConfiguration(params)};
             AsyncApiStandalone.hydrate({ schema, config }, document.getElementById("root"));
         </script>
     `;
@@ -49,9 +33,9 @@ function Scripts({ params }) {
     return `
         <script src="js/asyncapi-ui.min.js" type="application/javascript"></script>
         <script>
-            var schema = ${asyncapi};
-            var config = ${params};
-            AsyncApiStandalone.hydrate({ schema, config }, document.getElementById("root"));
+          var schema = ${filter.stringifySpec(asyncapi)};
+          var config = ${filter.stringifyConfiguration(params)};
+          AsyncApiStandalone.hydrate({ schema, config }, document.getElementById("root"));
         </script>
     `;
   }
