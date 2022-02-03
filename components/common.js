@@ -13,7 +13,7 @@ ${childrenContent}
 `;
 }
 
-export function Head({ title, cssLinks = [],base }) {
+export function Head({ title, cssLinks = [], styleContent = [],base }) {
   const links = cssLinks
     .map((link) => `<link rel="stylesheet" href="${link}">\n`)
     .join("");
@@ -25,6 +25,13 @@ export function Head({ title, cssLinks = [],base }) {
   <title>${title}</title>
 ${withIndendation(links, 2, IndentationTypes.SPACES)}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+    ${styleContent[0]}
+    ${styleContent[1]}
+  </style>
+  <link href=${cssLinks[0]}>
+  <link href=${cssLinks[1]}>
+  <link>
 </head>  
 `;
 

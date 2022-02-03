@@ -8,7 +8,8 @@ export default function Index({ asyncapi, params }) {
       <HTML>
         <Head
           title={`${asyncapi.info().title()} ${asyncapi.info().version()} documentation`}
-          cssLinks={params.singleFile ? [filter.includeFile("template/css/global.min.css"),filter.includeFile("template/css/asyncapi.min.css")] : ["css/global.min.css","css/asyncapi.min.css"]}
+          cssLinks={ !params.singleFile ? ["css/global.min.css","css/asyncapi.min.css"] : ["",""]}
+          styleContent={params.singleFile ? [filter.includeFile("template/css/global.min.css"),filter.includeFile("template/css/asyncapi.min.css")] : ["",""]}
           base={params.baseHref || ""}
         />
         <Body>
@@ -22,7 +23,9 @@ export default function Index({ asyncapi, params }) {
 function Scripts({ params }) {
   if (params.singleFile) {
     return `
-        <script src=${filter.includeFile("template/js/asyncapi-ui.min.js")} type="text/javascript" ></script>
+        <script type="text/javascript">
+          ${filter.includeFile("template/js/asyncapi-ui.min.js")} 
+        </script>
         <script>
             var schema = ${filter.stringifySpec(asyncapi)};
             var config = ${filter.stringifyConfiguration(params)};
