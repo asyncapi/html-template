@@ -14,9 +14,6 @@ ${childrenContent}
 }
 
 export function Head({ title, cssLinks = [], styleContent = [],base = "" }) {
-  const links = cssLinks
-    .map((link) => `<link rel="stylesheet" href="${link}">\n`);
-
   const content = `
 <head>
   <meta charset="utf-8">
