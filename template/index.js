@@ -1,5 +1,5 @@
 import { File } from "@asyncapi/generator-react-sdk";
-import filter from  '../filters/all.js';
+import filter from  '../filters/all';
 import { HTML, Head, Body } from "../components/common";
 
 export default function Index({ asyncapi, params }) {
@@ -8,8 +8,8 @@ export default function Index({ asyncapi, params }) {
       <HTML>
         <Head
           title={`${asyncapi.info().title()} ${asyncapi.info().version()} documentation`}
-          cssLinks={ !params.singleFile ? ["css/global.min.css","css/asyncapi.min.css"] : ["",""]}
-          styleContent={params.singleFile ? [filter.includeFile("template/css/global.min.css"),filter.includeFile("template/css/asyncapi.min.css")] : ["",""]}
+          cssLinks={!params.singleFile ? ["css/global.min.css","css/asyncapi.min.css"] : []}
+          styleContent={params.singleFile ? [filter.includeFile("template/css/global.min.css"),filter.includeFile("template/css/asyncapi.min.css")] : []}
           base={params.baseHref || ""}
         />
         <Body>
