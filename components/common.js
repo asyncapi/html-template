@@ -26,7 +26,6 @@ ${withIndendation(links, 2, IndentationTypes.SPACES)}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${(styleContent.length > 0) ? `<style>\n${styleContent[0]}\n${styleContent[1]}</style>` : ""}
   ${(cssLinks.length > 0) ? `\n<link href=${cssLinks[0]}>\n<link href=${cssLinks[1]}>\n` : ""}
-  <link>
 </head>  
 `;
 
