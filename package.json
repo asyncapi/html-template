@@ -76,6 +76,7 @@
     ]
   },
   "generator": {
+    "renderer": "react",
     "parameters": {
       "sidebarOrganization": {
         "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
@@ -104,10 +105,7 @@
         "default": false
       }
     },
-    "generator": {
-      "renderer": "react",
-      "generator":">=1.8.27 <2.0.0"
-    },
+    "generator": ">=1.8.27 <2.0.0",
     "nonRenderableFiles": [
       "js/asyncapi-ui.min.js"
     ]
