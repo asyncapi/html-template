@@ -13,19 +13,18 @@ ${childrenContent}
 `;
 }
 
-export function Head({ title, cssLinks = [], styleContent = [],base = "" }) {
+export function Head({ title, cssLinks = [], styleContent = [], base = '' }) {
   const baseTag= `<base href=${base}>`;
-  const cssLinksData = `\n<link href=${cssLinks[0]}>\n<link href=${cssLinks[1]}>\n`;
-  const styleContentData = `<style>\n${styleContent[0]}\n${styleContent[1]}</style>`;
+  const cssLinksData = cssLinks.map(link => `<link href="${link}" rel="stylesheet">`).join('\n');
+  const styleContentData = styleContent.join('\n');
   const content = `
 <head>
   <meta charset="utf-8">
-  ${base && baseTag}
+  ${base ? baseTag : ''}
   <title>${title}</title>
-${withIndendation(links, 2, IndentationTypes.SPACES)}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  ${(styleContent.length > 0) ? styleContentData : ""}
-  ${(cssLinks.length > 0) ? cssLinksData : ""}
+  ${styleContentData ? `<style type="text/css">${styleContentData}</style>` : ''}
+  ${cssLinksData ? cssLinksData : ''}
 </head>  
 `;
 

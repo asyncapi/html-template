@@ -1,11 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
-const { AsyncAPIDocument } = require('@asyncapi/parser');
-
-const filter = module.exports;
+import fs from 'fs';
+import path from 'path';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import AsyncApiComponent, { hljs } from '@asyncapi/react-component';
+import { AsyncAPIDocument } from '@asyncapi/parser';
 
 /**
  * Prepares configuration for component.
@@ -46,42 +44,37 @@ function loadLanguagesConfig() {
 
   initLanguages = true;
 }
-filter.loadLanguagesConfig = loadLanguagesConfig;
 
 /**
  * More safe function to include content of given file than default Nunjuck's `include`.
  * Attaches raw file's content instead of executing it - problem with some attached files in template.
  */
-function includeFile(pathFile) {
+export function includeFile(pathFile) {
   const pathToFile = path.resolve(__dirname, '../', pathFile);
   return fs.readFileSync(pathToFile);
 }
-filter.includeFile = includeFile;
 
 /**
  * Stringifies the specification with escaping circular refs 
  * and annotates that specification is parsed.
  */
-function stringifySpec(asyncapi) {
+export function stringifySpec(asyncapi) {
   return AsyncAPIDocument.stringify(asyncapi);
 }
-filter.stringifySpec = stringifySpec;
 
 /**
  * Stringifies prepared configuration for component.
  */
-function stringifyConfiguration(params) {
+export function stringifyConfiguration(params) {
   return JSON.stringify(prepareConfiguration(params));
 }
-filter.stringifyConfiguration = stringifyConfiguration;
 
 /**
  * Renders AsyncApi component by given AsyncAPI spec and with corresponding template configuration.
  */
-function renderSpec(asyncapi, params) {
+export function renderSpec(asyncapi, params) {
   loadLanguagesConfig();
 
   const component = React.createElement(AsyncApiComponent, { schema: asyncapi, config: prepareConfiguration(params) });
   return ReactDOMServer.renderToString(component);
 }
-filter.renderSpec = renderSpec;

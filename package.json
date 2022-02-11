@@ -104,7 +104,10 @@
         "default": false
       }
     },
-    "generator": ">=1.8.27 <2.0.0",
+    "generator": {
+      "renderer": "react",
+      "generator":">=1.8.27 <2.0.0"
+    },
     "nonRenderableFiles": [
       "js/asyncapi-ui.min.js"
     ]
