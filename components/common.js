@@ -16,14 +16,14 @@ ${childrenContent}
 export function Head({ title, cssLinks = [], styleContent = [], base = '' }) {
   const baseTag= `<base href=${base}>`;
   const cssLinksData = cssLinks.map(link => `<link href="${link}" rel="stylesheet">`).join('\n');
-  const styleContentData = styleContent.join('\n');
+  const styleContentData = styleContent.length ? `<style type="text/css">${styleContent.join('\n')}</style>` : '';
   const content = `
 <head>
   <meta charset="utf-8">
   ${base ? baseTag : ''}
   <title>${title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  ${styleContentData ? `<style type="text/css">${styleContentData}</style>` : ''}
+  ${styleContentData ? styleContentData: ''}
   ${cssLinksData ? cssLinksData : ''}
 </head>  
 `;
