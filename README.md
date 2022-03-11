@@ -1,9 +1,10 @@
 <h5 align="center">
   <br>
-  <a href="https://www.asyncapi.org"><img src="https://github.com/asyncapi/parser-nodejs/raw/master/assets/logo.png" alt="AsyncAPI logo" width="200"></a>
-  <br>
-  HTML template for the AsyncAPI Generator
+  <a href="https://www.asyncapi.com"><img src="assets/github-repobanner-htmltemp.png" alt="AsyncAPI logo"></a>
+  <br> 
 </h5>
+
+ **HTML template for the AsyncAPI Generator**
 
 HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator) using an [AsyncAPI React Component](https://github.com/asyncapi/asyncapi-react) under the hood.
 
