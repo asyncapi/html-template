@@ -1,4 +1,4 @@
-[![AsyncAPI logo](assets/github-repobanner-htmltemp.png)](hhttps://www.asyncapi.com)
+[![AsyncAPI logo](assets/github-repobanner-htmltemp.png)](https://www.asyncapi.com)
 
  **HTML template for the AsyncAPI Generator**
 
