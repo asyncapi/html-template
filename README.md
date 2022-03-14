@@ -1,8 +1,4 @@
-<h5 align="center">
-  <br>
-  <a href="https://www.asyncapi.com"><img src="assets/github-repobanner-htmltemp.png" alt="AsyncAPI logo"></a>
-  <br> 
-</h5>
+[![AsyncAPI logo](assets/github-repobanner-htmltemp.png)](hhttps://www.asyncapi.com)
 
  **HTML template for the AsyncAPI Generator**
 
