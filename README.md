@@ -1,7 +1,5 @@
 [![AsyncAPI HTML Template](assets/github-repobanner-htmltemp.png)](https://www.asyncapi.com)
 
- **HTML template for the AsyncAPI Generator**
-
 HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator) using an [AsyncAPI React Component](https://github.com/asyncapi/asyncapi-react) under the hood.
 
 ---
