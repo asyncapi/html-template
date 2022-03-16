@@ -25,6 +25,7 @@
     "//develop:install": "Force ag to install your local html-template source code",
     "develop:install": " npm run develop -- --install",
     "generate:assets": "npm run copy:sources",
+    "generate:readme:toc": "markdown-toc -i README.md",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "copy:sources": "node ./scripts/copy-sources.js",
     "prepublishOnly": "npm run generate:assets",
@@ -51,6 +52,7 @@
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",
+    "markdown-toc": "^1.2.0",
     "semantic-release": "^17.0.4"
   },
   "release": {

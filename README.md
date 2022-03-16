@@ -5,11 +5,22 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![npm](https://img.shields.io/npm/dm/@asyncapi/html-template?style=flat-square)
 
 ---
+
+<!-- toc is generated with GitHub Actions do not remove toc markers -->
+
+<!-- toc -->
+
+- [Usage](#usage)
+- [Supported parameters](#supported-parameters)
+- [Development](#development)
+- [Contributors ✨](#contributors-%E2%9C%A8)
+
+<!-- tocstop -->
 
 ## Usage
 
@@ -79,7 +90,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Theiaz"><img src="https://avatars.githubusercontent.com/u/9378662?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Julian S.</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=Theiaz" title="Code">💻</a></td>
     <td align="center"><a href="http://blog.ineat-conseil.fr/"><img src="https://avatars.githubusercontent.com/u/5501911?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ludovic Dussart</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=M3lkior" title="Code">💻</a></td>
     <td align="center"><a href="https://w3tec.ch"><img src="https://avatars.githubusercontent.com/u/1021324?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Weber</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=dweber019" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/magicmatatjahu"><img src="https://avatars.githubusercontent.com/u/20404945?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maciej Urbańczyk</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=magicmatatjahu" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/commits?author=magicmatatjahu" title="Tests">⚠️</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Amagicmatatjahu" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/magicmatatjahu"><img src="https://avatars.githubusercontent.com/u/20404945?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maciej Urbańczyk</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=magicmatatjahu" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/commits?author=magicmatatjahu" title="Tests">⚠️</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Amagicmatatjahu" title="Bug reports">🐛</a> <a href="#maintenance-magicmatatjahu" title="Maintenance">🚧</a> <a href="https://github.com/asyncapi/html-template/pulls?q=is%3Apr+reviewed-by%3Amagicmatatjahu" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.brainfart.dev/"><img src="https://avatars.githubusercontent.com/u/6995927?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lukasz Gornicki</b></sub></a><br /><a href="#maintenance-derberg" title="Maintenance">🚧</a> <a href="https://github.com/asyncapi/html-template/commits?author=derberg" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Aderberg" title="Bug reports">🐛</a> <a href="https://github.com/asyncapi/html-template/pulls?q=is%3Apr+reviewed-by%3Aderberg" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/asyncapi/html-template/commits?author=derberg" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://www.fmvilas.com/"><img src="https://avatars.githubusercontent.com/u/242119?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fran Méndez</b></sub></a><br /><a href="#maintenance-fmvilas" title="Maintenance">🚧</a> <a href="https://github.com/asyncapi/html-template/commits?author=fmvilas" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Afmvilas" title="Bug reports">🐛</a> <a href="https://github.com/asyncapi/html-template/pulls?q=is%3Apr+reviewed-by%3Afmvilas" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/asyncapi/html-template/commits?author=fmvilas" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
