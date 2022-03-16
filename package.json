@@ -24,7 +24,7 @@
     "develop": "npm run generate:assets && ag https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
     "//develop:install": "Force ag to install your local html-template source code",
     "develop:install": " npm run develop -- --install",
-    "generate:assets": "npm run copy:sources",
+    "generate:assets": "npm run copy:sources && npm run generate:readme:toc",
     "generate:readme:toc": "markdown-toc -i README.md",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "copy:sources": "node ./scripts/copy-sources.js",
