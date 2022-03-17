@@ -133,7 +133,35 @@
       "contributions": [
         "code",
         "test",
-        "bug"
+        "bug",
+        "maintenance",
+        "review"
+      ]
+    },
+    {
+      "login": "derberg",
+      "name": "Lukasz Gornicki",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6995927?v=4",
+      "profile": "https://www.brainfart.dev/",
+      "contributions": [
+        "maintenance",
+        "code",
+        "bug",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "fmvilas",
+      "name": "Fran Méndez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/242119?v=4",
+      "profile": "http://www.fmvilas.com/",
+      "contributions": [
+        "maintenance",
+        "code",
+        "bug",
+        "review",
+        "test"
       ]
     }
   ],
@@ -142,5 +170,6 @@
   "projectOwner": "asyncapi",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "none"
 }
