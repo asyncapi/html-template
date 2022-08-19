@@ -7,15 +7,52 @@ const { AsyncAPIDocument } = require('@asyncapi/parser');
 
 const filter = module.exports;
 
+function isJsonObject(o) {
+  return o && typeof o === 'object' && !Array.isArray(o);
+}
+
+/**
+ * Performs a recursive deep merge while assuming only simple JSON types are used.
+ */
+function mergeInto(from, to) {
+  for (const key in from) {
+    if (!Object.prototype.hasOwnProperty.call(from, key)) {
+      continue;
+    }
+    if (isJsonObject(from[key])) {
+      if (!isJsonObject(to[key])) {
+        to[key] = {};
+      }
+      mergeInto(from[key], to[key]);
+    } else {
+      // Override with non-object JSON value
+      to[key] = from[key];
+    }
+  }
+}
+
 /**
  * Prepares configuration for component.
  */
 function prepareConfiguration(params = {}) {
   const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
+  // Apply config override
+  if (params.config) {
+    let configOverride;
+    try {
+      configOverride = JSON.parse(params.config);
+    } catch (err) {
+      // Failed to parse JSON, attempt to read as JSON file
+      configOverride = JSON.parse(fs.readFileSync(params.config, "utf8"));
+    }
+    if (isJsonObject(configOverride)) {
+      mergeInto(configOverride, config);
+    }
+  }
+  // Apply explicit config properties
   if (params.sidebarOrganization === 'byTags') {
     config.sidebar.showOperations = 'bySpecTags';
-  }
-  if (params.sidebarOrganization === 'byTagsNoRoot') {
+  } else if (params.sidebarOrganization === 'byTagsNoRoot') {
     config.sidebar.showOperations = 'byOperationsTags';
   }
   return config;
@@ -59,7 +96,7 @@ function includeFile(pathFile) {
 filter.includeFile = includeFile;
 
 /**
- * Stringifies the specification with escaping circular refs 
+ * Stringifies the specification with escaping circular refs
  * and annotates that specification is parsed.
  */
 function stringifySpec(asyncapi) {

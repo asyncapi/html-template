@@ -103,6 +103,11 @@
       "pdf": {
         "description": "Set to `true` to get index.pdf generated next to your index.html",
         "default": false
+      },
+      "config": {
+        "description": "Stringified JSON or path to JSON file to override [React component config](https://github.com/asyncapi/asyncapi-react/blob/next/docs/configuration/config-modification.md#definition)",
+        "default": null,
+        "required": false
       }
     },
     "generator": ">=1.8.27 <2.0.0",
