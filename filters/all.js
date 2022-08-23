@@ -40,10 +40,16 @@ function prepareConfiguration(params = {}) {
   if (params.config) {
     let configOverride;
     try {
+      // Attempt to parse inline stringified JSON
       configOverride = JSON.parse(params.config);
-    } catch (err) {
-      // Failed to parse JSON, attempt to read as JSON file
-      configOverride = JSON.parse(fs.readFileSync(params.config, "utf8"));
+    } catch (jsonErr) {
+      // Failed to parse JSON string...
+      try {
+        // Attempt to read as JSON file and parse contents
+        configOverride = JSON.parse(fs.readFileSync(params.config, "utf8"));
+      } catch (err) {
+        console.error("Failed to parse config override JSON", jsonErr, err);
+      }
     }
     if (isJsonObject(configOverride)) {
       mergeInto(configOverride, config);
