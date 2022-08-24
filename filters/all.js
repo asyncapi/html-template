@@ -49,6 +49,7 @@ function prepareConfiguration(params = {}) {
         configOverride = JSON.parse(fs.readFileSync(params.config, "utf8"));
       } catch (err) {
         console.error("Failed to parse config override JSON", jsonErr, err);
+        throw err;
       }
     }
     if (isJsonObject(configOverride)) {
