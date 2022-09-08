@@ -1,7 +1,7 @@
 import { hljs } from '@asyncapi/react-component';
 import { AsyncAPIDocument } from "@asyncapi/parser";
 
-import { 
+import {
   includeFile,
   loadLanguagesConfig,
   stringifySpec,
@@ -56,12 +56,12 @@ describe('Filters', () => {
       }
       schema.properties.bar = schema;
       const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
-      
+
       const expected = `{"asyncapi":"2.0.0","components":{"schemas":{"dummySchema":{"type":"object","properties":{"foo":{"type":"string","x-parser-schema-id":"<anonymous-schema-1>"},"bar":"$ref:$.components.schemas.dummySchema"},"x-parser-schema-id":"dummySchema","x-parser-circular-props":["bar"]}}},"x-parser-spec-parsed":true,"x-parser-spec-stringified":true}`;
       const expectedParsed = {
         asyncapi: '2.0.0',
-        components: { 
-          schemas: { 
+        components: {
+          schemas: {
             dummySchema: {
               type: 'object',
               properties: {
@@ -104,6 +104,22 @@ describe('Filters', () => {
     it('should work for byTagsNoRoot sidebarOrganization', async () => {
       const params = { sidebarOrganization: 'byTagsNoRoot' };
       const expected = `{"show":{"sidebar":true},"sidebar":{"showOperations":"byOperationsTags"}}`;
+
+      const result = stringifyConfiguration(params);
+      expect(result).toEqual(expected);
+    });
+
+    it('should allow override of react component config', async () => {
+      const params = { config: '{"show":{"sidebar":false}}' };
+      const expected = '{"show":{"sidebar":false},"sidebar":{"showOperations":"byDefault"}}';
+
+      const result = stringifyConfiguration(params);
+      expect(result).toEqual(expected);
+    });
+
+    it('should allow override of nested react component config', async () => {
+      const params = { config: '{"show":{"operations":false}}' };
+      const expected = '{"show":{"sidebar":true,"operations":false},"sidebar":{"showOperations":"byDefault"}}';
 
       const result = stringifyConfiguration(params);
       expect(result).toEqual(expected);
