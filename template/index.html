@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    {% if params.baseHref %}
-    <base href="{{ params.baseHref }}" />
-    {% endif %}
-    <title>
-      {{ asyncapi.info().title() }} {{ asyncapi.info().version() }}
-      documentation
-    </title>
-    {% if params.favicon %}
+    <meta charset="UTF-8">
+  {% if params.baseHref %}
+    <base href="{{ params.baseHref }}">
+  {% endif %}
+    <title>{{ asyncapi.info().title() }} {{ asyncapi.info().version() }} documentation</title>
+  {% if params.favicon %}
     <link href="{{ params.favicon }}" rel="icon" type="image/x-icon" />
-    {% endif %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% if params.singleFile %}
+  {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if params.singleFile %}
     <style type="text/css">
       {{ "template/css/global.min.css" | includeFile | safe }}
       {{ "template/css/asyncapi.min.css" | includeFile | safe }}
     </style>
-    {% else %}
-    <link href="css/global.min.css" rel="stylesheet" />
-    <link href="css/asyncapi.min.css" rel="stylesheet" />
-    {% endif %}
+  {% else %}
+    <link href="css/global.min.css" rel="stylesheet">
+    <link href="css/asyncapi.min.css" rel="stylesheet">
+  {% endif %}
   </head>
 
   <body>
     <div id="root">{{ asyncapi | renderSpec(params) | safe }}</div>
 
-    {% if params.singleFile %}
+  {% if params.singleFile %}
     <script type="text/javascript">
-      {
-        {
-          "template/js/asyncapi-ui.min.js" | includeFile | safe;
-        }
-      }
+      {{ "template/js/asyncapi-ui.min.js" | includeFile | safe }}
     </script>
-    {% else %}
+  {% else %}
     <script src="js/asyncapi-ui.min.js" type="application/javascript"></script>
-    {% endif %}
+  {% endif %}
 
     <script>
       var schema = {{ asyncapi | stringifySpec | safe }};
