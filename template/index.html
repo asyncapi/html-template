@@ -9,12 +9,10 @@
       {{ asyncapi.info().title() }} {{ asyncapi.info().version() }}
       documentation
     </title>
+    {% if params.favicon %}
+    <link href="{{ params.favicon }}" rel="icon" type="image/x-icon" />
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://uploads-ssl.webflow.com/610e8d4e5e20c21539aec950/612686a1377160481ec27630_Favicon.png"
-      rel="icon"
-      type="image/x-icon"
-    />
     {% if params.singleFile %}
     <style type="text/css">
       {{ "template/css/global.min.css" | includeFile | safe }}

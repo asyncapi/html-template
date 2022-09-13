@@ -109,6 +109,11 @@
         "default": 30000,
         "required": false
       },
+      "favicon": {
+        "description": "URL/Path of the favicon",
+        "default": "",
+        "required": false
+      },
       "config": {
         "description": "Stringified JSON or a path to a JSON file to override the default React component config. The config override is merged with the default config using the [JSON Merge Patch](https://tools.ietf.org/html/rfc7386) algorithm.",
         "default": "",
