@@ -18,7 +18,7 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 - [Usage](#usage)
 - [Supported parameters](#supported-parameters)
 - [Development](#development)
-- [Contributors ✨](#contributors-%E2%9C%A8)
+- [Contributors ✨](#contributors-)
 
 <!-- tocstop -->
 
@@ -41,10 +41,11 @@ npm install -g @asyncapi/generator
 | sidebarOrganization | Defines how the sidebar should be organized. Set its value to `byTagsNoRoot` to categorize operations by operations tags. Set its value to `byTags` when you have tags on a root level. These tags are used to model tags navigation and need to have the same tags in operations. | No | undefined | `byTags`, `byTagsNoRoot` | `byTagsNoRoot` |
 | baseHref | Sets the base URL for links and forms. | No | `/` | *Any* | `/docs` |
 | version | Override the version of your application provided under `info.version` location in the specification file. | No | Version is taken from the spec file. | *Any* ([See Semver versioning](https://semver.org/)) | `1.0.0` |
-| singleFile | Set output into one html-file with styles and scripts inside | No | `false` | `true`,`false` | `true` |
+| singleFile | Set output into one html-file with styles and scripts inside. | No | `false` | `true`,`false` | `true` |
 | outFilename | The filename of the output file. | No | `index.html` | *Any* | `asyncapi.html` |
-| pdf | Generates output HTML as PDF | No | `false` | `true`, `false` | `true` |
-| pdfTimeout | Timeout (in ms) used to generate the PDF | No | 30000 | >=0 | 1000 |
+| pdf | Generates output HTML as PDF. | No | `false` | `true`, `false` | `true` |
+| pdfTimeout | Timeout (in ms) used to generate the PDF. | No | 30000 | >=0 | 1000 |
+| favicon | Defines the URL/Path used for the favicon. | No | *Nothing* | Any valid favicon URL/Path. | `"https://studio.asyncapi.com/favicon.ico"` |
 | config | Inline stringified JSON or a path to a JSON file to override default React component config. The config override is merged with the default config using the [JSON Merge Patch](https://tools.ietf.org/html/rfc7386) algorithm. | No | `{ "show": { "sidebar": true }, "sidebar": { "showOperations": "byDefault" } }` | [JSON config for the React component](https://github.com/asyncapi/asyncapi-react/blob/next/docs/configuration/config-modification.md#definition) | `{"show":{"sidebar":false}}` |
 
 > **NOTE**: If you only generate an HTML website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
