@@ -35,8 +35,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/parser": "^1.15.0",
-    "@asyncapi/react-component": "^1.0.0-next.42",
+    "@asyncapi/parser": "^1.17.0",
+    "@asyncapi/react-component": "^1.0.0-next.43",
     "highlight.js": "10.7.3",
     "puppeteer": "^14.1.0",
     "react": "^17.0.2",
@@ -110,7 +110,7 @@
         "required": false
       }
     },
-    "generator": ">=1.8.27 <2.0.0",
+    "generator": ">=1.9.12 <2.0.0",
     "nonRenderableFiles": [
       "js/asyncapi-ui.min.js"
     ]
