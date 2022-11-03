@@ -43,7 +43,8 @@ npm install -g @asyncapi/generator
 | version | Override the version of your application provided under `info.version` location in the specification file. | No | Version is taken from the spec file. | *Any* ([See Semver versioning](https://semver.org/)) | `1.0.0` |
 | singleFile | Set output into one html-file with styles and scripts inside | No | `false` | `true`,`false` | `true` |
 | outFilename | The filename of the output file. | No | `index.html` | *Any* | `asyncapi.html` |
-| pdf | Generates output HTML as PDF | No | `false` | `true,false` | `false` |
+| pdf | Generates output HTML as PDF | No | `false` | `true`, `false` | `true` |
+| pdfTimeout | Timeout (in ms) used to generate the PDF | No | 30000 | >=0 | 1000 |
 | config | Inline stringified JSON or a path to a JSON file to override default React component config. The config override is merged with the default config using the [JSON Merge Patch](https://tools.ietf.org/html/rfc7386) algorithm. | No | `{ "show": { "sidebar": true }, "sidebar": { "showOperations": "byDefault" } }` | [JSON config for the React component](https://github.com/asyncapi/asyncapi-react/blob/next/docs/configuration/config-modification.md#definition) | `{"show":{"sidebar":false}}` |
 
 > **NOTE**: If you only generate an HTML website, set the environment variable `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` to `true` and the generator will skip downloading chromium.
