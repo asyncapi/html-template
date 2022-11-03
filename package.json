@@ -104,7 +104,7 @@
         "description": "Set to `true` to get index.pdf generated next to your index.html",
         "default": false
       },
-      "timeout":{
+      "pdfTimeout": {
         "description": "The timeout (in ms) used to generate the pdf",
         "default": 30000,
         "required": false
