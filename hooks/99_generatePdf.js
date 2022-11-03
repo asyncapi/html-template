@@ -31,7 +31,7 @@ module.exports = {
         toClick && typeof button.dispatchEvent === 'function' && button.dispatchEvent(new Event('click', { bubbles: true }));
       }));
     
-      await page.pdf({ format: 'A4', path: `${targetDir}/index.pdf`, printBackground: true, timeout: parseInt(templateParams.timeout,10) });
+      await page.pdf({ format: 'A4', path: `${targetDir}/index.pdf`, printBackground: true, timeout: parseInt(templateParams.pdfTimeout, 10) });
       browser.close();
     } catch(e) {
       console.error(e);
