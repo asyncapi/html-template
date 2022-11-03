@@ -104,6 +104,11 @@
         "description": "Set to `true` to get index.pdf generated next to your index.html",
         "default": false
       },
+      "timeout":{
+        "description": "The timeout (in ms) used to generate the pdf",
+        "default": 30000,
+        "required": false
+      },
       "config": {
         "description": "Stringified JSON or a path to a JSON file to override the default React component config. The config override is merged with the default config using the [JSON Merge Patch](https://tools.ietf.org/html/rfc7386) algorithm.",
         "default": "",
