@@ -38,6 +38,7 @@
     "@asyncapi/parser": "^1.17.0",
     "@asyncapi/react-component": "^1.0.0-next.43",
     "highlight.js": "10.7.3",
+    "node-fetch": "^2.6.7",
     "puppeteer": "^14.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -107,6 +108,11 @@
       "pdfTimeout": {
         "description": "The timeout (in ms) used to generate the pdf",
         "default": 30000,
+        "required": false
+      },
+      "favicon": {
+        "description": "URL/Path of the favicon",
+        "default": "",
         "required": false
       },
       "config": {

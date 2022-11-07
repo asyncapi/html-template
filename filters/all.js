@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
+const fetch = require('node-fetch');
 const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
 const { AsyncAPIDocument } = require('@asyncapi/parser');
 
@@ -91,6 +92,41 @@ function loadLanguagesConfig() {
   initLanguages = true;
 }
 filter.loadLanguagesConfig = loadLanguagesConfig;
+
+/**
+ * Generate Base64 value from favicon
+ */
+async function generateBase64Favicon(params, callback) {
+  const favicon = params.favicon;
+
+  // generate Base64 of AsyncAPI logo
+  if (!favicon) {
+    const data = "data:image/x-icon;base64," + fs.readFileSync(path.resolve(__dirname, '../assets/asyncapi-favicon.ico'), "base64");
+    return callback(null, data);
+  }
+
+  try {
+    // Attempt to fetch favicon
+    const response = await fetch(favicon);
+    if (response.status == 200) {
+      const buffer = await response.buffer()
+      const data = "data:image/x-icon;base64," + buffer.toString('base64');
+      callback(null, data);
+    }
+  } catch (fetchErr) {
+    // Failed to fetch favicon...
+    try {
+      // Attempt to read favicon as file
+      const data = "data:image/x-icon;base64," + fs.readFileSync(favicon, "base64");
+      callback(null, data);
+    } catch (err) {
+      console.error("Failed to fetch/read favicon", fetchErr, err);
+      callback(err);
+      throw err;
+    }
+  }
+}
+filter.generateBase64Favicon = generateBase64Favicon;
 
 /**
  * More safe function to include content of given file than default Nunjuck's `include`.

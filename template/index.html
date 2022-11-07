@@ -7,6 +7,7 @@
   {% endif %}
     <title>{{ asyncapi.info().title() }} {{ asyncapi.info().version() }} documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ params | generateBase64Favicon }}" />
   {% if params.singleFile %}
     <style type="text/css">
       {{ "template/css/global.min.css" | includeFile | safe }}
