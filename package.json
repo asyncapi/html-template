@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@asyncapi/parser": "^1.17.0",
-    "@asyncapi/react-component": "^1.0.0-next.43",
+    "@asyncapi/react-component": "^1.0.0-next.44",
     "highlight.js": "10.7.3",
     "node-fetch": "^2.6.7",
     "puppeteer": "^14.1.0",
