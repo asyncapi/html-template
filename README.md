@@ -24,12 +24,6 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 
 ## Usage
 
-Install template
-
-```bash
-npm install -g @asyncapi/html-template@0.16.0
-```
-
 Install AsyncAPI CLI
 
 ```bash
@@ -39,7 +33,7 @@ npm install -g @asyncapi/cli
 Generate using CLI
 
 ```bash
-asyncapi generate fromTemplate asyncapi.yaml @asyncapi/html-template
+asyncapi generate fromTemplate asyncapi.yaml @asyncapi/html-template@0.16.0
 ```
 
 ## Supported parameters
