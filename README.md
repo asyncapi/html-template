@@ -16,9 +16,6 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 <!-- toc -->
 
 - [Usage](#usage)
-  - [Using Generator](#using-generator)
-  - [or](#or)
-  - [Using AsyncAPI CLI](#using-asyncapi-cli)
 - [Supported parameters](#supported-parameters)
 - [Development](#development)
 - [Contributors ✨](#contributors-)
@@ -26,22 +23,6 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 <!-- tocstop -->
 
 ## Usage
-
-### Using Generator
-
-```bash
-ag asyncapi.yaml @asyncapi/html-template -o output
-```
-
-If you don't have the AsyncAPI Generator installed, you can install it like this:
-
-```bash
-npm install -g @asyncapi/generator
-```
-
-### or 
-
-### Using AsyncAPI CLI
 
 Install template
 
