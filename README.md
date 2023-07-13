@@ -37,6 +37,7 @@ asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@0.28.0
 ```
 
 You can replace <asyncapi.yaml> with local path or URL pointing to [any AsyncAPI document](https://raw.githubusercontent.com/asyncapi/spec/master/examples/streetlights-kafka.yml).
+To use a specific version, look into [Releases](https://github.com/asyncapi/html-template/releases).
 
 ## Supported parameters
 
