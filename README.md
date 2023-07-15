@@ -18,21 +18,26 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 - [Usage](#usage)
 - [Supported parameters](#supported-parameters)
 - [Development](#development)
-- [Contributors ✨](#contributors-%E2%9C%A8)
+- [Contributors ✨](#contributors-)
 
 <!-- tocstop -->
 
 ## Usage
 
-```bash
-ag asyncapi.yaml @asyncapi/html-template -o output
-```
-
-If you don't have the AsyncAPI Generator installed, you can install it like this:
+Install AsyncAPI CLI
 
 ```bash
-npm install -g @asyncapi/generator
+npm install -g @asyncapi/cli
 ```
+
+Generate using CLI
+
+```bash
+asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@0.28.0
+```
+
+You can replace `<asyncapi.yaml>` with local path or URL pointing to [any AsyncAPI document](https://raw.githubusercontent.com/asyncapi/spec/master/examples/streetlights-kafka.yml).
+Look into [Releases](/asyncapi/html-template/releases) of this template to pick up the version you need. It is not recommended to always use the latest in production. Always use a specific version.
 
 ## Supported parameters
 
