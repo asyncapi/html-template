@@ -18,7 +18,7 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 - [Usage](#usage)
 - [Supported parameters](#supported-parameters)
 - [Development](#development)
-- [Contributors ✨](#contributors-)
+- [Contributors ✨](#contributors-%E2%9C%A8)
 
 <!-- tocstop -->
 
