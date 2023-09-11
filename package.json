@@ -34,22 +34,25 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/parser": "^1.17.0",
-    "@asyncapi/react-component": "1.0.0-next.47",
+    "@asyncapi/generator-react-sdk": "^1.0.0",
+    "@asyncapi/react-component": "^1.0.0-next.53",
     "highlight.js": "10.7.3",
     "node-fetch": "^2.6.7",
     "puppeteer": "^14.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
+    "@asyncapi/parser": "^3.0.0-next-major-spec.2",
+    "@asyncapi/generator": "asyncapi/generator#add-v3-support",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",
     "markdown-toc": "^1.2.0"
   },
   "generator": {
+    "renderer": "react",
+    "apiVersion": "v2",
+    "generator": ">=1.9.12 <2.0.0",
     "parameters": {
       "sidebarOrganization": {
         "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
@@ -93,14 +96,33 @@
         "required": false
       }
     },
-    "generator": ">=1.9.12 <2.0.0",
     "nonRenderableFiles": [
       "js/asyncapi-ui.min.js"
     ]
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      [
+        "@babel/preset-react",
+        {
+          "runtime": "automatic"
+        }
+      ]
+    ]
+  },
   "jest": {
-    "transform": {
-      "\\.m?jsx?$": "jest-esm-transformer"
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "^nimma/legacy$": "<rootDir>/node_modules/nimma/dist/legacy/cjs/index.js",
+      "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
     }
   }
 }

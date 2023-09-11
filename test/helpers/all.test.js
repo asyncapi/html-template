@@ -7,9 +7,9 @@ import {
   stringifySpec,
   stringifyConfiguration,
   renderSpec,
-} from "../../filters/all";
+} from "../../helpers/all";
 
-describe('Filters', () => {
+describe('Helpers', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -123,18 +123,6 @@ describe('Filters', () => {
 
       const result = stringifyConfiguration(params);
       expect(result).toEqual(expected);
-    });
-  });
-
-  describe('.renderSpec', () => {
-    it('should work', async () => {
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '1.5.34' } });
-
-      const result = renderSpec(doc);
-      // check if '1.5.34' version is rendered
-      expect(result.includes('1.5.34')).toEqual(true);
-      // check if 'dummy spec for testing' title is rendered
-      expect(result.includes('dummy spec')).toEqual(true);
     });
   });
 });

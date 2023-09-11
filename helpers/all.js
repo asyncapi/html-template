@@ -4,7 +4,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const fetch = require('node-fetch');
 const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
-const { AsyncAPIDocument } = require('@asyncapi/parser');
+const { stringify } = require('@asyncapi/parser');
 
 const filter = module.exports;
 
@@ -96,13 +96,12 @@ filter.loadLanguagesConfig = loadLanguagesConfig;
 /**
  * Generate Base64 value from favicon
  */
-async function generateBase64Favicon(params, callback) {
+async function generateBase64Favicon(params) {
   const favicon = params.favicon;
 
   // generate Base64 of AsyncAPI logo
   if (!favicon) {
-    const data = "data:image/x-icon;base64," + fs.readFileSync(path.resolve(__dirname, '../assets/asyncapi-favicon.ico'), "base64");
-    return callback(null, data);
+    return "data:image/x-icon;base64," + fs.readFileSync(path.resolve(__dirname, '../assets/asyncapi-favicon.ico'), "base64");
   }
 
   try {
@@ -110,18 +109,15 @@ async function generateBase64Favicon(params, callback) {
     const response = await fetch(favicon);
     if (response.status == 200) {
       const buffer = await response.buffer()
-      const data = "data:image/x-icon;base64," + buffer.toString('base64');
-      callback(null, data);
+      return "data:image/x-icon;base64," + buffer.toString('base64');
     }
   } catch (fetchErr) {
     // Failed to fetch favicon...
     try {
       // Attempt to read favicon as file
-      const data = "data:image/x-icon;base64," + fs.readFileSync(favicon, "base64");
-      callback(null, data);
+      return "data:image/x-icon;base64," + fs.readFileSync(favicon, "base64");
     } catch (err) {
       console.error("Failed to fetch/read favicon", fetchErr, err);
-      callback(err);
       throw err;
     }
   }
@@ -143,7 +139,7 @@ filter.includeFile = includeFile;
  * and annotates that specification is parsed.
  */
 function stringifySpec(asyncapi) {
-  return AsyncAPIDocument.stringify(asyncapi);
+  return stringify(asyncapi);
 }
 filter.stringifySpec = stringifySpec;
 
