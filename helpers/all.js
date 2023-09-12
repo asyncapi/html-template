@@ -2,11 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const fetch = require('node-fetch');
+const fetch = require('sync-fetch');
 const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
 const { stringify } = require('@asyncapi/parser');
-
-const filter = module.exports;
 
 function isJsonObject(o) {
   return o && typeof o === 'object' && !Array.isArray(o);
@@ -35,7 +33,7 @@ function mergeInto(from, to) {
 /**
  * Prepares configuration for component.
  */
-function prepareConfiguration(params = {}) {
+export function prepareConfiguration(params = {}) {
   const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
   // Apply config override
   if (params.config) {
@@ -70,7 +68,7 @@ let initLanguages = false;
 /**
  * Load all language configurations from highlight.js
  */
-function loadLanguagesConfig() {
+export function loadLanguagesConfig() {
   if (initLanguages === true) {
     return;
   }
@@ -91,12 +89,11 @@ function loadLanguagesConfig() {
 
   initLanguages = true;
 }
-filter.loadLanguagesConfig = loadLanguagesConfig;
 
 /**
  * Generate Base64 value from favicon
  */
-async function generateBase64Favicon(params) {
+export async function generateBase64Favicon(params) {
   const favicon = params.favicon;
 
   // generate Base64 of AsyncAPI logo
@@ -106,9 +103,9 @@ async function generateBase64Favicon(params) {
 
   try {
     // Attempt to fetch favicon
-    const response = await fetch(favicon);
+    const response = fetch(favicon);
     if (response.status == 200) {
-      const buffer = await response.buffer()
+      const buffer = response.buffer()
       return "data:image/x-icon;base64," + buffer.toString('base64');
     }
   } catch (fetchErr) {
@@ -122,42 +119,38 @@ async function generateBase64Favicon(params) {
     }
   }
 }
-filter.generateBase64Favicon = generateBase64Favicon;
 
 /**
  * More safe function to include content of given file than default Nunjuck's `include`.
  * Attaches raw file's content instead of executing it - problem with some attached files in template.
  */
-function includeFile(pathFile) {
+export function includeFile(pathFile) {
   const pathToFile = path.resolve(__dirname, '../', pathFile);
   return fs.readFileSync(pathToFile);
 }
-filter.includeFile = includeFile;
 
 /**
  * Stringifies the specification with escaping circular refs
  * and annotates that specification is parsed.
  */
-function stringifySpec(asyncapi) {
+export function stringifySpec(asyncapi) {
   return stringify(asyncapi);
 }
-filter.stringifySpec = stringifySpec;
 
 /**
  * Stringifies prepared configuration for component.
  */
-function stringifyConfiguration(params) {
+export function stringifyConfiguration(params) {
   return JSON.stringify(prepareConfiguration(params));
 }
-filter.stringifyConfiguration = stringifyConfiguration;
 
 /**
  * Renders AsyncApi component by given AsyncAPI spec and with corresponding template configuration.
  */
-function renderSpec(asyncapi, params) {
+export function renderSpec(asyncapi, params) {
   loadLanguagesConfig();
+  const config = prepareConfiguration(params);
 
-  const component = React.createElement(AsyncApiComponent, { schema: asyncapi, config: prepareConfiguration(params) });
+  const component = React.createElement(AsyncApiComponent, { schema: asyncapi, config });
   return ReactDOMServer.renderToString(component);
 }
-filter.renderSpec = renderSpec;

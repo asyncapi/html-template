@@ -20,8 +20,7 @@
   "homepage": "https://github.com/asyncapi/html-template#readme",
   "scripts": {
     "lint": "echo \"No linter specified yet\"",
-    "develop": "npm run generate:assets && ag https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
-    "//develop:install": "Force ag to install your local html-template source code",
+    "develop": "npm run generate:assets && node ./node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
     "develop:install": " npm run develop -- --install",
     "generate:assets": "npm run copy:sources && npm run generate:readme:toc",
     "generate:readme:toc": "markdown-toc -i README.md",
@@ -39,11 +38,13 @@
     "highlight.js": "10.7.3",
     "node-fetch": "^2.6.7",
     "puppeteer": "^14.1.0",
-    "rimraf": "^3.0.2"
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "sync-fetch": "^0.5.2"
   },
   "devDependencies": {
-    "@asyncapi/parser": "^3.0.0-next-major-spec.2",
     "@asyncapi/generator": "asyncapi/generator#add-v3-support",
+    "@asyncapi/parser": "^3.0.0-next-major-spec.2",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",

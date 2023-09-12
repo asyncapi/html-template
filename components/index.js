@@ -5,30 +5,37 @@ import { includeFile, generateBase64Favicon, renderSpec, stringifySpec, stringif
 /**
  * @param {{asyncapi: AsyncAPIDocumentInterface, params: any}} param0 
  */
-export function Index({ asyncapi, params }) {
+export function Index({ asyncapi, params = {} }) {
+  const favicon = generateBase64Favicon(params);
+  let asyncapiScript = `<script src="js/asyncapi-ui.min.js" type="application/javascript"></script>`;
+  if(params?.singleFile) {
+    asyncapiScript = `<script type="text/javascript">
+    ${includeFile('template/js/asyncapi-ui.min.js')}
+    </script>`;
+  }
+  let styling = `<link href="css/global.min.css" rel="stylesheet">
+  <link href="css/asyncapi.min.css" rel="stylesheet">`;
+  if(params?.singleFile) {
+    styling = `<style type="text/css">
+      ${includeFile("template/css/global.min.css")}
+      ${includeFile("template/css/asyncapi.min.css")}
+    </style>`;
+  }
   return (`<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8">
-      ${params.baseHref && `<base href="${params.baseHref}">`}
+      ${params?.baseHref && `<base href="${params.baseHref}">`}
       <title>${asyncapi.info().title()} ${asyncapi.info().version()} documentation</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" type="image/x-icon" href="${generateBase64Favicon(params)}" />
-      ${params.singleFile && `<style type="text/css">
-        ${includeFile("template/css/global.min.css")}
-        ${includeFile("template/css/asyncapi.min.css")}
-      </style>`}
-      ${!params.singleFile && `<link href="css/global.min.css" rel="stylesheet">
-        <link href="css/asyncapi.min.css" rel="stylesheet">`}
+      <link rel="icon" type="image/x-icon" href="${favicon}" />
+      ${styling}
     </head>
   
     <body>
       <div id="root">${renderSpec(asyncapi, params)}</div>
   
-      ${params.singleFile && ` <script type="text/javascript">
-        {{ "template/js/asyncapi-ui.min.js" | includeFile | safe }}
-      </script>`}
-      ${!params.singleFile && `<script src="js/asyncapi-ui.min.js" type="application/javascript"></script>`}
+      ${asyncapiScript}
   
       <script>
         const schema = ${stringifySpec(asyncapi)};

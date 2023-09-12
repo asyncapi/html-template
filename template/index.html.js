@@ -1,5 +1,5 @@
 import { File } from '@asyncapi/generator-react-sdk';
-import { Index } from '../components';
+import { Index } from '../components/index';
 
 export default function({ asyncapi, params = {} }) {
   return (

@@ -1,5 +1,5 @@
 import { hljs } from '@asyncapi/react-component';
-import { AsyncAPIDocument } from "@asyncapi/parser";
+import { createAsyncAPIDocument } from "@asyncapi/parser";
 
 import {
   includeFile,
@@ -55,26 +55,36 @@ describe('Helpers', () => {
         'x-parser-circular-props': ['bar'],
       }
       schema.properties.bar = schema;
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
+      const doc = createAsyncAPIDocument({
+        semver: {
+          major: 2,
+          minor: 0,
+          patch: 0,
+        },
+        parsed: { asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }},
+      });
 
-      const expected = `{"asyncapi":"2.0.0","components":{"schemas":{"dummySchema":{"type":"object","properties":{"foo":{"type":"string","x-parser-schema-id":"<anonymous-schema-1>"},"bar":"$ref:$.components.schemas.dummySchema"},"x-parser-schema-id":"dummySchema","x-parser-circular-props":["bar"]}}},"x-parser-spec-parsed":true,"x-parser-spec-stringified":true}`;
+      const expected = `{\n  \"asyncapi\": \"2.0.0\",\n  \"components\": {\n    \"schemas\": {\n      \"dummySchema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"foo\": {\n            \"type\": \"string\"\n          },\n          \"bar\": \"$ref:$.components.schemas.dummySchema\"\n        },\n        \"x-parser-schema-id\": \"parsedDoc\",\n        \"x-parser-circular-props\": [\n          \"bar\"\n        ]\n      }\n    }\n  },\n  \"x-parser-spec-stringified\": true\n}`;
       const expectedParsed = {
-        asyncapi: '2.0.0',
+        asyncapi: "2.0.0",
         components: {
           schemas: {
             dummySchema: {
-              type: 'object',
+              type: "object",
               properties: {
-                foo: { type: 'string', 'x-parser-schema-id': '<anonymous-schema-1>' },
-                bar: '$ref:$.components.schemas.dummySchema',
+                foo: {
+                  type: "string",
+                },
+                bar: "$ref:$.components.schemas.dummySchema",
               },
-              'x-parser-schema-id': 'dummySchema',
-              'x-parser-circular-props': ['bar'],
+              "x-parser-schema-id": "parsedDoc",
+              "x-parser-circular-props": [
+                "bar",
+              ],
             },
           },
         },
-        'x-parser-spec-parsed': true,
-        'x-parser-spec-stringified': true,
+        "x-parser-spec-stringified": true,
       };
 
       const result = stringifySpec(doc);

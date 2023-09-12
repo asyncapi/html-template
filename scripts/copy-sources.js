@@ -1,6 +1,6 @@
 /**
  * Script that copies all given files from `node_modules` to the `template` folder. 
- * It is runned every time it package is published. 
+ * It is run every time the package is published. 
  * This way we have an up to date sources to render the template.
  */
 
