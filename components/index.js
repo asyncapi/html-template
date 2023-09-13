@@ -7,6 +7,7 @@ import { includeFile, generateBase64Favicon, renderSpec, stringifySpec, stringif
  */
 export function Index({ asyncapi, params = {} }) {
   const favicon = generateBase64Favicon(params);
+  const renderedSpec = renderSpec(asyncapi, params);
   let asyncapiScript = `<script src="js/asyncapi-ui.min.js" type="application/javascript"></script>`;
   if(params?.singleFile) {
     asyncapiScript = `<script type="text/javascript">
@@ -14,18 +15,22 @@ export function Index({ asyncapi, params = {} }) {
     </script>`;
   }
   let styling = `<link href="css/global.min.css" rel="stylesheet">
-  <link href="css/asyncapi.min.css" rel="stylesheet">`;
+      <link href="css/asyncapi.min.css" rel="stylesheet">`;
   if(params?.singleFile) {
     styling = `<style type="text/css">
       ${includeFile("template/css/global.min.css")}
       ${includeFile("template/css/asyncapi.min.css")}
     </style>`;
   }
+  let basehref = '';
+  if(params.baseHref) {
+    basehref = `<base href="${params.baseHref}">`;
+  }
   return (`<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8">
-      ${params?.baseHref && `<base href="${params.baseHref}">`}
+      ${basehref}
       <title>${asyncapi.info().title()} ${asyncapi.info().version()} documentation</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="icon" type="image/x-icon" href="${favicon}" />
@@ -33,7 +38,7 @@ export function Index({ asyncapi, params = {} }) {
     </head>
   
     <body>
-      <div id="root">${renderSpec(asyncapi, params)}</div>
+      <div id="root">${renderedSpec}</div>
   
       ${asyncapiScript}
   

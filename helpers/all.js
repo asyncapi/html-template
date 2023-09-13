@@ -1,10 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const fetch = require('sync-fetch');
-const { default: AsyncApiComponent, hljs } = require('@asyncapi/react-component');
-const { stringify } = require('@asyncapi/parser');
+import path from 'path';
+import fs from 'fs';
+import ReactDOMServer from 'react-dom/server';
+import fetch from 'sync-fetch';
+import { hljs } from '@asyncapi/react-component';
+import {stringify} from '@asyncapi/parser';
 
 function isJsonObject(o) {
   return o && typeof o === 'object' && !Array.isArray(o);
@@ -93,7 +92,7 @@ export function loadLanguagesConfig() {
 /**
  * Generate Base64 value from favicon
  */
-export async function generateBase64Favicon(params) {
+export function generateBase64Favicon(params) {
   const favicon = params.favicon;
 
   // generate Base64 of AsyncAPI logo
@@ -150,7 +149,7 @@ export function stringifyConfiguration(params) {
 export function renderSpec(asyncapi, params) {
   loadLanguagesConfig();
   const config = prepareConfiguration(params);
-
-  const component = React.createElement(AsyncApiComponent, { schema: asyncapi, config });
+  //const component = <AsyncApiComponent schema={asyncapi} config={config}/>;
+  const component = <></>
   return ReactDOMServer.renderToString(component);
 }
