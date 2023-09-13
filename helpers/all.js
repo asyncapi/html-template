@@ -33,7 +33,7 @@ function mergeInto(from, to) {
  * Prepares configuration for component.
  */
 export function prepareConfiguration(params = {}) {
-  const config = { show: { sidebar: false }, sidebar: { showOperations: 'byDefault' } };
+  const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
   // Apply config override
   if (params.config) {
     let configOverride;

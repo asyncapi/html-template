@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@asyncapi/generator-react-sdk": "^1.0.0",
-    "@asyncapi/react-component": "^1.0.0-next.53",
+    "@asyncapi/react-component": "^1.0.0-next.54",
     "@asyncapi/parser": "^3.0.0-next-major-spec.2",
     "highlight.js": "10.7.3",
     "puppeteer": "^14.1.0",
