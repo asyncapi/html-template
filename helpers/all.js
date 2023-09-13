@@ -14,7 +14,7 @@ function isJsonObject(o) {
  */
 function mergeInto(from, to) {
   for (const key in from) {
-    if (!Object.prototype.hasOwnProperty.call(from, key)) {
+    if (!Object.hasOwn(from, key)) {
       continue;
     }
     if (isJsonObject(from[key])) {

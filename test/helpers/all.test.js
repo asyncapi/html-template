@@ -1,5 +1,5 @@
 import { hljs } from '@asyncapi/react-component';
-import Parser, { AsyncAPIDocumentV2, createAsyncAPIDocument } from "@asyncapi/parser";
+import Parser, { AsyncAPIDocumentV2 } from "@asyncapi/parser";
 
 import {
   includeFile,
@@ -58,7 +58,7 @@ describe('Helpers', () => {
 
       const doc = new AsyncAPIDocumentV2({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
 
-      const expected = `{\n  \"asyncapi\": \"2.0.0\",\n  \"components\": {\n    \"schemas\": {\n      \"dummySchema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"foo\": {\n            \"type\": \"string\"\n          },\n          \"bar\": \"$ref:$.components.schemas.dummySchema\"\n        },\n        \"x-parser-schema-id\": \"parsedDoc\",\n        \"x-parser-circular-props\": [\n          \"bar\"\n        ]\n      }\n    }\n  },\n  \"x-parser-spec-stringified\": true\n}`;
+      const expected = `{\n  "asyncapi": "2.0.0",\n  "components": {\n    "schemas": {\n      "dummySchema": {\n        "type": "object",\n        "properties": {\n          "foo": {\n            "type": "string"\n          },\n          "bar": "$ref:$.components.schemas.dummySchema"\n        },\n        "x-parser-schema-id": "parsedDoc",\n        "x-parser-circular-props": [\n          "bar"\n        ]\n      }\n    }\n  },\n  "x-parser-spec-stringified": true\n}`;
       const expectedParsed = {
         asyncapi: "2.0.0",
         components: {
