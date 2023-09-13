@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import ReactDOMServer from 'react-dom/server';
 import fetch from 'sync-fetch';
-import { hljs } from '@asyncapi/react-component';
+import AsyncApiComponent, { hljs } from '@asyncapi/react-component';
 import {stringify} from '@asyncapi/parser';
 
 function isJsonObject(o) {
@@ -149,7 +149,7 @@ export function stringifyConfiguration(params) {
 export function renderSpec(asyncapi, params) {
   loadLanguagesConfig();
   const config = prepareConfiguration(params);
-  //const component = <AsyncApiComponent schema={asyncapi} config={config}/>;
-  const component = <></>
+  const component = <AsyncApiComponent schema={asyncapi} config={config}/>;
+  //const component = <></>
   return ReactDOMServer.renderToString(component);
 }

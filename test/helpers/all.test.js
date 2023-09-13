@@ -1,5 +1,5 @@
 import { hljs } from '@asyncapi/react-component';
-import { createAsyncAPIDocument } from "@asyncapi/parser";
+import { AsyncAPIDocumentV2, createAsyncAPIDocument } from "@asyncapi/parser";
 
 import {
   includeFile,
@@ -133,6 +133,21 @@ describe('Helpers', () => {
 
       const result = stringifyConfiguration(params);
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('.renderSpec', () => {
+    it.skip('should work', async () => {
+      const schema = new AsyncAPIDocumentV2({
+        asyncapi: '2.0.0',
+        info: { title: 'test', version: '0.0.0' },
+        channels: {},
+      });
+      const result = renderSpec(schema);
+      // check if '1.5.34' version is rendered
+      expect(result.includes('1.5.34')).toEqual(true);
+      // check if 'dummy spec for testing' title is rendered
+      expect(result.includes('dummy spec')).toEqual(true);
     });
   });
 });
