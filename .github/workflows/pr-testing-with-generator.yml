@@ -23,6 +23,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
       - name: Install dependencies
-        run: NODE_ENV=production npm install
+        run: npm install
       - name: Run generation
         run: npm run test:generator
