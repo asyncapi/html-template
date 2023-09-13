@@ -3,7 +3,7 @@ import fs from 'fs';
 import ReactDOMServer from 'react-dom/server';
 import fetch from 'sync-fetch';
 import AsyncApiComponent, { hljs } from '@asyncapi/react-component';
-import {stringify} from '@asyncapi/parser';
+import {stringify, AsyncAPIDocumentInterface} from '@asyncapi/parser';
 
 function isJsonObject(o) {
   return o && typeof o === 'object' && !Array.isArray(o);
@@ -33,7 +33,7 @@ function mergeInto(from, to) {
  * Prepares configuration for component.
  */
 export function prepareConfiguration(params = {}) {
-  const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
+  const config = { show: { sidebar: false }, sidebar: { showOperations: 'byDefault' } };
   // Apply config override
   if (params.config) {
     let configOverride;
@@ -146,10 +146,17 @@ export function stringifyConfiguration(params) {
 /**
  * Renders AsyncApi component by given AsyncAPI spec and with corresponding template configuration.
  */
+
+
+/**
+ * @param {AsyncAPIDocumentInterface} asyncapi 
+ * @param {*} params 
+ */
 export function renderSpec(asyncapi, params) {
   loadLanguagesConfig();
   const config = prepareConfiguration(params);
-  const component = <AsyncApiComponent schema={asyncapi} config={config}/>;
+  const stringified = stringify(asyncapi);
+  const component = <AsyncApiComponent schema={stringified} config={config}/>;
   //const component = <></>
   return ReactDOMServer.renderToString(component);
 }

@@ -1,5 +1,5 @@
 import { hljs } from '@asyncapi/react-component';
-import { AsyncAPIDocumentV2, createAsyncAPIDocument } from "@asyncapi/parser";
+import Parser, { AsyncAPIDocumentV2, createAsyncAPIDocument } from "@asyncapi/parser";
 
 import {
   includeFile,
@@ -55,14 +55,8 @@ describe('Helpers', () => {
         'x-parser-circular-props': ['bar'],
       }
       schema.properties.bar = schema;
-      const doc = createAsyncAPIDocument({
-        semver: {
-          major: 2,
-          minor: 0,
-          patch: 0,
-        },
-        parsed: { asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }},
-      });
+
+      const doc = new AsyncAPIDocumentV2({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
 
       const expected = `{\n  \"asyncapi\": \"2.0.0\",\n  \"components\": {\n    \"schemas\": {\n      \"dummySchema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"foo\": {\n            \"type\": \"string\"\n          },\n          \"bar\": \"$ref:$.components.schemas.dummySchema\"\n        },\n        \"x-parser-schema-id\": \"parsedDoc\",\n        \"x-parser-circular-props\": [\n          \"bar\"\n        ]\n      }\n    }\n  },\n  \"x-parser-spec-stringified\": true\n}`;
       const expectedParsed = {
@@ -137,13 +131,15 @@ describe('Helpers', () => {
   });
 
   describe('.renderSpec', () => {
-    it.skip('should work', async () => {
-      const schema = new AsyncAPIDocumentV2({
+    it('should work', async () => {
+      const parser = new Parser();
+      const {document} = await parser.parse({
         asyncapi: '2.0.0',
-        info: { title: 'test', version: '0.0.0' },
+        info: { title: 'dummy spec', version: '1.5.34' },
         channels: {},
-      });
-      const result = renderSpec(schema);
+      })
+
+      const result = renderSpec(document);
       // check if '1.5.34' version is rendered
       expect(result.includes('1.5.34')).toEqual(true);
       // check if 'dummy spec for testing' title is rendered
