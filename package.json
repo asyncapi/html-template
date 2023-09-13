@@ -20,7 +20,8 @@
   "homepage": "https://github.com/asyncapi/html-template#readme",
   "scripts": {
     "lint": "echo \"No linter specified yet\"",
-    "develop": "npm run generate:assets && node ./node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write --watch-template",
+    "test:generator": "node ./node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write",
+    "develop": "npm run generate:assets && npm run test:generator -- --watch-template",
     "develop:install": " npm run develop -- --install",
     "generate:assets": "npm run copy:sources && npm run generate:readme:toc",
     "generate:readme:toc": "markdown-toc -i README.md",

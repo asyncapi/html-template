@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies
         run: NODE_ENV=production npm install
       - name: Run generation
-        run: npx -p @asyncapi/cli asyncapi generate fromTemplate https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write
+        run: npm run test:generator
