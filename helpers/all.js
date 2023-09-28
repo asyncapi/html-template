@@ -3,7 +3,7 @@ import fs from 'fs';
 import ReactDOMServer from 'react-dom/server';
 import fetch from 'sync-fetch';
 import AsyncApiComponent, { hljs } from '@asyncapi/react-component';
-import { AsyncAPIDocumentInterface } from '@asyncapi/parser';
+import { AsyncAPIDocumentInterface, stringify } from '@asyncapi/parser';
 
 function isJsonObject(o) {
   return o && typeof o === 'object' && !Array.isArray(o);
@@ -133,7 +133,7 @@ export function includeFile(pathFile) {
  * and annotates that specification is parsed.
  */
 export function stringifySpec(asyncapi) {
-  return JSON.stringify(asyncapi.json());
+  return stringify(asyncapi);
 }
 
 /**
