@@ -3,7 +3,7 @@ import fs from 'fs';
 import ReactDOMServer from 'react-dom/server';
 import fetch from 'sync-fetch';
 import AsyncApiComponent, { hljs } from '@asyncapi/react-component';
-import {stringify, AsyncAPIDocumentInterface} from '@asyncapi/parser';
+import { AsyncAPIDocumentInterface } from '@asyncapi/parser';
 
 function isJsonObject(o) {
   return o && typeof o === 'object' && !Array.isArray(o);
