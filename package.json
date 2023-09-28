@@ -46,7 +46,7 @@
     "sync-fetch": "^0.5.2"
   },
   "devDependencies": {
-    "@asyncapi/cli": "^0.56.2",
+    "@asyncapi/cli": "^0.58.1",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",
@@ -55,7 +55,7 @@
   "generator": {
     "renderer": "react",
     "apiVersion": "v2",
-    "generator": ">=1.12.0 <2.0.0",
+    "generator": ">=1.13.0 <2.0.0",
     "parameters": {
       "sidebarOrganization": {
         "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
