@@ -20,8 +20,9 @@
   "homepage": "https://github.com/asyncapi/html-template#readme",
   "scripts": {
     "lint": "echo \"No linter specified yet\"",
-    "test:generator": "node ./node_modules/@asyncapi/generator/cli.js https://raw.githubusercontent.com/asyncapi/generator/v1.1.5/test/docs/dummy.yml ./ -o test/output --force-write",
-    "develop": "npm run generate:assets && npm run test:generator -- --watch-template",
+    "test:generator:v2": "asyncapi generate fromTemplate ./test/spec/asyncapi_v2.yml ./ -o test/output --force-write",
+    "test:generator:v3": "asyncapi generate fromTemplate ./test/spec/asyncapi_v3.yml ./ -o test/output --force-write",
+    "develop": "npm run generate:assets && npm run test:generator:v2 -- --watch-template",
     "develop:install": " npm run develop -- --install",
     "generate:assets": "npm run copy:sources && npm run generate:readme:toc",
     "generate:readme:toc": "markdown-toc -i README.md",
@@ -44,7 +45,7 @@
     "sync-fetch": "^0.5.2"
   },
   "devDependencies": {
-    "@asyncapi/generator": "^1.12.0",
+    "@asyncapi/cli": "^0.56.2",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",
@@ -98,7 +99,9 @@
       }
     },
     "nonRenderableFiles": [
-      "js/asyncapi-ui.min.js"
+      "js/asyncapi-ui.min.js",
+      "css/asyncapi.min.css",
+      "css/global.min.css"
     ]
   },
   "babel": {

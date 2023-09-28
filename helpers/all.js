@@ -133,7 +133,7 @@ export function includeFile(pathFile) {
  * and annotates that specification is parsed.
  */
 export function stringifySpec(asyncapi) {
-  return stringify(asyncapi);
+  return JSON.stringify(asyncapi.json());
 }
 
 /**
@@ -155,8 +155,7 @@ export function stringifyConfiguration(params) {
 export function renderSpec(asyncapi, params) {
   loadLanguagesConfig();
   const config = prepareConfiguration(params);
-  const stringified = stringify(asyncapi);
+  const stringified = stringifySpec(asyncapi);
   const component = <AsyncApiComponent schema={stringified} config={config}/>;
-  //const component = <></>
   return ReactDOMServer.renderToString(component);
 }
