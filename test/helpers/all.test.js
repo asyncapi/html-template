@@ -1,5 +1,5 @@
 import { hljs } from '@asyncapi/react-component';
-import { AsyncAPIDocument } from "@asyncapi/parser";
+import Parser, { AsyncAPIDocumentV2 } from "@asyncapi/parser";
 
 import {
   includeFile,
@@ -7,9 +7,9 @@ import {
   stringifySpec,
   stringifyConfiguration,
   renderSpec,
-} from "../../filters/all";
+} from "../../helpers/all";
 
-describe('Filters', () => {
+describe('Helpers', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -55,26 +55,30 @@ describe('Filters', () => {
         'x-parser-circular-props': ['bar'],
       }
       schema.properties.bar = schema;
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
 
-      const expected = `{"asyncapi":"2.0.0","components":{"schemas":{"dummySchema":{"type":"object","properties":{"foo":{"type":"string","x-parser-schema-id":"<anonymous-schema-1>"},"bar":"$ref:$.components.schemas.dummySchema"},"x-parser-schema-id":"dummySchema","x-parser-circular-props":["bar"]}}},"x-parser-spec-parsed":true,"x-parser-spec-stringified":true}`;
+      const doc = new AsyncAPIDocumentV2({ asyncapi: '2.0.0', components: { schemas: { dummySchema: schema } }});
+
+      const expected = `{\n  "asyncapi": "2.0.0",\n  "components": {\n    "schemas": {\n      "dummySchema": {\n        "type": "object",\n        "properties": {\n          "foo": {\n            "type": "string"\n          },\n          "bar": "$ref:$.components.schemas.dummySchema"\n        },\n        "x-parser-schema-id": "parsedDoc",\n        "x-parser-circular-props": [\n          "bar"\n        ]\n      }\n    }\n  },\n  "x-parser-spec-stringified": true\n}`;
       const expectedParsed = {
-        asyncapi: '2.0.0',
+        asyncapi: "2.0.0",
         components: {
           schemas: {
             dummySchema: {
-              type: 'object',
+              type: "object",
               properties: {
-                foo: { type: 'string', 'x-parser-schema-id': '<anonymous-schema-1>' },
-                bar: '$ref:$.components.schemas.dummySchema',
+                foo: {
+                  type: "string",
+                },
+                bar: "$ref:$.components.schemas.dummySchema",
               },
-              'x-parser-schema-id': 'dummySchema',
-              'x-parser-circular-props': ['bar'],
+              "x-parser-schema-id": "parsedDoc",
+              "x-parser-circular-props": [
+                "bar",
+              ],
             },
           },
         },
-        'x-parser-spec-parsed': true,
-        'x-parser-spec-stringified': true,
+        "x-parser-spec-stringified": true,
       };
 
       const result = stringifySpec(doc);
@@ -128,9 +132,14 @@ describe('Filters', () => {
 
   describe('.renderSpec', () => {
     it('should work', async () => {
-      const doc = new AsyncAPIDocument({ asyncapi: '2.0.0', info: { title: 'dummy spec for testing', version: '1.5.34' } });
+      const parser = new Parser();
+      const {document} = await parser.parse({
+        asyncapi: '2.0.0',
+        info: { title: 'dummy spec', version: '1.5.34' },
+        channels: {},
+      })
 
-      const result = renderSpec(doc);
+      const result = renderSpec(document);
       // check if '1.5.34' version is rendered
       expect(result.includes('1.5.34')).toEqual(true);
       // check if 'dummy spec for testing' title is rendered
