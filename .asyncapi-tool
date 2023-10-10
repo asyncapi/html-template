@@ -1,0 +1,8 @@
+title: Node.js HTML Template
+filters:
+  language: HTML
+  technology:
+  - Node.js
+  categories:
+  - generator-template
+  hasCommercial: false
