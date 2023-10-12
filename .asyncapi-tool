@@ -1,6 +1,6 @@
 title: Node.js HTML Template
 filters:
-  language: HTML
+  language: javascript
   technology:
   - Node.js
   categories:
