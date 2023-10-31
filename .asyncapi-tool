@@ -2,7 +2,7 @@ title: HTML Template
 filters:
   language: javascript
   technology:
-  - Node.js
+  - HTML
   categories:
   - generator-template
   hasCommercial: false
