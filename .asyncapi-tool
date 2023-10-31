@@ -1,0 +1,8 @@
+title: HTML Template
+filters:
+  language: javascript
+  technology:
+  - HTML
+  categories:
+  - generator-template
+  hasCommercial: false
