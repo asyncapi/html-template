@@ -39,7 +39,7 @@
   "dependencies": {
     "@asyncapi/generator-react-sdk": "^1.0.0",
     "@asyncapi/react-component": "^1.0.1",
-    "@asyncapi/parser": "^3.0.0-next-major-spec.3",
+    "@asyncapi/parser": "^3.0.0-next-major-spec.11",
     "highlight.js": "10.7.3",
     "puppeteer": "^14.1.0",
     "react-dom": "^17.0.2",
@@ -55,8 +55,8 @@
   },
   "generator": {
     "renderer": "react",
-    "apiVersion": "v2",
-    "generator": ">=1.13.0 <2.0.0",
+    "apiVersion": "v3",
+    "generator": ">=1.15.0 <2.0.0",
     "parameters": {
       "sidebarOrganization": {
         "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
