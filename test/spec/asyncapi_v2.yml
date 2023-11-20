@@ -16,7 +16,7 @@ info:
 
 servers:
   production:
-    url: mqtt://test.mosquitto.org:{port}
+    url: test.mosquitto.org:{port}
     protocol: mqtt
     description: Test broker
     variables:
@@ -26,8 +26,18 @@ servers:
         enum:
           - '1883'
           - '8883'
+    security:
+      - apiKey: []
+      - supportedOauthFlows:
+        - streetlights:on
+        - streetlights:off
+        - streetlights:dim
+      - openIdConnectWellKnown: []
 
 defaultContentType: application/json
+tags:
+  - name: One
+  - name: Two
 
 channels:
   smartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured:
@@ -37,30 +47,13 @@ channels:
         $ref: '#/components/parameters/streetlightId'
     publish:
       summary: Inform about environmental lighting conditions of a particular streetlight.
-      description: |
-        This is the description with **bold** text.
-        
-        On multiple lines.
       operationId: receiveLightMeasurement
-      tags:
-        - name: oparation-tag1
-          externalDocs: 
-            description: External docs description 1
-            url: https://www.asyncapi.com/
-        - name: oparation-tag2
-          description: Description 2
-          externalDocs:
-            url: "https://www.asyncapi.com/"
-        - name: oparation-tag3
-        - name: oparation-tag4
-          description: Description 4
-        - name: message-tag5
-          externalDocs:  
-            url: "https://www.asyncapi.com/"
       traits:
         - $ref: '#/components/operationTraits/kafka'
       message:
         $ref: '#/components/messages/lightMeasured'
+      tags:
+        - name: One     
 
   smartylighting/streetlights/1/0/action/{streetlightId}/turn/on:
     parameters:
@@ -72,6 +65,8 @@ channels:
         - $ref: '#/components/operationTraits/kafka'
       message:
         $ref: '#/components/messages/turnOnOff'
+      tags:
+        - name: Two          
 
   smartylighting/streetlights/1/0/action/{streetlightId}/turn/off:
     parameters:
@@ -83,6 +78,8 @@ channels:
         - $ref: '#/components/operationTraits/kafka'
       message:
         $ref: '#/components/messages/turnOnOff'
+      tags:
+        - name: One          
 
   smartylighting/streetlights/1/0/action/{streetlightId}/dim:
     parameters:
@@ -94,13 +91,8 @@ channels:
         - $ref: '#/components/operationTraits/kafka'
       message:
         $ref: '#/components/messages/dimLight'
-  some.channel:
-    subscribe:
-      description: this description shows in markdown
-      message:
-        oneOf:
-          - $ref: '#/components/messages/successMessage'
-          - $ref: '#/components/messages/failureMessage'
+      tags:
+        - name: Two          
 
 components:
   messages:
@@ -109,21 +101,6 @@ components:
       title: Light measured
       summary: Inform about environmental lighting conditions of a particular streetlight.
       contentType: application/json
-      tags:
-        - name: message-tag1
-          externalDocs: 
-            description: External docs description 1
-            url: https://www.asyncapi.com/
-        - name: message-tag2
-          description: Description 2
-          externalDocs:
-            url: "https://www.asyncapi.com/"
-        - name: message-tag3
-        - name: message-tag4
-          description: Description 4
-        - name: message-tag5
-          externalDocs:  
-            url: "https://www.asyncapi.com/"
       traits:
         - $ref: '#/components/messageTraits/commonHeaders'
       payload:
@@ -144,31 +121,7 @@ components:
         - $ref: '#/components/messageTraits/commonHeaders'
       payload:
         $ref: "#/components/schemas/dimLightPayload"
-    successMessage:
-      name: Success
-      payload:
-          type: object
-          properties:
-            result:
-              type: string
-              examples:
-                - success
-    failureMessage:
-      name: Failure
-      payload:
-          type: object
-          properties:
-            error:
-              type: object
-              properties:
-                errorCode:
-                  type: integer              
-                errorMessage:
-                  type: string
-          examples:
-            - error:
-                errorCode: 404
-                errorMessage: Something messed up
+
   schemas:
     lightMeasuredPayload:
       type: object
@@ -177,7 +130,6 @@ components:
           type: integer
           minimum: 0
           description: Light intensity measured in lumens.
-          x-pi: false
         sentAt:
           $ref: "#/components/schemas/sentAt"
     turnOnOffPayload:
@@ -189,7 +141,6 @@ components:
             - on
             - off
           description: Whether to turn on or off the light.
-          x-pi: false
         sentAt:
           $ref: "#/components/schemas/sentAt"
     dimLightPayload:
@@ -261,7 +212,7 @@ components:
             type: integer
             minimum: 0
             maximum: 100
-
+  
   operationTraits:
     kafka:
       bindings:
