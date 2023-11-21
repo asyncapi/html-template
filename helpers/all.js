@@ -134,7 +134,7 @@ export function includeFile(pathFile) {
  */
 export function stringifySpec(asyncapi) {
   const stringifiedDoc = stringify(asyncapi);
-  if(stringifiedDoc === undefined) throw new Error("Unable to stringify parsed AsyncAPI document given by the generator, this should never happen... Please raise an issue for the html-template.")
+  if(stringifiedDoc === undefined) throw new Error("Unable to stringify parsed AsyncAPI document passed by the generator. Please report an issue in https://github.com/asyncapi/html-template repository.")
   return stringifiedDoc
 }
 
