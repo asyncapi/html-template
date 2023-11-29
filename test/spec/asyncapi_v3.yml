@@ -91,7 +91,7 @@ operations:
     traits:
       - $ref: '#/components/operationTraits/kafka'
     messages:
-      - $ref: '#/components/messages/lightMeasured'
+      - $ref: '#/channels/smartylighting~1streetlights~11~10~1event~1{streetlightId}~1lighting~1measured/messages/receiveLightMeasurement.message'
   turnOn:
     action: send
     channel:
@@ -100,7 +100,7 @@ operations:
     traits:
       - $ref: '#/components/operationTraits/kafka'
     messages:
-      - $ref: '#/components/messages/turnOnOff'
+      - $ref: '#/channels/smartylighting~1streetlights~11~10~1action~1{streetlightId}~1turn~1on/messages/turnOn.message'
   turnOff:
     action: send
     channel:
@@ -109,7 +109,7 @@ operations:
     traits:
       - $ref: '#/components/operationTraits/kafka'
     messages:
-      - $ref: '#/components/messages/turnOnOff'
+      - $ref: '#/channels/smartylighting~1streetlights~11~10~1action~1{streetlightId}~1turn~1off/messages/turnOff.message'
   dimLight:
     action: send
     channel:
@@ -118,15 +118,15 @@ operations:
     traits:
       - $ref: '#/components/operationTraits/kafka'
     messages:
-      - $ref: '#/components/messages/dimLight'
+      - $ref: '#/channels/smartylighting~1streetlights~11~10~1action~1{streetlightId}~1dim/messages/dimLight.message'
   some.channel.subscribe:
     action: send
     channel:
       $ref: '#/channels/some.channel'
     description: this description shows in markdown
     messages:
-      - $ref: '#/components/messages/successMessage'
-      - $ref: '#/components/messages/failureMessage'
+      - $ref: '#/channels/some.channel/messages/subscribe.message.0'
+      - $ref: '#/channels/some.channel/messages/subscribe.message.1'
 components:
   messages:
     lightMeasured:

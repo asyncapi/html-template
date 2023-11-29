@@ -442,7 +442,7 @@ exports[`Index component should render AsyncAPI v2 document 1`] = `
     }
   },
   \\"x-parser-spec-parsed\\": true,
-  \\"x-parser-api-version\\": 2,
+  \\"x-parser-api-version\\": 3,
   \\"x-parser-spec-stringified\\": true
 };
         const config = {\\"show\\":{\\"sidebar\\":true},\\"sidebar\\":{\\"showOperations\\":\\"byDefault\\"}};
@@ -1152,7 +1152,7 @@ exports[`Index component should render AsyncAPI v3 document 1`] = `
     }
   },
   \\"x-parser-spec-parsed\\": true,
-  \\"x-parser-api-version\\": 2,
+  \\"x-parser-api-version\\": 3,
   \\"x-parser-spec-stringified\\": true
 };
         const config = {\\"show\\":{\\"sidebar\\":true},\\"sidebar\\":{\\"showOperations\\":\\"byDefault\\"}};
