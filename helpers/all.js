@@ -133,7 +133,9 @@ export function includeFile(pathFile) {
  * and annotates that specification is parsed.
  */
 export function stringifySpec(asyncapi) {
-  return stringify(asyncapi);
+  const stringifiedDoc = stringify(asyncapi);
+  if(stringifiedDoc === undefined) throw new Error("Unable to stringify parsed AsyncAPI document passed by the generator. Please report an issue in https://github.com/asyncapi/html-template repository.")
+  return stringifiedDoc
 }
 
 /**
