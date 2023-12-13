@@ -37,9 +37,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/generator-react-sdk": "^1.0.0",
-    "@asyncapi/react-component": "^1.0.1",
+    "@asyncapi/generator-react-sdk": "^1.0.6",
     "@asyncapi/parser": "^3.0.0-next-major-spec.14",
+    "@asyncapi/react-component": "^1.0.1",
     "highlight.js": "10.7.3",
     "puppeteer": "^14.1.0",
     "react-dom": "^17.0.2",
