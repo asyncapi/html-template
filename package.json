@@ -38,8 +38,8 @@
   },
   "dependencies": {
     "@asyncapi/generator-react-sdk": "^1.0.0",
-    "@asyncapi/react-component": "^1.0.1",
     "@asyncapi/parser": "^3.0.0-next-major-spec.14",
+    "@asyncapi/react-component": "^1.0.1",
     "highlight.js": "10.7.3",
     "puppeteer": "^14.1.0",
     "react-dom": "^17.0.2",
@@ -47,7 +47,7 @@
     "sync-fetch": "^0.5.2"
   },
   "devDependencies": {
-    "@asyncapi/cli": "^1.1.8",
+    "@asyncapi/cli": "^1.2.21",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",
