@@ -8,8 +8,7 @@ const parser = new Parser();
 
 describe('Index component', () => {
   it('should render AsyncAPI v3 document', async () => {
-    const { document, diagnostics } = await fromFile(parser, asyncapi_v3_path).parse();
-    console.log(diagnostics);
+    const { document } = await fromFile(parser, asyncapi_v3_path).parse();
     expect(document).not.toBeUndefined();
     const result = render(<Index asyncapi={document} params={{}}/>);
     const actual = result.trim();
