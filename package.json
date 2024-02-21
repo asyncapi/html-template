@@ -37,7 +37,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/generator-react-sdk": "^1.0.9",
+    "@asyncapi/generator-react-sdk": "^1.0.11",
     "@asyncapi/parser": "^3.0.5",
     "@asyncapi/react-component": "^1.2.13",
     "highlight.js": "10.7.3",
