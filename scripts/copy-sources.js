@@ -8,7 +8,7 @@ const util = require('util');
 const fs = require('fs-extra');
 const path = require('path');
 const copyFile = util.promisify(fs.copyFile);
-const { exec } = require('child_process');
+const { main } = require('./transpile')
 
 // source (node_modules): destination (template)
 const filesToCopy = {
@@ -17,17 +17,7 @@ const filesToCopy = {
 };
 
 async function copyFiles() {
-  await new Promise((resolve) => {
-    exec('npm run transpile', (err, stdout, stderr) => {
-      if (err) {
-        console.error(`Error during template transpilation: ${err}`);
-        return;
-      }
-      if (stdout) console.log(stdout);
-      if (stderr) console.log('Template transpilation error:', stderr);
-      resolve();
-    });
-  });
+  await main()
   const operations = Object.entries(filesToCopy).map(([source, destination]) => {
     return copyFile(path.join(__dirname, '../node_modules', source), path.join(__dirname, '../template', destination));
   });
