@@ -5,7 +5,7 @@
  */
 
 const util = require('util');
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
 const copyFile = util.promisify(fs.copyFile);
 const { main } = require('./transpile')
