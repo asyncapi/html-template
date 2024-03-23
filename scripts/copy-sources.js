@@ -12,8 +12,8 @@ const { exec } = require('child_process');
 
 // source (node_modules): destination (template)
 const filesToCopy = {
-  "node_modules/@asyncapi/react-component/browser/standalone/without-parser.js": "js/asyncapi-ui.min.js",
-  "node_modules/@asyncapi/react-component/styles/default.min.css": "css/asyncapi.min.css",
+  "@asyncapi/react-component/browser/standalone/without-parser.js": "js/asyncapi-ui.min.js",
+  "@asyncapi/react-component/styles/default.min.css": "css/asyncapi.min.css",
 };
 
 async function copyFiles() {
