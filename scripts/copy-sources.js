@@ -29,9 +29,7 @@ async function copyFiles() {
     });
   });
   const operations = Object.entries(filesToCopy).map(([source, destination]) => {
-    const sourcePath = path.join(__dirname, '../', source);
-    const destinationPath = path.join(__dirname, '../template', destination);
-    return fs.copy(sourcePath, destinationPath, { overwrite: true });
+    return copyFile(path.join(__dirname, '../node_modules', source), path.join(__dirname, '../template', destination));
   });
   await Promise.all(operations);
 }
