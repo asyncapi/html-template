@@ -1,11 +1,16 @@
-const { transpileFiles } = require('@asyncapi/generator-react-sdk');
-const path = require('path')
+const { transpileFiles } = require("@asyncapi/generator-react-sdk");
+const path = require("path");
 
 async function transpileTemplate() {
-  const templateContentDir = path.join(__dirname, '../template');
-  console.log("templateContentDir",templateContentDir)
-  const outputDir = path.join(__dirname, '../__transpiled');
-  await transpileFiles(templateContentDir, outputDir, {recursive: true})
+  try {
+    const templateContentDir = path.join(__dirname, "../template");
+    console.log("Template content directory:", templateContentDir);
+    const outputDir = path.join(__dirname, "../__transpiled");
+    console.log("Output directory for transpiled files:", outputDir);
+    await transpileFiles(templateContentDir, outputDir, { recursive: true });
+  } catch (error) {
+    console.log("Error during template transpilation:", err)
+  }
 }
 
-transpileTemplate().catch((err) => console.log('Error during template transpilation:', err));
+transpileTemplate();
