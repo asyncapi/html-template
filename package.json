@@ -10,6 +10,9 @@
   ],
   "author": "Fran Mendez <fmvilas@gmail.com> (fmvilas.com)",
   "license": "Apache-2.0",
+  "files": [
+    "__transpiled"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asyncapi/html-template.git"
