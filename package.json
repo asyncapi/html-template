@@ -10,9 +10,6 @@
   ],
   "author": "Fran Mendez <fmvilas@gmail.com> (fmvilas.com)",
   "license": "Apache-2.0",
-  "files": [
-    "__transpiled"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asyncapi/html-template.git"
@@ -33,8 +30,7 @@
     "generate:readme:toc": "markdown-toc -i README.md",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "copy:sources": "node ./scripts/copy-sources.js",
-    "prepublishOnly": "npm run generate:assets && npm run transpile",
-    "transpile": "node ./scripts/transpile.js",
+    "prepublishOnly": "npm run generate:assets",
     "test": "npm run test:library && npm run test:generator"
   },
   "publishConfig": {
