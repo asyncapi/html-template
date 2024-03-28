@@ -9,3 +9,4 @@ scripts
 sample
 vscode
 test
+!__transpiled

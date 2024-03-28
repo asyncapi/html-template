@@ -30,7 +30,8 @@
     "generate:readme:toc": "markdown-toc -i README.md",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "copy:sources": "node ./scripts/copy-sources.js",
-    "prepublishOnly": "npm run generate:assets",
+    "prepublishOnly": "npm run generate:assets && npm run transpile",
+    "transpile": "node ./scripts/transpile.js",
     "test": "npm run test:library && npm run test:generator"
   },
   "publishConfig": {
