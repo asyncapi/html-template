@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/html-template",
-  "version": "2.2.2",
+  "version": "2.2.4",
   "description": "HTML template for the AsyncAPI generator.",
   "keywords": [
     "asyncapi",
@@ -38,8 +38,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@asyncapi/generator-react-sdk": "^1.0.9",
-    "@asyncapi/parser": "^3.0.10",
+    "@asyncapi/generator-react-sdk": "^1.0.15",
+    "@asyncapi/parser": "^3.0.11",
     "@asyncapi/react-component": "^1.2.13",
     "highlight.js": "10.7.3",
     "puppeteer": "^14.1.0",
