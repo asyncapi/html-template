@@ -48,7 +48,7 @@
     "sync-fetch": "^0.5.2"
   },
   "devDependencies": {
-    "@asyncapi/cli": "^2.0.2",
+    "@asyncapi/cli": "^2.0.3",
     "cross-env": "^7.0.3",
     "jest": "^29.7.0",
     "jest-esm-transformer": "^1.0.0",
