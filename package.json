@@ -42,7 +42,7 @@
     "@asyncapi/parser": "^3.1.0",
     "@asyncapi/react-component": "^1.2.13",
     "highlight.js": "10.7.3",
-    "puppeteer": "^23.2.0",
+    "puppeteer": "^14.1.0",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
     "sync-fetch": "^0.5.2"
