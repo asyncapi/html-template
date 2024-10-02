@@ -42,13 +42,20 @@ export function Index({ asyncapi, params = {} }) {
   
       ${asyncapiScript}
   
-      <script>
-        const schema = ${stringifySpec(asyncapi)};
-        const config = ${stringifyConfiguration(params)};
-        AsyncApiStandalone.hydrate({ schema, config }, document.getElementById("root"));
-      </script>
+      <script type="application/javascript" src="js/app.js"></script>
     </body>
   </html>`
   );
 }
-  
+
+export function App({ asyncapi, params = {} }) {
+  return (`
+    const schema = ${stringifySpec(asyncapi)};
+    const config = ${stringifyConfiguration(params)};
+    const appRoot = document.getElementById('root');
+    AsyncApiStandalone.render(
+        { schema, config, }, appRoot
+    );
+  `
+  );
+}
