@@ -32,11 +32,19 @@ npm install -g @asyncapi/cli
 
 Generate using CLI
 
+> If you use template version v1 or v2 with AsyncAPI Generator v1
+
 ```bash
-asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@0.28.0
+asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@2.3.14
 ```
 
-You can replace `<asyncapi.yaml>` with local path or URL pointing to [any AsyncAPI document](https://raw.githubusercontent.com/asyncapi/spec/master/examples/streetlights-kafka.yml).
+> If you use template version v3 with AsyncAPI Generator v2
+
+```bash
+asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.0.0 --use-new-generator
+```
+
+You can replace `<asyncapi.yaml>` with local path or URL pointing to [any AsyncAPI document](https://raw.githubusercontent.com/asyncapi/spec/refs/heads/master/examples/streetlights-kafka-asyncapi.yml).
 Look into [Releases](/asyncapi/html-template/releases) of this template to pick up the version you need. It is not recommended to always use the latest in production. Always use a specific version.
 
 ## Supported parameters
