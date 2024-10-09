@@ -32,13 +32,13 @@ npm install -g @asyncapi/cli
 
 Generate using CLI
 
-> If you use template version v1 or v2
+> If you use template version v1 or v2 with AsyncAPI Generator v1
 
 ```bash
 asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@2.3.14
 ```
 
-> If you use template version v3
+> If you use template version v3 with AsyncAPI Generator v2
 
 ```bash
 asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.0.0 --use-new-generator
