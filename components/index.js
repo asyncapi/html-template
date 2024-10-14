@@ -26,6 +26,10 @@ export function Index({ asyncapi, params = {} }) {
   if(params.baseHref) {
     basehref = `<base href="${params.baseHref}">`;
   }
+  let appJs = `<script type="application/javascript" src="js/app.js"></script>`;
+  if(params?.singleFile) {
+    appJs = `<script>${App({asyncapi, params})}</script>`;
+  }
   return (`<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -42,7 +46,7 @@ export function Index({ asyncapi, params = {} }) {
   
       ${asyncapiScript}
   
-      <script type="application/javascript" src="js/app.js"></script>
+      ${appJs}
     </body>
   </html>`
   );
