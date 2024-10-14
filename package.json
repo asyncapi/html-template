@@ -22,8 +22,8 @@
     "lint": "echo \"No linter specified yet\"",
     "test:library": "jest --coverage",
     "test:generator": "npm run test:generator:v2 && npm run test:generator:v3",
-    "test:generator:v2": "asyncapi generate fromTemplate ./test/spec/asyncapi_v2.yml ./ -o test/output --force-write",
-    "test:generator:v3": "asyncapi generate fromTemplate ./test/spec/asyncapi_v3.yml ./ -o test/output --force-write",
+    "test:generator:v2": "asyncapi generate fromTemplate ./test/spec/asyncapi_v2.yml ./ -o test/output --force-write --use-new-generator",
+    "test:generator:v3": "asyncapi generate fromTemplate ./test/spec/asyncapi_v3.yml ./ -o test/output --force-write --use-new-generator",
     "develop": "npm run generate:assets && npm run test:generator:v2 -- --watch-template",
     "develop:install": " npm run develop -- --install",
     "generate:assets": "npm run copy:sources && npm run generate:readme:toc",
@@ -57,7 +57,7 @@
   "generator": {
     "renderer": "react",
     "apiVersion": "v3",
-    "generator": ">=1.15.0 <2.0.0",
+    "generator": ">=2.0.0 <3.0.0",
     "parameters": {
       "sidebarOrganization": {
         "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
