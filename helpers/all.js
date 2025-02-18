@@ -159,5 +159,12 @@ export function renderSpec(asyncapi, params) {
   const config = prepareConfiguration(params);
   const stringified = stringifySpec(asyncapi);
   const component = <AsyncApiComponent schema={stringified} config={config}/>;
+  if (typeof global.window === 'undefined' || !global.window.document) {
+    const { JSDOM } = require('jsdom');
+    const jsdomInstance = new JSDOM('<!doctype html><html><body></body></html>');
+    global.window = jsdomInstance.window;
+    global.document = jsdomInstance.window.document;
+  }
+  
   return ReactDOMServer.renderToString(component);
 }
