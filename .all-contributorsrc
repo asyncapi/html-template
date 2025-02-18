@@ -172,6 +172,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "neoandmatrix",
+      "name": "Tushar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/141230066?v=4",
+      "profile": "https://github.com/neoandmatrix",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

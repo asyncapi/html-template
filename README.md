@@ -5,7 +5,7 @@ HTML template for the [AsyncAPI Generator](https://github.com/asyncapi/generator
 ---
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![npm](https://img.shields.io/npm/dm/@asyncapi/html-template?style=flat-square)
 
@@ -113,6 +113,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://www.brainfart.dev/"><img src="https://avatars.githubusercontent.com/u/6995927?v=4?s=100" width="100px;" alt="Lukasz Gornicki"/><br /><sub><b>Lukasz Gornicki</b></sub></a><br /><a href="#maintenance-derberg" title="Maintenance">🚧</a> <a href="https://github.com/asyncapi/html-template/commits?author=derberg" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Aderberg" title="Bug reports">🐛</a> <a href="https://github.com/asyncapi/html-template/pulls?q=is%3Apr+reviewed-by%3Aderberg" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/asyncapi/html-template/commits?author=derberg" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.fmvilas.com/"><img src="https://avatars.githubusercontent.com/u/242119?v=4?s=100" width="100px;" alt="Fran Méndez"/><br /><sub><b>Fran Méndez</b></sub></a><br /><a href="#maintenance-fmvilas" title="Maintenance">🚧</a> <a href="https://github.com/asyncapi/html-template/commits?author=fmvilas" title="Code">💻</a> <a href="https://github.com/asyncapi/html-template/issues?q=author%3Afmvilas" title="Bug reports">🐛</a> <a href="https://github.com/asyncapi/html-template/pulls?q=is%3Apr+reviewed-by%3Afmvilas" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/asyncapi/html-template/commits?author=fmvilas" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Arya-Gupta"><img src="https://avatars.githubusercontent.com/u/84087089?v=4?s=100" width="100px;" alt="Arya Gupta"/><br /><sub><b>Arya Gupta</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=Arya-Gupta" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/neoandmatrix"><img src="https://avatars.githubusercontent.com/u/141230066?v=4?s=100" width="100px;" alt="Tushar"/><br /><sub><b>Tushar</b></sub></a><br /><a href="https://github.com/asyncapi/html-template/commits?author=neoandmatrix" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
