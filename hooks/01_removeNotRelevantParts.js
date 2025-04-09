@@ -1,5 +1,6 @@
 const path = require('path');
 const rimraf = require('rimraf');
+const fs = require('fs');
 
 const callback = (error) => {
   if (error) {
