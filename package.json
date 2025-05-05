@@ -147,4 +147,5 @@
       "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
     }
   }
+  }
 }
