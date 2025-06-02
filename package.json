@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/html-template",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "HTML template for the AsyncAPI generator.",
   "keywords": [
     "asyncapi",
@@ -61,14 +61,14 @@
     "apiVersion": "v3",
     "generator": ">=2.0.0 <3.0.0",
     "conditionalGeneration": {
-      "css": { 
-        "parameter": "singleFile", 
+      "css": {
+        "parameter": "singleFile",
         "validation": {
           "const": "false"
         }
       },
-      "js": { 
-        "parameter": "singleFile", 
+      "js": {
+        "parameter": "singleFile",
         "validation": {
           "const": "false"
         }
@@ -148,4 +148,4 @@
       "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
     }
   }
-  }
+}
