@@ -60,6 +60,20 @@
     "renderer": "react",
     "apiVersion": "v3",
     "generator": ">=2.0.0 <3.0.0",
+    "conditionalGeneration": {
+      "css": { 
+        "parameter": "singleFile", 
+        "validation": {
+          "const": "false"
+        }
+      },
+      "js": { 
+        "parameter": "singleFile", 
+        "validation": {
+          "const": "false"
+        }
+      }
+    },
     "parameters": {
       "sidebarOrganization": {
         "description": "Defines how the sidebar should be organized. 'byTags' to categorize operations by tags in the root of the document, `byTagsNoRoot` does the same but for pub/sub tags.",
@@ -134,4 +148,4 @@
       "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
     }
   }
-}
+  }
