@@ -9,14 +9,16 @@ export function Index({ asyncapi, params = {} }) {
   const favicon = generateBase64Favicon(params);
   const renderedSpec = renderSpec(asyncapi, params);
   let asyncapiScript = `<script src="js/asyncapi-ui.min.js" type="application/javascript"></script>`;
-  if(params?.singleFile) {
+  // coerce singleFile param to bool, or "false" string will be true
+  const singleFile = (params?.singleFile === true  || params?.singleFile == 'true');
+  if(singleFile) {
     asyncapiScript = `<script type="text/javascript">
     ${includeFile('template/js/asyncapi-ui.min.js')}
     </script>`;
   }
   let styling = `<link href="css/global.min.css" rel="stylesheet">
       <link href="css/asyncapi.min.css" rel="stylesheet">`;
-  if(params?.singleFile) {
+  if(singleFile) {
     styling = `<style type="text/css">
       ${includeFile("template/css/global.min.css")}
       ${includeFile("template/css/asyncapi.min.css")}
@@ -27,7 +29,7 @@ export function Index({ asyncapi, params = {} }) {
     basehref = `<base href="${params.baseHref}">`;
   }
   let appJs = `<script type="application/javascript" src="js/app.js"></script>`;
-  if(params?.singleFile) {
+  if(singleFile) {
     appJs = `<script>${App({asyncapi, params})}</script>`;
   }
   return (`<!DOCTYPE html>
