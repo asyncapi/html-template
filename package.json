@@ -64,13 +64,13 @@
       "css": {
         "parameter": "singleFile",
         "validation": {
-          "const": "false"
+          "const": false
         }
       },
       "js": {
         "parameter": "singleFile",
         "validation": {
-          "const": "false"
+          "const": false
         }
       }
     },
