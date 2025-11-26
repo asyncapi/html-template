@@ -16,9 +16,10 @@ module.exports = {
     try {
       const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       const page = await browser.newPage();
-    
+      const fullPath = path.resolve(targetDir, 'index.html');
+      const fileUrl = `file:///${fullPath.replace(/\\/g, '/')}`;
       // Go to prepared page with documentation
-      await page.goto(`file://${path.join(targetDir, 'index.html')}`, { waitUntil: 'networkidle0' });
+      await page.goto(fileUrl, { waitUntil: 'networkidle0' });
   
       // Hide burger-menu in pdf
       await page.evaluate(() => { document.querySelector('.burger-menu').style.display = 'none'; });
