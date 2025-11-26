@@ -17,7 +17,7 @@ module.exports = {
       const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       const page = await browser.newPage();
       const fullPath = path.resolve(targetDir, 'index.html');
-      const fileUrl = `file:///${fullPath.replace(/\\/g, '/')}`;
+      const fileUrl = `file:///${fullPath.replaceAll('\\', '/')}`;
       // Go to prepared page with documentation
       await page.goto(fileUrl, { waitUntil: 'networkidle0' });
   
