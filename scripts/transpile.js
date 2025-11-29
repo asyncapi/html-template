@@ -9,7 +9,7 @@ async function transpileTemplate() {
     console.log("Output directory for transpiled files:", outputDir);
     await transpileFiles(templateContentDir, outputDir, { recursive: true });
   } catch (error) {
-    console.log("Error during template transpilation:", err)
+    console.log("Error during template transpilation:", error)
   }
 }
 
