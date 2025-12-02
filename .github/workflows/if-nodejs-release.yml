@@ -17,6 +17,12 @@ on:
       - alpha
       - next
 
+permissions:
+  contents: write # to be able to publish a GitHub release
+  issues: write # to be able to comment on released issues
+  pull-requests: write # to be able to comment on released pull requests
+  id-token: write # to enable use of OIDC for trusted publishing and npm provenance
+
 jobs:
 
   test-nodejs:
@@ -56,6 +62,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "${{ steps.lockversion.outputs.version }}"
+          registry-url: "https://registry.npmjs.org"
       - if: steps.lockversion.outputs.version == '18' && matrix.os == 'windows-latest'
         name: Install npm cli 8
         shell: bash
@@ -115,7 +122,6 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           GIT_AUTHOR_NAME: asyncapi-bot
