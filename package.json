@@ -90,7 +90,7 @@
       "singleFile": {
         "description": "If set this parameter to true generate single html file with scripts and styles inside",
         "required": false,
-        "default": false
+        "default": "false"
       },
       "outFilename": {
         "description": "The name of the output HTML file",
