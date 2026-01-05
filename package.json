@@ -59,7 +59,7 @@
   "generator": {
     "renderer": "react",
     "apiVersion": "v3",
-    "generator": ">=2.0.0 <3.0.0",
+    "generator": ">=2.0.0 <4.0.0",
     "conditionalGeneration": {
       "css": {
         "parameter": "singleFile",
