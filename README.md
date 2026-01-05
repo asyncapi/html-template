@@ -46,8 +46,6 @@ asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.0.0 --u
 
 > If you use template version v3.5 with AsyncAPI Generator v3 and AsyncAPI CLI v5
 
-AsyncAPI CLI v5 uses Generator v3 by default, so no legacy flags are required.
-
 ```bash
 asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.5.0
 ```
