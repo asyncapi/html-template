@@ -47,7 +47,7 @@ asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.0.0 --u
 > If you use template version v3.4 with AsyncAPI Generator v3 and AsyncAPI CLI v5
 
 ```bash
-asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.4.0
+asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.5.0
 ```
 
 You can replace `<asyncapi.yaml>` with local path or URL pointing to [any AsyncAPI document](https://raw.githubusercontent.com/asyncapi/spec/refs/heads/master/examples/streetlights-kafka-asyncapi.yml).
