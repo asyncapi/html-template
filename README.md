@@ -44,7 +44,7 @@ asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@2.3.14
 asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.0.0 --use-new-generator
 ```
 
-> If you use template version v3.4 with AsyncAPI Generator v3 and AsyncAPI CLI v5
+> If you use template version v3.5 with AsyncAPI Generator v3 and AsyncAPI CLI v5
 
 ```bash
 asyncapi generate fromTemplate <asyncapi.yaml> @asyncapi/html-template@3.5.0
