@@ -1,4 +1,4 @@
-import { render } from '@asyncapi/generator-react-sdk';
+import { render } from '@asyncapi/generator';
 import { Parser, fromFile } from '@asyncapi/parser';
 import {App, Index} from '../../components/index';
 import path from 'path';

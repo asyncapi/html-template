@@ -1,4 +1,4 @@
-const { transpileFiles } = require("@asyncapi/generator-react-sdk");
+const { transpileFiles } = require("@asyncapi/generator");
 const path = require("path");
 
 async function transpileTemplate() {

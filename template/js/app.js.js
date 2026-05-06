@@ -1,4 +1,4 @@
-import { File } from '@asyncapi/generator-react-sdk';
+import { File } from '@asyncapi/generator';
 import { App } from '../../components/index';
 import { AsyncAPIDocumentInterface } from '@asyncapi/parser';
 
