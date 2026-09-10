@@ -2,12 +2,12 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 /**
- * Generates PDF if user pass `pdf` paramater.
+ * Generates a PDF if the user passes the `pdf` parameter.
  */
 module.exports = {
   'generate:after': async ({ templateParams = {}, targetDir }) => {
     // all actions of this hook depend on parameters passed by the user, 
-    // if non are provided we should just stop the hook
+    // if none are provided we should just stop the hook
     if (templateParams.pdf !== 'true') {
       return;
     }
@@ -24,7 +24,7 @@ module.exports = {
       // Hide burger-menu in pdf
       await page.evaluate(() => { document.querySelector('.burger-menu').style.display = 'none'; });
 
-      // React uses its own events system with SyntheticEvents (prevents browser incompatabilities and gives React more control of events),
+      // React uses its own events system with SyntheticEvents (prevents browser incompatibilities and gives React more control of events),
       // so we must use `{ bubbles: true }`
       await page.$$eval('button > svg', chevrons => chevrons.forEach(chevron => {
         const button = chevron.parentElement;
