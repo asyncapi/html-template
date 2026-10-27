@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
+const { pathToFileURL } = require('url');
 
 /**
  * Generates PDF if user pass `pdf` paramater.
@@ -13,14 +14,20 @@ module.exports = {
     }
 
     console.info("PDF is generating...")
+    let browser;
+    let generated = false;
     try {
-      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+      browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       const page = await browser.newPage();
-      const fullPath = path.resolve(targetDir, 'index.html');
-      const fileUrl = `file:///${fullPath.replaceAll('\\', '/')}`;
+      const htmlFilename = templateParams.outFilename || 'index.html';
+      const parsedFilename = path.parse(htmlFilename);
+      const pdfFilename = path.join(parsedFilename.dir, `${parsedFilename.name}.pdf`);
+      const htmlPath = path.resolve(targetDir, htmlFilename);
+      const pdfPath = path.resolve(targetDir, pdfFilename);
+      const fileUrl = pathToFileURL(htmlPath).href;
       // Go to prepared page with documentation
       await page.goto(fileUrl, { waitUntil: 'networkidle0' });
-  
+   
       // Hide burger-menu in pdf
       await page.evaluate(() => { document.querySelector('.burger-menu').style.display = 'none'; });
 
@@ -32,12 +39,22 @@ module.exports = {
         toClick && typeof button.dispatchEvent === 'function' && button.dispatchEvent(new Event('click', { bubbles: true }));
       }));
     
-      await page.pdf({ format: 'A4', path: `${targetDir}/index.pdf`, printBackground: true, timeout: parseInt(templateParams.pdfTimeout, 10) });
-      browser.close();
+      await page.pdf({ format: 'A4', path: pdfPath, printBackground: true, timeout: parseInt(templateParams.pdfTimeout, 10) });
+      generated = true;
     } catch(e) {
       console.error(e);
-      return;
+    } finally {
+      if (browser) {
+        try {
+          await browser.close();
+        } catch (closeError) {
+          console.error(closeError);
+          generated = false;
+        }
+      }
     }
-    console.info("PDF generated!");
+    if (generated) {
+      console.info("PDF generated!");
+    }
   }  
 };
