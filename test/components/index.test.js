@@ -40,4 +40,17 @@ describe('App component', () => {
     const actual = result.trim();
     expect(actual).toMatchSnapshot();
   });
+
+  it('should register the WebSocket plugin when wsPlugin is set', async () => {
+    const { document } = await fromFile(parser, asyncapi_v3_path).parse();
+    const result = render(<App asyncapi={document} params={{ wsPlugin: 'true' }} />);
+    expect(result).toContain('const plugins = [AsyncApiStandalone.createWsPlugin({})];');
+    expect(result).toContain('{ schema, config, plugins, }');
+  });
+
+  it('should not register plugins by default', async () => {
+    const { document } = await fromFile(parser, asyncapi_v3_path).parse();
+    const result = render(<App asyncapi={document} params={{}} />);
+    expect(result).not.toContain('plugins');
+  });
 });
