@@ -6,6 +6,7 @@ import {
   loadLanguagesConfig,
   stringifySpec,
   stringifyConfiguration,
+  stringifyPlugins,
   renderSpec,
 } from "../../helpers/all";
 
@@ -127,6 +128,29 @@ describe('Helpers', () => {
 
       const result = stringifyConfiguration(params);
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('.stringifyPlugins', () => {
+    it('should give no plugins without parameters', () => {
+      expect(stringifyPlugins()).toBeUndefined();
+      expect(stringifyPlugins({ wsPlugin: 'false' })).toBeUndefined();
+    });
+
+    it('should add the WebSocket plugin with default options', () => {
+      const expected = '[AsyncApiStandalone.createWsPlugin({})]';
+      expect(stringifyPlugins({ wsPlugin: 'true' })).toEqual(expected);
+      expect(stringifyPlugins({ wsPlugin: true })).toEqual(expected);
+    });
+
+    it('should add the WebSocket plugin with inline JSON options', () => {
+      const params = { wsPlugin: '{"allowUrlEditing":false}' };
+      const expected = '[AsyncApiStandalone.createWsPlugin({"allowUrlEditing":false})]';
+      expect(stringifyPlugins(params)).toEqual(expected);
+    });
+
+    it('should refuse options that are not a JSON object', () => {
+      expect(() => stringifyPlugins({ wsPlugin: '[1]' })).toThrow('wsPlugin');
     });
   });
 

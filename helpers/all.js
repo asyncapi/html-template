@@ -30,29 +30,36 @@ function mergeInto(from, to) {
 }
 
 /**
+ * Parses a parameter that is stringified JSON or a path to a JSON file.
+ */
+function parseJsonParam(value, name) {
+  if (!value) {
+    return undefined;
+  }
+  try {
+    // Attempt to parse inline stringified JSON
+    return JSON.parse(value);
+  } catch (jsonErr) {
+    // Failed to parse JSON string...
+    try {
+      // Attempt to read as JSON file and parse contents
+      return JSON.parse(fs.readFileSync(value, "utf8"));
+    } catch (err) {
+      console.error(`Failed to parse ${name} JSON`, jsonErr, err);
+      throw err;
+    }
+  }
+}
+
+/**
  * Prepares configuration for component.
  */
 export function prepareConfiguration(params = {}) {
   const config = { show: { sidebar: true }, sidebar: { showOperations: 'byDefault' } };
   // Apply config override
-  if (params.config) {
-    let configOverride;
-    try {
-      // Attempt to parse inline stringified JSON
-      configOverride = JSON.parse(params.config);
-    } catch (jsonErr) {
-      // Failed to parse JSON string...
-      try {
-        // Attempt to read as JSON file and parse contents
-        configOverride = JSON.parse(fs.readFileSync(params.config, "utf8"));
-      } catch (err) {
-        console.error("Failed to parse config override JSON", jsonErr, err);
-        throw err;
-      }
-    }
-    if (isJsonObject(configOverride)) {
-      mergeInto(configOverride, config);
-    }
+  const configOverride = parseJsonParam(params.config, 'config override');
+  if (isJsonObject(configOverride)) {
+    mergeInto(configOverride, config);
   }
   // Apply explicit config properties
   if (params.sidebarOrganization === 'byTags') {
@@ -143,6 +150,37 @@ export function stringifySpec(asyncapi) {
  */
 export function stringifyConfiguration(params) {
   return JSON.stringify(prepareConfiguration(params));
+}
+
+/**
+ * Prepares the options of the WebSocket plugin, or `null` when the plugin is off.
+ * The `wsPlugin` parameter is `true`, or the options as stringified JSON or a path to a JSON file.
+ */
+export function prepareWsPluginOptions(params = {}) {
+  const value = params.wsPlugin;
+  if (value === undefined || value === false || value === '' || value === 'false') {
+    return null;
+  }
+  if (value === true || value === 'true') {
+    return {};
+  }
+  const options = parseJsonParam(value, 'wsPlugin options');
+  if (!isJsonObject(options)) {
+    throw new Error('The wsPlugin parameter must be true, or a JSON object of plugin options.');
+  }
+  return options;
+}
+
+/**
+ * Stringifies the plugins of the component as a script expression.
+ * It returns `undefined` when no plugin is on.
+ */
+export function stringifyPlugins(params) {
+  const wsPluginOptions = prepareWsPluginOptions(params);
+  if (wsPluginOptions === null) {
+    return undefined;
+  }
+  return `[AsyncApiStandalone.createWsPlugin(${JSON.stringify(wsPluginOptions)})]`;
 }
 
 /**

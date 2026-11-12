@@ -26,10 +26,11 @@
     "test:generator:v3": "asyncapi generate fromTemplate ./test/spec/asyncapi_v3.yml ./ -o test/output --force-write --use-new-generator",
     "develop": "npm run generate:assets && npm run test:generator:v2 -- --watch-template",
     "develop:install": " npm run develop -- --install",
-    "generate:assets": "npm run copy:sources && npm run generate:readme:toc",
+    "generate:assets": "npm run copy:sources && npm run bundle:ui && npm run generate:readme:toc",
     "generate:readme:toc": "markdown-toc -i README.md",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "copy:sources": "node ./scripts/copy-sources.js",
+    "bundle:ui": "node ./scripts/bundle-ui.js",
     "prepublishOnly": "npm run generate:assets && npm run transpile",
     "transpile": "node ./scripts/transpile.js",
     "test": "npm run test:library && npm run test:generator"
@@ -40,7 +41,8 @@
   "dependencies": {
     "@asyncapi/generator-react-sdk": "^1.1.2",
     "@asyncapi/parser": "^3.6.0",
-    "@asyncapi/react-component": "^3.0.3",
+    "@asyncapi/react-component": "^3.2.3",
+    "asyncapi-ws-plugin": "^0.1.0",
     "highlight.js": "10.7.3",
     "puppeteer": "^24.4.0",
     "react": "^18.3.1",
@@ -51,6 +53,8 @@
   "devDependencies": {
     "@asyncapi/cli": "^3.1.1",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.25.12",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
     "jest": "^26.6.3",
     "jest-esm-transformer": "^1.0.0",
     "jsdom": "^26.0.0",
@@ -114,6 +118,11 @@
       "config": {
         "description": "Stringified JSON or a path to a JSON file to override the default React component config. The config override is merged with the default config using the [JSON Merge Patch](https://tools.ietf.org/html/rfc7386) algorithm.",
         "default": "",
+        "required": false
+      },
+      "wsPlugin": {
+        "description": "Set to `true` to let readers connect to the `ws` and `wss` servers of the document, and send and receive messages from the page. It uses the [WebSocket plugin](https://github.com/acethecreator/asyncapi-ws-plugin) of the React component. To set plugin options, give stringified JSON or a path to a JSON file instead of `true`.",
+        "default": "false",
         "required": false
       }
     },
