@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { AsyncAPIDocumentInterface } from '@asyncapi/parser';
-import { includeFile, generateBase64Favicon, renderSpec, stringifySpec, stringifyConfiguration } from '../helpers/all';
+import { includeFile, generateBase64Favicon, renderSpec, stringifySpec, stringifyConfiguration, stringifyPlugins } from '../helpers/all';
 
 /**
  * @param {{asyncapi: AsyncAPIDocumentInterface, params: any}} param0 
@@ -55,12 +55,25 @@ export function Index({ asyncapi, params = {} }) {
 }
 
 export function App({ asyncapi, params = {} }) {
-  return (`
+  const plugins = stringifyPlugins(params);
+  if (plugins === undefined) {
+    return (`
     const schema = ${stringifySpec(asyncapi)};
     const config = ${stringifyConfiguration(params)};
     const appRoot = document.getElementById('root');
     AsyncApiStandalone.render(
         { schema, config, }, appRoot
+    );
+  `
+    );
+  }
+  return (`
+    const schema = ${stringifySpec(asyncapi)};
+    const config = ${stringifyConfiguration(params)};
+    const plugins = ${plugins};
+    const appRoot = document.getElementById('root');
+    AsyncApiStandalone.render(
+        { schema, config, plugins, }, appRoot
     );
   `
   );
